@@ -10,9 +10,7 @@
 		9B77FBA325A949440028A004 /* YZMetalKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B77FBA125A949440028A004 /* YZMetalKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9B77FBA625A949440028A004 /* YZMetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B77FB9F25A949440028A004 /* YZMetalKit.framework */; };
 		9B77FBA725A949440028A004 /* YZMetalKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9B77FB9F25A949440028A004 /* YZMetalKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		9B77FBC825A949700028A004 /* YZYUVToRGBConversion.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9B77FBAF25A949700028A004 /* YZYUVToRGBConversion.metal */; };
 		9B77FBCA25A949700028A004 /* YZShaderTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B77FBB125A949700028A004 /* YZShaderTypes.h */; };
-		9B77FBCB25A949700028A004 /* YZBrightness.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9B77FBB225A949700028A004 /* YZBrightness.metal */; };
 		9B77FBCC25A949700028A004 /* YZVideoCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B77FBB425A949700028A004 /* YZVideoCamera.m */; };
 		9B77FBCD25A949700028A004 /* YZVideoCamera.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B77FBB525A949700028A004 /* YZVideoCamera.h */; };
 		9B77FBCE25A949700028A004 /* YZMetalOutput.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B77FBB725A949700028A004 /* YZMetalOutput.m */; };
@@ -72,9 +70,7 @@
 		9B77FB9F25A949440028A004 /* YZMetalKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YZMetalKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B77FBA125A949440028A004 /* YZMetalKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZMetalKit.h; sourceTree = "<group>"; };
 		9B77FBA225A949440028A004 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9B77FBAF25A949700028A004 /* YZYUVToRGBConversion.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = YZYUVToRGBConversion.metal; sourceTree = "<group>"; };
 		9B77FBB125A949700028A004 /* YZShaderTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZShaderTypes.h; sourceTree = "<group>"; };
-		9B77FBB225A949700028A004 /* YZBrightness.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = YZBrightness.metal; sourceTree = "<group>"; };
 		9B77FBB425A949700028A004 /* YZVideoCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YZVideoCamera.m; sourceTree = "<group>"; };
 		9B77FBB525A949700028A004 /* YZVideoCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZVideoCamera.h; sourceTree = "<group>"; };
 		9B77FBB725A949700028A004 /* YZMetalOutput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YZMetalOutput.m; sourceTree = "<group>"; };
@@ -158,8 +154,6 @@
 			isa = PBXGroup;
 			children = (
 				9B77FBB125A949700028A004 /* YZShaderTypes.h */,
-				9B77FBB225A949700028A004 /* YZBrightness.metal */,
-				9B77FBAF25A949700028A004 /* YZYUVToRGBConversion.metal */,
 				9BE85CBC25A9AE1E005C7D82 /* YZBrightnessString.h */,
 				9BE85CC225A9AE55005C7D82 /* YZVertexFragment.h */,
 				9BE85CCF25A9BB91005C7D82 /* YZYUVToRGBConversion.h */,
@@ -373,14 +367,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B77FBCB25A949700028A004 /* YZBrightness.metal in Sources */,
 				9B77FBE825A94B9C0028A004 /* YZVideoCapture.m in Sources */,
 				9B77FBCC25A949700028A004 /* YZVideoCamera.m in Sources */,
 				9B77FBCF25A949700028A004 /* YZNewPixelBuffer.m in Sources */,
 				9B77FBDA25A949700028A004 /* YZMetalFilter.m in Sources */,
 				9B77FBCE25A949700028A004 /* YZMetalOutput.m in Sources */,
 				9B77FBD425A949700028A004 /* YZBrightness.m in Sources */,
-				9B77FBC825A949700028A004 /* YZYUVToRGBConversion.metal in Sources */,
 				9B77FBD025A949700028A004 /* YZMTKView.m in Sources */,
 				9B77FBD825A949700028A004 /* YZMetalDevice.m in Sources */,
 				9B77FBD925A949700028A004 /* YZMetalOrientation.m in Sources */,
