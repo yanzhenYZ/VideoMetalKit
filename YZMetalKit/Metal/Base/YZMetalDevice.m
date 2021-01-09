@@ -51,10 +51,19 @@ static id _metalDevice;
         _device = MTLCreateSystemDefaultDevice();
         _commandQueue = [_device newCommandQueue];
         //BOOL support = MPSSupportsMTLDevice(_device);
+        _defaultLibrary = [_device newDefaultLibrary];
+//        NSBundle *bundle = [NSBundle bundleForClass:self.class];
+////        NSString *path = [bundle pathForResource:@"YZMetalKit" ofType:@"bundle"];
+//        NSURL *url = [bundle URLForResource:@"YZMetalKit" withExtension:@"framework"];
+//        NSString *path = [bundle pathForResource:@"default" ofType:@"metallib"];
+//        NSLog(@"___CCC:%@:%@:%@", _defaultLibrary, bundle, url);
+//
+        
         //可以使用在工程中或者动态库中
         NSBundle *bundle = [NSBundle bundleForClass:self.class];
         //you must have a metal file in project
         NSString *path = [bundle pathForResource:@"default" ofType:@"metallib"];
+        assert(path);
         if (!path) {
             NSLog(@"YZMetalDevice make path error");
         } else {
