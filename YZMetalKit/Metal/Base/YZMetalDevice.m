@@ -11,7 +11,7 @@
 @interface YZMetalDevice ()
 @property (nonatomic, strong) id<MTLCommandQueue> commandQueue;
 
-@property (nonatomic, strong) id<MTLLibrary> inputVertexLibrary;
+@property (nonatomic, strong) id<MTLLibrary> vertexLibrary;
 @property (nonatomic, strong) id<MTLLibrary> fragmentLibrary;
 @end
 
@@ -55,26 +55,10 @@ static id _metalDevice;
         _commandQueue = [_device newCommandQueue];
         //BOOL support = MPSSupportsMTLDevice(_device);
         
-
-        _inputVertexLibrary = [_device newLibraryWithSource:[NSString stringWithUTF8String:YZInputVertex] options:NULL error:nil];
-        assert(_inputVertexLibrary);
+        _vertexLibrary = [_device newLibraryWithSource:[NSString stringWithUTF8String:YZInputVertex] options:NULL error:nil];
+        assert(_vertexLibrary);
         _fragmentLibrary = [_device newLibraryWithSource:[NSString stringWithUTF8String:YZFragment] options:NULL error:nil];
         assert(_fragmentLibrary);
-        /*
-        //可以使用在工程中或者动态库中
-        NSBundle *bundle = [NSBundle bundleForClass:self.class];
-        //you must have a metal file in project
-        NSString *path = [bundle pathForResource:@"default" ofType:@"metallib"];
-        assert(path);
-        if (!path) {
-            NSLog(@"YZMetalDevice make path error");
-        } else {
-            NSError *error = nil;
-            _defaultLibrary = [_device newLibraryWithFile:path error:&error];
-            if (error) {
-                NSLog(@"YZMetalDevice newLibrary fail:%@", error.localizedDescription);
-            }
-        }*/
     }
     return self;
 }
@@ -94,7 +78,14 @@ static id _metalDevice;
 }
 
 - (id<MTLRenderPipelineState>)newRenderPipeline:(NSString *)vertex fragment:(NSString *)fragment {
-    id<MTLFunction> vertexFunction = [_inputVertexLibrary newFunctionWithName:vertex];
+    if ([vertex isEqualToString:@"YZInputVertex"]) {
+        return [self defaultRenderPipeline:vertex fragment:fragment];
+    }
+    return nil;
+}
+
+- (id<MTLRenderPipelineState>)defaultRenderPipeline:(NSString *)vertex fragment:(NSString *)fragment {
+    id<MTLFunction> vertexFunction = [_vertexLibrary newFunctionWithName:vertex];
     id<MTLFunction> fragmentFunction = [_fragmentLibrary newFunctionWithName:fragment];
     MTLRenderPipelineDescriptor *desc = [[MTLRenderPipelineDescriptor alloc] init];
     desc.colorAttachments[0].pixelFormat = MTLPixelFormatBGRA8Unorm;//bgra
