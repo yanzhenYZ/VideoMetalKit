@@ -12,8 +12,7 @@
 @interface YZMetalDevice ()
 @property (nonatomic, strong) id<MTLCommandQueue> commandQueue;
 
-@property (nonatomic, strong) id<MTLLibrary> vertexLibrary;
-@property (nonatomic, strong) id<MTLLibrary> fragmentLibrary;
+@property (nonatomic, strong) id<MTLLibrary> defaultLibrary;
 @end
 
 @implementation YZMetalDevice {
@@ -56,10 +55,8 @@ static id _metalDevice;
         _commandQueue = [_device newCommandQueue];
         //BOOL support = MPSSupportsMTLDevice(_device);
         
-        _vertexLibrary = [_device newLibraryWithSource:[NSString stringWithUTF8String:YZInputVertex] options:NULL error:nil];
-        assert(_vertexLibrary);
-        _fragmentLibrary = [_device newLibraryWithSource:[NSString stringWithUTF8String:YZFragment] options:NULL error:nil];
-        assert(_fragmentLibrary);
+        _defaultLibrary = [_device newLibraryWithSource:[NSString stringWithUTF8String:YZVertexFragment] options:NULL error:nil];
+        assert(_defaultLibrary);
     }
     return self;
 }
@@ -86,8 +83,8 @@ static id _metalDevice;
 }
 
 - (id<MTLRenderPipelineState>)defaultRenderPipeline:(NSString *)vertex fragment:(NSString *)fragment {
-    id<MTLFunction> vertexFunction = [_vertexLibrary newFunctionWithName:vertex];
-    id<MTLFunction> fragmentFunction = [_fragmentLibrary newFunctionWithName:fragment];
+    id<MTLFunction> vertexFunction = [_defaultLibrary newFunctionWithName:vertex];
+    id<MTLFunction> fragmentFunction = [_defaultLibrary newFunctionWithName:fragment];
     MTLRenderPipelineDescriptor *desc = [[MTLRenderPipelineDescriptor alloc] init];
     desc.colorAttachments[0].pixelFormat = MTLPixelFormatBGRA8Unorm;//bgra
     desc.rasterSampleCount = 1;
