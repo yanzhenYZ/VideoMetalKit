@@ -292,14 +292,29 @@
                     <view key="view" contentMode="scaleToFill" id="tgt-cz-P6G">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7xF-OK-6ds">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="XdB-mG-hOv"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="7xF-OK-6ds" firstAttribute="trailing" secondItem="XdB-mG-hOv" secondAttribute="trailing" id="Q7P-CM-ESN"/>
+                            <constraint firstItem="7xF-OK-6ds" firstAttribute="top" secondItem="tgt-cz-P6G" secondAttribute="top" id="Syj-t4-1Rg"/>
+                            <constraint firstItem="7xF-OK-6ds" firstAttribute="leading" secondItem="XdB-mG-hOv" secondAttribute="leading" id="mUM-F6-RSq"/>
+                            <constraint firstAttribute="bottom" secondItem="7xF-OK-6ds" secondAttribute="bottom" id="yNB-VE-CIY"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="jUJ-sU-P62"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="player" destination="7xF-OK-6ds" id="twy-rf-6NK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OYl-Ta-Vdh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1865" y="1486"/>
+            <point key="canvasLocation" x="1863.7681159420292" y="1485.9375"/>
         </scene>
     </scenes>
     <resources>

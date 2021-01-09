@@ -31,6 +31,7 @@
     return self;
 }
 
+//输出默认分辨率
 -(void)newTextureAvailable:(id<MTLTexture>)texture commandBuffer:(id<MTLCommandBuffer>)commandBuffer {
     [commandBuffer waitUntilCompleted];
     [self dealPixelBuffer:texture];

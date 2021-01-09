@@ -130,10 +130,10 @@
 			isa = PBXGroup;
 			children = (
 				9B77FBA125A949440028A004 /* YZMetalKit.h */,
-				9B77FBAD25A949700028A004 /* Metal */,
-				9B77FBA225A949440028A004 /* Info.plist */,
 				9B77FBE525A94B9C0028A004 /* YZVideoCapture.h */,
 				9B77FBE625A94B9C0028A004 /* YZVideoCapture.m */,
+				9B77FBAD25A949700028A004 /* Metal */,
+				9B77FBA225A949440028A004 /* Info.plist */,
 			);
 			path = YZMetalKit;
 			sourceTree = "<group>";
@@ -164,8 +164,8 @@
 		9B77FBB325A949700028A004 /* Input */ = {
 			isa = PBXGroup;
 			children = (
-				9B77FBB425A949700028A004 /* YZVideoCamera.m */,
 				9B77FBB525A949700028A004 /* YZVideoCamera.h */,
+				9B77FBB425A949700028A004 /* YZVideoCamera.m */,
 			);
 			path = Input;
 			sourceTree = "<group>";
@@ -173,12 +173,12 @@
 		9B77FBB625A949700028A004 /* Output */ = {
 			isa = PBXGroup;
 			children = (
-				9B77FBB725A949700028A004 /* YZMetalOutput.m */,
-				9B77FBB825A949700028A004 /* YZNewPixelBuffer.m */,
+				9B77FBBB25A949700028A004 /* YZMTKView.h */,
 				9B77FBB925A949700028A004 /* YZMTKView.m */,
 				9B77FBBA25A949700028A004 /* YZMetalOutput.h */,
-				9B77FBBB25A949700028A004 /* YZMTKView.h */,
+				9B77FBB725A949700028A004 /* YZMetalOutput.m */,
 				9B77FBBC25A949700028A004 /* YZNewPixelBuffer.h */,
+				9B77FBB825A949700028A004 /* YZNewPixelBuffer.m */,
 			);
 			path = Output;
 			sourceTree = "<group>";

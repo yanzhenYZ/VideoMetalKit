@@ -6,21 +6,22 @@
 //
 
 #import "FirstViewController.h"
-#import "YZVideoCamera.h"
-#import "YZMTKView.h"
-#import "YZBrightness.h"
-#import "YZNewPixelBuffer.h"
+//#import "YZVideoCamera.h"
+//#import "YZMTKView.h"
+//#import "YZBrightness.h"
+//#import "YZNewPixelBuffer.h"
 
 
-@interface FirstViewController ()<YZVideoCameraOutputDelegate, YZNewPixelBufferDelegate>
+@interface FirstViewController ()
+//<YZVideoCameraOutputDelegate, YZNewPixelBufferDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *player;
-@property (weak, nonatomic) IBOutlet YZMTKView *mtkView;
-@property (nonatomic, strong) YZVideoCamera *camera;
-@property (nonatomic, strong) YZMTKView *mtkView2;
+//@property (weak, nonatomic) IBOutlet YZMTKView *mtkView;
+//@property (nonatomic, strong) YZVideoCamera *camera;
+//@property (nonatomic, strong) YZMTKView *mtkView2;
 @property (nonatomic, strong) CIContext *context;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *fillSegmentControll;
 
-@property (nonatomic, strong) YZBrightness *brightness;
+//@property (nonatomic, strong) YZBrightness *brightness;
 @end
 
 @implementation FirstViewController
@@ -35,7 +36,7 @@
     
     
     _fillSegmentControll.selectedSegmentIndex = 1;
-    _mtkView.fillMode = YZMTKViewFillModeScaleAspectFit;
+//    _mtkView.fillMode = YZMTKViewFillModeScaleAspectFit;
     
     [self test003];
 }
@@ -43,17 +44,17 @@
 - (void)test003 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarDidChanged:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
     
-    _camera = [[YZVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPreset640x480];
-    _camera.outputOrientation = UIApplication.sharedApplication.statusBarOrientation;
-    _brightness = [[YZBrightness alloc] init];
-    
-    YZNewPixelBuffer *pixelBuffer = [[YZNewPixelBuffer alloc] initWithSize:CGSizeMake(180, 320)];
-    pixelBuffer.delegate = self;
-    
-    [_camera addFilter:_brightness];
-    [_brightness addFilter:_mtkView];
-    [_brightness addFilter:pixelBuffer];
-    
+//    _camera = [[YZVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPreset640x480];
+//    _camera.outputOrientation = UIApplication.sharedApplication.statusBarOrientation;
+//    _brightness = [[YZBrightness alloc] init];
+//
+//    YZNewPixelBuffer *pixelBuffer = [[YZNewPixelBuffer alloc] initWithSize:CGSizeMake(180, 320)];
+//    pixelBuffer.delegate = self;
+//
+//    [_camera addFilter:_brightness];
+//    [_brightness addFilter:_mtkView];
+//    [_brightness addFilter:pixelBuffer];
+//
     //2
 //    _mtkView.filter = pixelBuffer;
 //    _camera.filter = _brightness;
@@ -62,24 +63,24 @@
     //1
 //    _camera.filter = _mtkView;
     
-    _camera.delegate = self;
-    [_camera startRunning];
+//    _camera.delegate = self;
+//    [_camera startRunning];
 }
 
 - (IBAction)fillModel:(UISegmentedControl *)sender {
-    _mtkView.fillMode = (YZMTKViewFillMode)sender.selectedSegmentIndex;
+//    _mtkView.fillMode = (YZMTKViewFillMode)sender.selectedSegmentIndex;
 }
 
 - (IBAction)switchCamera:(id)sender {
-    [_camera switchCamera];
+//    [_camera switchCamera];
 }
 
 - (IBAction)seset:(UISegmentedControl *)sender {
-    if (sender.selectedSegmentIndex == 0) {
-        _camera.preset = AVCaptureSessionPreset640x480;
-    } else if (sender.selectedSegmentIndex == 1) {
-        _camera.preset = AVCaptureSessionPreset1280x720;
-    } 
+//    if (sender.selectedSegmentIndex == 0) {
+//        _camera.preset = AVCaptureSessionPreset640x480;
+//    } else if (sender.selectedSegmentIndex == 1) {
+//        _camera.preset = AVCaptureSessionPreset1280x720;
+//    }
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
@@ -93,11 +94,11 @@
 
 
 - (IBAction)beautyValueChange:(UISlider *)sender {
-    _brightness.beautyLevel = sender.value;
+//    _brightness.beautyLevel = sender.value;
 }
 
 - (IBAction)brightValueChange:(UISlider *)sender {
-    _brightness.brightLevel = sender.value;
+//    _brightness.brightLevel = sender.value;
 }
 
 - (void)showPixelBuffer:(CVPixelBufferRef)pixel {
@@ -120,15 +121,15 @@
 }
 
 #pragma mark - YZVideoCameraOutputDelegate
-- (void)videoCamera:(YZVideoCamera *)camera output:(CMSampleBufferRef)sampleBuffer {
-    //[self showPixelBuffer:CMSampleBufferGetImageBuffer(sampleBuffer)];
-}
+//- (void)videoCamera:(YZVideoCamera *)camera output:(CMSampleBufferRef)sampleBuffer {
+//    //[self showPixelBuffer:CMSampleBufferGetImageBuffer(sampleBuffer)];
+//}
 
 
 - (void)statusBarDidChanged:(NSNotification *)note {
 //    NSLog(@"UIApplicationDidChangeStatusBarOrientationNotification UserInfo: %@", note.userInfo);
     UIInterfaceOrientation statusBar = [[UIApplication sharedApplication] statusBarOrientation];
-    _camera.outputOrientation = statusBar;
+//    _camera.outputOrientation = statusBar;
 }
     
 - (void)dealloc {
