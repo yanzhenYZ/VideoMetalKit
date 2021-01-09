@@ -41,6 +41,7 @@
 		9BB00062257FBA5500207AF3 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB00061257FBA5500207AF3 /* FirstViewController.m */; };
 		9BE85CBE25A9AE1E005C7D82 /* YZBrightnessString.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BE85CBC25A9AE1E005C7D82 /* YZBrightnessString.h */; };
 		9BE85CC425A9AE55005C7D82 /* YZVertexFragment.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BE85CC225A9AE55005C7D82 /* YZVertexFragment.h */; };
+		9BE85CD125A9BB91005C7D82 /* YZYUVToRGBConversion.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BE85CCF25A9BB91005C7D82 /* YZYUVToRGBConversion.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +108,7 @@
 		9BB00061257FBA5500207AF3 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		9BE85CBC25A9AE1E005C7D82 /* YZBrightnessString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZBrightnessString.h; sourceTree = "<group>"; };
 		9BE85CC225A9AE55005C7D82 /* YZVertexFragment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZVertexFragment.h; sourceTree = "<group>"; };
+		9BE85CCF25A9BB91005C7D82 /* YZYUVToRGBConversion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZYUVToRGBConversion.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +162,7 @@
 				9B77FBAF25A949700028A004 /* YZYUVToRGBConversion.metal */,
 				9BE85CBC25A9AE1E005C7D82 /* YZBrightnessString.h */,
 				9BE85CC225A9AE55005C7D82 /* YZVertexFragment.h */,
+				9BE85CCF25A9BB91005C7D82 /* YZYUVToRGBConversion.h */,
 			);
 			path = Metal;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 				9B77FBD525A949700028A004 /* YZBrightness.h in Headers */,
 				9B77FBDC25A949700028A004 /* YZMetalDevice.h in Headers */,
 				9B77FBD225A949700028A004 /* YZMTKView.h in Headers */,
+				9BE85CD125A9BB91005C7D82 /* YZYUVToRGBConversion.h in Headers */,
 				9B77FBD725A949700028A004 /* YZMetalFilter.h in Headers */,
 				9B77FBD325A949700028A004 /* YZNewPixelBuffer.h in Headers */,
 				9B77FBDB25A949700028A004 /* YZMetalOrientation.h in Headers */,
