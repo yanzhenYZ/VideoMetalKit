@@ -51,6 +51,7 @@ static id _metalDevice;
         _device = MTLCreateSystemDefaultDevice();
         _commandQueue = [_device newCommandQueue];
         //BOOL support = MPSSupportsMTLDevice(_device);
+        //可以使用在工程中或者动态库中
         NSBundle *bundle = [NSBundle bundleForClass:self.class];
         //you must have a metal file in project
         NSString *path = [bundle pathForResource:@"default" ofType:@"metallib"];
