@@ -32,12 +32,11 @@
         _front = front;
         _camera = [[YZVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPreset640x480 position:_front ? AVCaptureDevicePositionFront : AVCaptureDevicePositionBack];
         _camera.delegate = self;
-//        _beautyFilter = [[YZBrightness alloc] init];
+        _beautyFilter = [[YZBrightness alloc] init];
         _pixelBuffer = [[YZNewPixelBuffer alloc] initWithSize:_size];
         _pixelBuffer.delegate = self;
-        
-//        [_camera addFilter:_beautyFilter];
-//        [_beautyFilter addFilter:_pixelBuffer];
+        [_camera addFilter:_beautyFilter];
+        [_beautyFilter addFilter:_pixelBuffer];
     }
     return self;
 }
@@ -66,10 +65,10 @@
             [self.mtkView removeFromSuperview];
             self.mtkView.frame = player.bounds;
             [player addSubview:self.mtkView];
-            [self.camera addFilter:self.mtkView];
+            [self.beautyFilter addFilter:self.mtkView];
         } else {
             [_mtkView removeFromSuperview];
-            [self.camera removeFilter:_mtkView];
+            [self.beautyFilter removeFilter:_mtkView];
         }
     } else {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -83,6 +82,14 @@
         _front = front;
         [_camera switchCamera];
     }
+}
+
+-(void)setBeautyLevel:(float)beautyLevel {
+    _beautyFilter.beautyLevel = beautyLevel;
+}
+
+- (void)setBrightLevel:(float)brightLevel {
+    _beautyFilter.brightLevel = brightLevel;
 }
 #pragma mark - camera
 - (void)startRunning {

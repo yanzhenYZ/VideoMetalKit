@@ -293,16 +293,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7xF-OK-6ds">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7xF-OK-6ds">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="28r-qp-8rj">
+                                <rect key="frame" x="0.0" y="822" width="414" height="40"/>
+                                <subviews>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="7cf-XN-Rhr">
+                                        <rect key="frame" x="13" y="5" width="388" height="31"/>
+                                        <connections>
+                                            <action selector="beautyChange:" destination="7EB-Y3-ORg" eventType="valueChanged" id="Gzy-2R-zdl"/>
+                                            <action selector="beautyValueChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="v6D-Ot-sog"/>
+                                        </connections>
+                                    </slider>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="3ll-Kk-U40"/>
+                                    <constraint firstAttribute="trailing" secondItem="7cf-XN-Rhr" secondAttribute="trailing" constant="15" id="Xs4-Pf-ijZ"/>
+                                    <constraint firstItem="7cf-XN-Rhr" firstAttribute="leading" secondItem="28r-qp-8rj" secondAttribute="leading" constant="15" id="apg-7r-wmZ"/>
+                                    <constraint firstItem="7cf-XN-Rhr" firstAttribute="centerY" secondItem="28r-qp-8rj" secondAttribute="centerY" id="m7x-a4-56O"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="XdB-mG-hOv"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="28r-qp-8rj" secondAttribute="trailing" id="CjB-dU-260"/>
                             <constraint firstItem="7xF-OK-6ds" firstAttribute="trailing" secondItem="XdB-mG-hOv" secondAttribute="trailing" id="Q7P-CM-ESN"/>
                             <constraint firstItem="7xF-OK-6ds" firstAttribute="top" secondItem="tgt-cz-P6G" secondAttribute="top" id="Syj-t4-1Rg"/>
                             <constraint firstItem="7xF-OK-6ds" firstAttribute="leading" secondItem="XdB-mG-hOv" secondAttribute="leading" id="mUM-F6-RSq"/>
+                            <constraint firstItem="XdB-mG-hOv" firstAttribute="bottom" secondItem="28r-qp-8rj" secondAttribute="bottom" id="uh8-b9-IMs"/>
+                            <constraint firstItem="28r-qp-8rj" firstAttribute="leading" secondItem="XdB-mG-hOv" secondAttribute="leading" id="yAb-Cp-msN"/>
                             <constraint firstAttribute="bottom" secondItem="7xF-OK-6ds" secondAttribute="bottom" id="yNB-VE-CIY"/>
                         </constraints>
                     </view>

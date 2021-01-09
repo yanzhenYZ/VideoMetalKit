@@ -40,7 +40,6 @@
 		9BE85CBE25A9AE1E005C7D82 /* YZBrightnessString.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BE85CBC25A9AE1E005C7D82 /* YZBrightnessString.h */; };
 		9BE85CC425A9AE55005C7D82 /* YZVertexFragment.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BE85CC225A9AE55005C7D82 /* YZVertexFragment.h */; };
 		9BE85CD125A9BB91005C7D82 /* YZYUVToRGBConversion.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BE85CCF25A9BB91005C7D82 /* YZYUVToRGBConversion.h */; };
-		9BE85CD825A9BE50005C7D82 /* YZBrightness.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9BE85CD725A9BE50005C7D82 /* YZBrightness.metal */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,7 +105,6 @@
 		9BE85CBC25A9AE1E005C7D82 /* YZBrightnessString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZBrightnessString.h; sourceTree = "<group>"; };
 		9BE85CC225A9AE55005C7D82 /* YZVertexFragment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZVertexFragment.h; sourceTree = "<group>"; };
 		9BE85CCF25A9BB91005C7D82 /* YZYUVToRGBConversion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZYUVToRGBConversion.h; sourceTree = "<group>"; };
-		9BE85CD725A9BE50005C7D82 /* YZBrightness.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = YZBrightness.metal; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,7 +153,6 @@
 		9B77FBAE25A949700028A004 /* Metal */ = {
 			isa = PBXGroup;
 			children = (
-				9BE85CD725A9BE50005C7D82 /* YZBrightness.metal */,
 				9B77FBB125A949700028A004 /* YZShaderTypes.h */,
 				9BE85CBC25A9AE1E005C7D82 /* YZBrightnessString.h */,
 				9BE85CC225A9AE55005C7D82 /* YZVertexFragment.h */,
@@ -377,7 +374,6 @@
 				9B77FBCE25A949700028A004 /* YZMetalOutput.m in Sources */,
 				9B77FBD425A949700028A004 /* YZBrightness.m in Sources */,
 				9B77FBD025A949700028A004 /* YZMTKView.m in Sources */,
-				9BE85CD825A9BE50005C7D82 /* YZBrightness.metal in Sources */,
 				9B77FBD825A949700028A004 /* YZMetalDevice.m in Sources */,
 				9B77FBD925A949700028A004 /* YZMetalOrientation.m in Sources */,
 			);

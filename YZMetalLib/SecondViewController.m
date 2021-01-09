@@ -21,14 +21,14 @@
     // Do any additional setup after loading the view.
     _context = [CIContext contextWithOptions:nil];
     _videoCapture = [[YZVideoCapture alloc] initWithSize:CGSizeMake(360, 640)];
-    _videoCapture.player = self.view;
+    _videoCapture.player = self.player;
     _videoCapture.delegate = self;
     [_videoCapture startRunning];
 }
 
 #pragma mark - YZVideoCaptureDelegate
 -(void)videoCapture:(YZVideoCapture *)videoCapture outputPixelBuffer:(CVPixelBufferRef)pixelBuffer {
-    [self showPixelBuffer:pixelBuffer];
+    //[self showPixelBuffer:pixelBuffer];
 }
 
 - (void)showPixelBuffer:(CVPixelBufferRef)pixel {
@@ -43,6 +43,10 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         self.player.image = image;
     });
+}
+
+- (IBAction)beautyChange:(UISlider *)sender {
+    _videoCapture.brightLevel = sender.value;
 }
 
 #pragma mark - system
