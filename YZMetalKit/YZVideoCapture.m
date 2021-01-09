@@ -32,7 +32,7 @@
         _front = front;
         _camera = [[YZVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPreset640x480 position:_front ? AVCaptureDevicePositionFront : AVCaptureDevicePositionBack];
         _camera.delegate = self;
-        _beautyFilter = [[YZBrightness alloc] init];
+//        _beautyFilter = [[YZBrightness alloc] init];
         _pixelBuffer = [[YZNewPixelBuffer alloc] initWithSize:_size];
         _pixelBuffer.delegate = self;
         

@@ -6,10 +6,13 @@
 //
 
 #import "YZMetalDevice.h"
+#import "YZBrightnessString.h"
 
 @interface YZMetalDevice ()
-@property (nonatomic, strong) id<MTLLibrary> defaultLibrary;
 @property (nonatomic, strong) id<MTLCommandQueue> commandQueue;
+
+@property (nonatomic, strong) id<MTLLibrary> inputVertexLibrary;
+@property (nonatomic, strong) id<MTLLibrary> fragmentLibrary;
 @end
 
 @implementation YZMetalDevice {
@@ -51,14 +54,13 @@ static id _metalDevice;
         _device = MTLCreateSystemDefaultDevice();
         _commandQueue = [_device newCommandQueue];
         //BOOL support = MPSSupportsMTLDevice(_device);
-        _defaultLibrary = [_device newDefaultLibrary];
-//        NSBundle *bundle = [NSBundle bundleForClass:self.class];
-////        NSString *path = [bundle pathForResource:@"YZMetalKit" ofType:@"bundle"];
-//        NSURL *url = [bundle URLForResource:@"YZMetalKit" withExtension:@"framework"];
-//        NSString *path = [bundle pathForResource:@"default" ofType:@"metallib"];
-//        NSLog(@"___CCC:%@:%@:%@", _defaultLibrary, bundle, url);
-//
         
+
+        _inputVertexLibrary = [_device newLibraryWithSource:[NSString stringWithUTF8String:YZInputVertex] options:NULL error:nil];
+        assert(_inputVertexLibrary);
+        _fragmentLibrary = [_device newLibraryWithSource:[NSString stringWithUTF8String:YZFragment] options:NULL error:nil];
+        assert(_fragmentLibrary);
+        /*
         //可以使用在工程中或者动态库中
         NSBundle *bundle = [NSBundle bundleForClass:self.class];
         //you must have a metal file in project
@@ -72,7 +74,7 @@ static id _metalDevice;
             if (error) {
                 NSLog(@"YZMetalDevice newLibrary fail:%@", error.localizedDescription);
             }
-        }
+        }*/
     }
     return self;
 }
@@ -92,8 +94,8 @@ static id _metalDevice;
 }
 
 - (id<MTLRenderPipelineState>)newRenderPipeline:(NSString *)vertex fragment:(NSString *)fragment {
-    id<MTLFunction> vertexFunction = [_defaultLibrary newFunctionWithName:vertex];
-    id<MTLFunction> fragmentFunction = [_defaultLibrary newFunctionWithName:fragment];
+    id<MTLFunction> vertexFunction = [_inputVertexLibrary newFunctionWithName:vertex];
+    id<MTLFunction> fragmentFunction = [_fragmentLibrary newFunctionWithName:fragment];
     MTLRenderPipelineDescriptor *desc = [[MTLRenderPipelineDescriptor alloc] init];
     desc.colorAttachments[0].pixelFormat = MTLPixelFormatBGRA8Unorm;//bgra
     desc.rasterSampleCount = 1;
