@@ -14,6 +14,7 @@
 @property (nonatomic, strong) id<MTLCommandQueue> commandQueue;
 @property (nonatomic, strong) id<MTLLibrary> yuvRGBLibrary;
 @property (nonatomic, strong) id<MTLLibrary> defaultLibrary;
+@property (nonatomic, strong) id<MTLLibrary> beautyLibrary;
 @end
 
 @implementation YZMetalDevice {
@@ -60,7 +61,10 @@ static id _metalDevice;
         assert(_defaultLibrary);
         
         _yuvRGBLibrary = [_device newLibraryWithSource:[NSString stringWithUTF8String:YZYUVToRGBString] options:NULL error:nil];
-        assert(_defaultLibrary);
+        assert(_yuvRGBLibrary);
+        
+        _beautyLibrary = [_device newLibraryWithSource:[NSString stringWithUTF8String:YZBeautyString] options:NULL error:nil];
+        assert(_beautyLibrary);
     }
     return self;
 }
@@ -84,6 +88,8 @@ static id _metalDevice;
         return [self defaultRenderPipeline:vertex fragment:fragment];
     } else if ([vertex isEqualToString:@"YZYUVToRGBVertex"]) {
         return [self yuvRenderPipeline:vertex fragment:fragment];
+    } else if ([vertex isEqualToString:@"YZBrightnessInputVertex"]) {
+        return [self beautyRenderPipeline:vertex fragment:fragment];
     }
     return nil;
 }
@@ -108,6 +114,23 @@ static id _metalDevice;
 - (id<MTLRenderPipelineState>)yuvRenderPipeline:(NSString *)vertex fragment:(NSString *)fragment {
     id<MTLFunction> vertexFunction = [_yuvRGBLibrary newFunctionWithName:vertex];
     id<MTLFunction> fragmentFunction = [_yuvRGBLibrary newFunctionWithName:fragment];
+    MTLRenderPipelineDescriptor *desc = [[MTLRenderPipelineDescriptor alloc] init];
+    desc.colorAttachments[0].pixelFormat = MTLPixelFormatBGRA8Unorm;//bgra
+    desc.rasterSampleCount = 1;
+    desc.vertexFunction = vertexFunction;
+    desc.fragmentFunction = fragmentFunction;
+    
+    NSError *error = nil;
+    id<MTLRenderPipelineState> pipeline = [_device newRenderPipelineStateWithDescriptor:desc error:&error];
+    if (error) {
+        NSLog(@"YZMetalDevice new renderPipelineState failed: %@", error);
+    }
+    return pipeline;
+}
+
+- (id<MTLRenderPipelineState>)beautyRenderPipeline:(NSString *)vertex fragment:(NSString *)fragment {
+    id<MTLFunction> vertexFunction = [_beautyLibrary newFunctionWithName:vertex];
+    id<MTLFunction> fragmentFunction = [_beautyLibrary newFunctionWithName:fragment];
     MTLRenderPipelineDescriptor *desc = [[MTLRenderPipelineDescriptor alloc] init];
     desc.colorAttachments[0].pixelFormat = MTLPixelFormatBGRA8Unorm;//bgra
     desc.rasterSampleCount = 1;
