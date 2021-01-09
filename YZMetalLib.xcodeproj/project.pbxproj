@@ -40,6 +40,8 @@
 		9BB00050257FB7F600207AF3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BB0004E257FB7F600207AF3 /* LaunchScreen.storyboard */; };
 		9BB00053257FB7F600207AF3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB00052257FB7F600207AF3 /* main.m */; };
 		9BB00062257FBA5500207AF3 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB00061257FBA5500207AF3 /* FirstViewController.m */; };
+		9BE85CBE25A9AE1E005C7D82 /* YZBrightnessString.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BE85CBC25A9AE1E005C7D82 /* YZBrightnessString.h */; };
+		9BE85CC425A9AE55005C7D82 /* YZVertexFragment.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BE85CC225A9AE55005C7D82 /* YZVertexFragment.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +107,8 @@
 		9BB00052257FB7F600207AF3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9BB00060257FBA5500207AF3 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
 		9BB00061257FBA5500207AF3 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		9BE85CBC25A9AE1E005C7D82 /* YZBrightnessString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZBrightnessString.h; sourceTree = "<group>"; };
+		9BE85CC225A9AE55005C7D82 /* YZVertexFragment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZVertexFragment.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +161,8 @@
 				9B77FBB225A949700028A004 /* YZBrightness.metal */,
 				9B77FBB025A949700028A004 /* YZVertexFragment.metal */,
 				9B77FBAF25A949700028A004 /* YZYUVToRGBConversion.metal */,
+				9BE85CBC25A9AE1E005C7D82 /* YZBrightnessString.h */,
+				9BE85CC225A9AE55005C7D82 /* YZVertexFragment.h */,
 			);
 			path = Metal;
 			sourceTree = "<group>";
@@ -258,7 +264,9 @@
 				9B77FBDB25A949700028A004 /* YZMetalOrientation.h in Headers */,
 				9B77FBD625A949700028A004 /* YZFilterProtocol.h in Headers */,
 				9B77FBD125A949700028A004 /* YZMetalOutput.h in Headers */,
+				9BE85CBE25A9AE1E005C7D82 /* YZBrightnessString.h in Headers */,
 				9B77FBCA25A949700028A004 /* YZShaderTypes.h in Headers */,
+				9BE85CC425A9AE55005C7D82 /* YZVertexFragment.h in Headers */,
 				9B77FBA325A949440028A004 /* YZMetalKit.h in Headers */,
 				9B77FBCD25A949700028A004 /* YZVideoCamera.h in Headers */,
 			);
@@ -438,7 +446,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACH_O_TYPE = staticlib;
+				MACH_O_TYPE = mh_dylib;
 				PRODUCT_BUNDLE_IDENTIFIER = yanzhen.YZMetalKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -467,7 +475,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACH_O_TYPE = staticlib;
+				MACH_O_TYPE = mh_dylib;
 				PRODUCT_BUNDLE_IDENTIFIER = yanzhen.YZMetalKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;

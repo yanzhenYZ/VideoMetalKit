@@ -36,10 +36,18 @@
         _pixelBuffer = [[YZNewPixelBuffer alloc] initWithSize:_size];
         _pixelBuffer.delegate = self;
         
-        [_camera addFilter:_beautyFilter];
-        [_beautyFilter addFilter:_pixelBuffer];
+//        [_camera addFilter:_beautyFilter];
+//        [_beautyFilter addFilter:_pixelBuffer];
     }
     return self;
+}
+
+- (YZMTKView *)mtkView {
+    if (!_mtkView) {
+        _mtkView = [[YZMTKView alloc] initWithFrame:CGRectZero];
+        _mtkView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    }
+    return _mtkView;
 }
 #pragma mark - property
 - (void)setSize:(CGSize)size {
@@ -48,6 +56,26 @@
     }
     _size = size;
     
+}
+
+- (void)setPlayer:(UIView *)player {
+    if (_player == player) { return; }
+    _player = player;
+    if (NSThread.isMainThread) {
+        if (player) {
+            [self.mtkView removeFromSuperview];
+            self.mtkView.frame = player.bounds;
+            [player addSubview:self.mtkView];
+            [self.camera addFilter:self.mtkView];
+        } else {
+            [_mtkView removeFromSuperview];
+            [self.camera removeFilter:_mtkView];
+        }
+    } else {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+        });
+    }
 }
 
 - (void)setFront:(BOOL)front {

@@ -37,9 +37,11 @@
 }
 
 - (void)removeFilter:(id<YZFilterProtocol>)filter {
-    [YZMetalDevice semaphoreWaitForever];
-    [self.filters removeObject:filter];
-    [YZMetalDevice semaphoreSignal];
+    if (filter) {
+        [YZMetalDevice semaphoreWaitForever];
+        [self.filters removeObject:filter];
+        [YZMetalDevice semaphoreSignal];
+    }
 }
 
 - (void)removeAllFilters {
