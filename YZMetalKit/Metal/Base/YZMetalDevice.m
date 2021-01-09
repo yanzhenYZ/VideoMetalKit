@@ -7,6 +7,7 @@
 
 #import "YZMetalDevice.h"
 #import "YZBrightnessString.h"
+#import "YZVertexFragment.h"
 
 @interface YZMetalDevice ()
 @property (nonatomic, strong) id<MTLCommandQueue> commandQueue;

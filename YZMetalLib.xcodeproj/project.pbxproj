@@ -11,7 +11,6 @@
 		9B77FBA625A949440028A004 /* YZMetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B77FB9F25A949440028A004 /* YZMetalKit.framework */; };
 		9B77FBA725A949440028A004 /* YZMetalKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9B77FB9F25A949440028A004 /* YZMetalKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9B77FBC825A949700028A004 /* YZYUVToRGBConversion.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9B77FBAF25A949700028A004 /* YZYUVToRGBConversion.metal */; };
-		9B77FBC925A949700028A004 /* YZVertexFragment.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9B77FBB025A949700028A004 /* YZVertexFragment.metal */; };
 		9B77FBCA25A949700028A004 /* YZShaderTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B77FBB125A949700028A004 /* YZShaderTypes.h */; };
 		9B77FBCB25A949700028A004 /* YZBrightness.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9B77FBB225A949700028A004 /* YZBrightness.metal */; };
 		9B77FBCC25A949700028A004 /* YZVideoCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B77FBB425A949700028A004 /* YZVideoCamera.m */; };
@@ -73,7 +72,6 @@
 		9B77FBA125A949440028A004 /* YZMetalKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZMetalKit.h; sourceTree = "<group>"; };
 		9B77FBA225A949440028A004 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B77FBAF25A949700028A004 /* YZYUVToRGBConversion.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = YZYUVToRGBConversion.metal; sourceTree = "<group>"; };
-		9B77FBB025A949700028A004 /* YZVertexFragment.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = YZVertexFragment.metal; sourceTree = "<group>"; };
 		9B77FBB125A949700028A004 /* YZShaderTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZShaderTypes.h; sourceTree = "<group>"; };
 		9B77FBB225A949700028A004 /* YZBrightness.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = YZBrightness.metal; sourceTree = "<group>"; };
 		9B77FBB425A949700028A004 /* YZVideoCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YZVideoCamera.m; sourceTree = "<group>"; };
@@ -159,7 +157,6 @@
 			children = (
 				9B77FBB125A949700028A004 /* YZShaderTypes.h */,
 				9B77FBB225A949700028A004 /* YZBrightness.metal */,
-				9B77FBB025A949700028A004 /* YZVertexFragment.metal */,
 				9B77FBAF25A949700028A004 /* YZYUVToRGBConversion.metal */,
 				9BE85CBC25A9AE1E005C7D82 /* YZBrightnessString.h */,
 				9BE85CC225A9AE55005C7D82 /* YZVertexFragment.h */,
@@ -376,7 +373,6 @@
 				9B77FBE825A94B9C0028A004 /* YZVideoCapture.m in Sources */,
 				9B77FBCC25A949700028A004 /* YZVideoCamera.m in Sources */,
 				9B77FBCF25A949700028A004 /* YZNewPixelBuffer.m in Sources */,
-				9B77FBC925A949700028A004 /* YZVertexFragment.metal in Sources */,
 				9B77FBDA25A949700028A004 /* YZMetalFilter.m in Sources */,
 				9B77FBCE25A949700028A004 /* YZMetalOutput.m in Sources */,
 				9B77FBD425A949700028A004 /* YZBrightness.m in Sources */,
