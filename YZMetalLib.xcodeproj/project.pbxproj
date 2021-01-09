@@ -141,11 +141,11 @@
 		9B77FBAD25A949700028A004 /* Metal */ = {
 			isa = PBXGroup;
 			children = (
-				9B77FBAE25A949700028A004 /* Metal */,
 				9B77FBB325A949700028A004 /* Input */,
 				9B77FBB625A949700028A004 /* Output */,
 				9B77FBBD25A949700028A004 /* Filter */,
 				9B77FBC025A949700028A004 /* Base */,
+				9B77FBAE25A949700028A004 /* Metal */,
 			);
 			path = Metal;
 			sourceTree = "<group>";
@@ -153,10 +153,10 @@
 		9B77FBAE25A949700028A004 /* Metal */ = {
 			isa = PBXGroup;
 			children = (
-				9B77FBAF25A949700028A004 /* YZYUVToRGBConversion.metal */,
-				9B77FBB025A949700028A004 /* YZVertexFragment.metal */,
 				9B77FBB125A949700028A004 /* YZShaderTypes.h */,
 				9B77FBB225A949700028A004 /* YZBrightness.metal */,
+				9B77FBB025A949700028A004 /* YZVertexFragment.metal */,
+				9B77FBAF25A949700028A004 /* YZYUVToRGBConversion.metal */,
 			);
 			path = Metal;
 			sourceTree = "<group>";
@@ -186,8 +186,8 @@
 		9B77FBBD25A949700028A004 /* Filter */ = {
 			isa = PBXGroup;
 			children = (
-				9B77FBBE25A949700028A004 /* YZBrightness.m */,
 				9B77FBBF25A949700028A004 /* YZBrightness.h */,
+				9B77FBBE25A949700028A004 /* YZBrightness.m */,
 			);
 			path = Filter;
 			sourceTree = "<group>";
@@ -195,13 +195,13 @@
 		9B77FBC025A949700028A004 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				9B77FBC125A949700028A004 /* YZFilterProtocol.h */,
-				9B77FBC225A949700028A004 /* YZMetalFilter.h */,
+				9B77FBC725A949700028A004 /* YZMetalDevice.h */,
 				9B77FBC325A949700028A004 /* YZMetalDevice.m */,
-				9B77FBC425A949700028A004 /* YZMetalOrientation.m */,
+				9B77FBC225A949700028A004 /* YZMetalFilter.h */,
 				9B77FBC525A949700028A004 /* YZMetalFilter.m */,
 				9B77FBC625A949700028A004 /* YZMetalOrientation.h */,
-				9B77FBC725A949700028A004 /* YZMetalDevice.h */,
+				9B77FBC425A949700028A004 /* YZMetalOrientation.m */,
+				9B77FBC125A949700028A004 /* YZFilterProtocol.h */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -438,7 +438,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACH_O_TYPE = mh_dylib;
+				MACH_O_TYPE = staticlib;
 				PRODUCT_BUNDLE_IDENTIFIER = yanzhen.YZMetalKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -467,7 +467,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACH_O_TYPE = mh_dylib;
+				MACH_O_TYPE = staticlib;
 				PRODUCT_BUNDLE_IDENTIFIER = yanzhen.YZMetalKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -604,7 +604,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.0.5;
+				MARKETING_VERSION = 3.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.3ttech.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -625,7 +625,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.0.5;
+				MARKETING_VERSION = 3.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.3ttech.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";

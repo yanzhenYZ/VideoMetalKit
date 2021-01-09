@@ -9,13 +9,9 @@
 #import "AppDelegate.h"
 
 /**
- 3.0.8 打包SDK
- 3.0.9 Metal 抽出对外工具类
- */
-
-/**iPhone6s 30fps
- BGRA：渲染没有美颜 55.3s ~~ 9.2%
- BGRA：渲染美颜    1.43m ~~ 14.3%
+ 3.1.0 静态库打包
+ 3.1.1 显示视图
+ 3.1.2 输出采集buffer
  */
 
 int main(int argc, char * argv[]) {
