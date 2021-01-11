@@ -30,7 +30,8 @@
         _size = size;
         _frameRate = 15;
         _front = front;
-        _camera = [[YZVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPreset640x480 position:_front ? AVCaptureDevicePositionFront : AVCaptureDevicePositionBack];
+        AVCaptureSessionPreset preset = [self getSessionPreset:size];
+        _camera = [[YZVideoCamera alloc] initWithSessionPreset:preset position:_front ? AVCaptureDevicePositionFront : AVCaptureDevicePositionBack];
         _camera.delegate = self;
         _beautyFilter = [[YZBrightness alloc] init];
         _pixelBuffer = [[YZNewPixelBuffer alloc] initWithSize:_size];
@@ -43,11 +44,11 @@
 }
 #pragma mark - property
 - (void)setSize:(CGSize)size {
-    if (CGSizeEqualToSize(size, _size)) {
-        return;
+    if (!CGSizeEqualToSize(size, _size)) {
+        _size = size;
+        AVCaptureSessionPreset preset = [self getSessionPreset:size];
+        _camera.preset = preset;
     }
-    _size = size;
-    
 }
 
 - (void)setFront:(BOOL)front {
@@ -73,5 +74,19 @@
     if ([_delegate respondsToSelector:@selector(videoCapture:outputPixelBuffer:)]) {
         [_delegate videoCapture:self outputPixelBuffer:buffer];
     }
+}
+
+#pragma mark - private
+- (AVCaptureSessionPreset)getSessionPreset:(CGSize)size {
+    CGFloat maxWH = MAX(size.width, size.height);
+    CGFloat minWH = MIN(size.width, size.height);
+    if (maxWH <= 640 && minWH < 480) {
+        return AVCaptureSessionPreset640x480;
+    } else if (maxWH <= 960 && maxWH <= 540) {
+        return AVCaptureSessionPresetiFrame960x540;
+    } else if (maxWH <= 1280 && maxWH <= 720) {
+        return AVCaptureSessionPreset1280x720;
+    } 
+    return AVCaptureSessionPreset1920x1080;
 }
 @end
