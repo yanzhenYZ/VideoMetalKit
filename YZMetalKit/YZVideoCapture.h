@@ -6,6 +6,7 @@
 //
 
 #import <AVFoundation/AVFoundation.h>
+#import <UIKit/UIView.h>
 
 @class YZVideoCapture;
 @protocol YZVideoCaptureDelegate <NSObject>
@@ -27,6 +28,8 @@
 
 @property (nonatomic, weak) id<YZVideoCaptureDelegate> delegate;
 
+/** video player */
+@property (nonatomic, strong) UIView *player;
 /** output size */
 @property (nonatomic, assign) CGSize size;
 /** YES: AVCaptureDevicePositionFront, NO: AVCaptureDevicePositionBack */

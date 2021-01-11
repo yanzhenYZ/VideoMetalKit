@@ -19,8 +19,7 @@
 @end
 
 @implementation YZVideoCapture
-- (instancetype)initWithSize:(CGSize)size
-{
+- (instancetype)initWithSize:(CGSize)size {
     return [self initWithSize:size front:YES];
 }
 
@@ -42,7 +41,30 @@
     }
     return self;
 }
+
+- (YZMTKView *)mtkView {
+    if (!_mtkView) {
+        _mtkView = [[YZMTKView alloc] initWithFrame:CGRectZero];
+        _mtkView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    }
+    return _mtkView;
+}
 #pragma mark - property
+- (void)setPlayer:(UIView *)player {
+    if (_player == player) { return; }
+    [self mainThreadAction:^{
+        if (player) {
+            [self.mtkView removeFromSuperview];
+            self.mtkView.frame = player.bounds;
+            [player addSubview:self.mtkView];
+            [self.beautyFilter addFilter:self.mtkView];
+        } else {
+            [self.mtkView removeFromSuperview];
+            [self.beautyFilter removeFilter:self.mtkView];
+        }
+    }];
+}
+
 - (void)setSize:(CGSize)size {
     if (!CGSizeEqualToSize(size, _size)) {
         _size = size;
@@ -88,5 +110,15 @@
         return AVCaptureSessionPreset1280x720;
     } 
     return AVCaptureSessionPreset1920x1080;
+}
+
+- (void)mainThreadAction:(void(^)(void))block {
+    if (NSThread.isMainThread) {
+        if (block) {
+            block();
+        }
+    } else {
+        dispatch_async(dispatch_get_main_queue(), block);
+    }
 }
 @end
