@@ -36,7 +36,7 @@ typedef NS_ENUM(NSInteger, YZVideoFillMode) {
 @property (nonatomic, assign) CGSize size;
 /** YES: AVCaptureDevicePositionFront, NO: AVCaptureDevicePositionBack */
 @property (nonatomic, assign) BOOL front;
-/** default is 15 */
+/** default is 15, you can set (0,60), some device not support 60 */
 @property (nonatomic, assign) int32_t frameRate;
 /**
  default is YES.
@@ -45,7 +45,7 @@ typedef NS_ENUM(NSInteger, YZVideoFillMode) {
 @property (nonatomic) BOOL videoMirrored;
 
 /** default is YES */
-@property (nonatomic, assign) BOOL enable;
+@property (nonatomic, assign) BOOL beautyEnable;
 /** default is 0.5 */
 @property (nonatomic, assign) float beautyLevel;
 /** default is 0.5 */

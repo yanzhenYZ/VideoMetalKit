@@ -19,6 +19,11 @@
 @end
 
 @implementation YZVideoCapture
+- (void)dealloc
+{
+    [NSNotificationCenter.defaultCenter removeObserver:self];
+}
+
 - (instancetype)initWithSize:(CGSize)size {
     return [self initWithSize:size front:YES];
 }
@@ -27,7 +32,6 @@
     self = [super init];
     if (self) {
         _size = size;
-        _frameRate = 15;
         _front = front;
         AVCaptureSessionPreset preset = [self getSessionPreset:size];
         _camera = [[YZVideoCamera alloc] initWithSessionPreset:preset position:_front ? AVCaptureDevicePositionFront : AVCaptureDevicePositionBack];
@@ -38,6 +42,7 @@
         
         [_camera addFilter:_beautyFilter];
         [_beautyFilter addFilter:_pixelBuffer];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarDidChanged:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
     }
     return self;
 }
@@ -45,6 +50,7 @@
 - (YZMTKView *)mtkView {
     if (!_mtkView) {
         _mtkView = [[YZMTKView alloc] initWithFrame:CGRectZero];
+        _mtkView.fillMode = (YZMTKViewFillMode)_fillMode;
         _mtkView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     }
     return _mtkView;
@@ -52,6 +58,7 @@
 #pragma mark - property
 - (void)setPlayer:(UIView *)player {
     if (_player == player) { return; }
+    _player = player;
     [self mainThreadAction:^{
         if (player) {
             [self.mtkView removeFromSuperview];
@@ -84,6 +91,46 @@
         [_camera switchCamera];
     }
 }
+
+- (void)setFrameRate:(int32_t)frameRate {
+    _camera.frameRate = frameRate;
+}
+
+- (int32_t)frameRate {
+    return _camera.frameRate;
+}
+
+- (void)setVideoMirrored:(BOOL)videoMirrored {
+    _camera.videoMirrored = videoMirrored;
+}
+
+- (BOOL)videoMirrored {
+    return _camera.videoMirrored;
+}
+
+- (void)setBeautyEnable:(BOOL)beautyEnable {
+    _beautyFilter.enable = beautyEnable;
+}
+
+- (BOOL)beautyEnable {
+    return _beautyFilter.enable;
+}
+
+- (void)setBeautyLevel:(float)beautyLevel {
+    _beautyFilter.beautyLevel = beautyLevel;
+}
+
+- (float)beautyLevel {
+    return _beautyFilter.beautyLevel;
+}
+
+- (void)setBrightLevel:(float)brightLevel {
+    _beautyFilter.brightLevel = brightLevel;
+}
+
+- (float)brightLevel {
+    return _beautyFilter.brightLevel;
+}
 #pragma mark - camera
 - (void)startRunning {
     [_camera startRunning];
@@ -103,15 +150,21 @@
     }
 }
 
+#pragma mark - system note
+- (void)statusBarDidChanged:(NSNotification *)note {
+    //NSLog(@"UIApplicationDidChangeStatusBarOrientationNotification UserInfo: %@", note.userInfo);
+    UIInterfaceOrientation statusBar = [[UIApplication sharedApplication] statusBarOrientation];
+    _camera.outputOrientation = statusBar;
+}
 #pragma mark - private
 - (AVCaptureSessionPreset)getSessionPreset:(CGSize)size {
     CGFloat maxWH = MAX(size.width, size.height);
     CGFloat minWH = MIN(size.width, size.height);
     if (maxWH <= 640 && minWH < 480) {
         return AVCaptureSessionPreset640x480;
-    } else if (maxWH <= 960 && maxWH <= 540) {
+    } else if (maxWH <= 960 && minWH <= 540) {
         return AVCaptureSessionPresetiFrame960x540;
-    } else if (maxWH <= 1280 && maxWH <= 720) {
+    } else if (maxWH <= 1280 && minWH <= 720) {
         return AVCaptureSessionPreset1280x720;
     } 
     return AVCaptureSessionPreset1920x1080;

@@ -54,6 +54,7 @@
         _orientation = [[YZMetalOrientation alloc] init];
         _cameraQueue = dispatch_queue_create("com.yanzhen.video.camera.queue", 0);
         _cameraRenderQueue = dispatch_queue_create("com.yanzhen.video.camera.render.queue", 0);
+        _frameRate = 15;
         _userBGRA = YES;
         _preset = preset;
         [self _configVideoSession];
@@ -141,6 +142,12 @@
 }
 
 - (void)setFrameRate:(int32_t)frameRate {
+    if (frameRate <= 0) {
+        _frameRate = 15;
+    } else if (frameRate > 60) {
+        _frameRate = 60;
+    }
+    if (_frameRate == frameRate) { return; }
     _frameRate = frameRate;
     [YZMetalDevice semaphoreWaitForever];
     [_session beginConfiguration];
@@ -402,9 +409,10 @@
     if ([_session canSetSessionPreset:_preset]) {
         _session.sessionPreset = _preset;
     }
-    [_session commitConfiguration];
     
-    self.frameRate = 15;
+    _camera.activeVideoMinFrameDuration = CMTimeMake(1, _frameRate);
+    _camera.activeVideoMaxFrameDuration = CMTimeMake(1, _frameRate);
+    [_session commitConfiguration];
 }
 
 #pragma mark - observer
