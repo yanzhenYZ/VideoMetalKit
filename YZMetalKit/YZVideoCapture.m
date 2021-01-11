@@ -65,6 +65,11 @@
     }];
 }
 
+-(void)setFillMode:(YZVideoFillMode)fillMode {
+    _fillMode = fillMode;
+    _mtkView.fillMode = (YZMTKViewFillMode)fillMode;
+}
+
 - (void)setSize:(CGSize)size {
     if (!CGSizeEqualToSize(size, _size)) {
         _size = size;

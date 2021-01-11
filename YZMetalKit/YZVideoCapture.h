@@ -8,14 +8,13 @@
 #import <AVFoundation/AVFoundation.h>
 #import <UIKit/UIView.h>
 
-@class YZVideoCapture;
-@protocol YZVideoCaptureDelegate <NSObject>
+typedef NS_ENUM(NSInteger, YZVideoFillMode) {
+    YZVideoFillModeScaleToFill,       // Same as UIViewContentModeScaleToFill
+    YZVideoFillModeScaleAspectFit,    // Same as UIViewContentModeScaleAspectFit
+    YZVideoFillModeScaleAspectFill,   // Same as UIViewContentModeScaleAspectFill
+};
 
-@optional
-- (void)videoCapture:(YZVideoCapture *)videoCapture outputPixelBuffer:(CVPixelBufferRef)pixelBuffer;
-
-@end
-
+@protocol YZVideoCaptureDelegate;
 @interface YZVideoCapture : NSObject
 /**
  set out size, front is YES
@@ -30,6 +29,9 @@
 
 /** video player */
 @property (nonatomic, strong) UIView *player;
+/** video player fillMode*/
+@property (nonatomic) YZVideoFillMode fillMode;
+
 /** output size */
 @property (nonatomic, assign) CGSize size;
 /** YES: AVCaptureDevicePositionFront, NO: AVCaptureDevicePositionBack */
@@ -57,3 +59,9 @@
 @end
 
 
+@protocol YZVideoCaptureDelegate <NSObject>
+
+@optional
+- (void)videoCapture:(YZVideoCapture *)videoCapture outputPixelBuffer:(CVPixelBufferRef)pixelBuffer;
+
+@end
