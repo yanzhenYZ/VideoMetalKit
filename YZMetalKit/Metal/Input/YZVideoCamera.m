@@ -166,6 +166,11 @@
     [_session beginConfiguration];
     if ([_session canSetSessionPreset:preset]) {
         _session.sessionPreset = preset;
+    } else if ([preset isEqualToString:AVCaptureSessionPreset1920x1080]) {
+        if ([_session canSetSessionPreset:AVCaptureSessionPreset1280x720]) {
+            _preset = AVCaptureSessionPreset1280x720;
+            _session.sessionPreset = AVCaptureSessionPreset1280x720;
+        }
     }
     _camera.activeVideoMinFrameDuration = CMTimeMake(1, self.frameRate);
     _camera.activeVideoMaxFrameDuration = CMTimeMake(1, self.frameRate);

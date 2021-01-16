@@ -161,7 +161,7 @@
 - (AVCaptureSessionPreset)getSessionPreset:(CGSize)size {
     CGFloat maxWH = MAX(size.width, size.height);
     CGFloat minWH = MIN(size.width, size.height);
-    if (maxWH <= 640 && minWH < 480) {
+    if (maxWH <= 640 && minWH <= 480) {
         return AVCaptureSessionPreset640x480;
     } else if (maxWH <= 960 && minWH <= 540) {
         return AVCaptureSessionPresetiFrame960x540;
