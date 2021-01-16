@@ -36,6 +36,8 @@
         _front = front;
         AVCaptureSessionPreset preset = [self getSessionPreset:size];
         _camera = [[YZVideoCamera alloc] initWithSessionPreset:preset position:_front ? AVCaptureDevicePositionFront : AVCaptureDevicePositionBack];
+        UIInterfaceOrientation statusBar = [[UIApplication sharedApplication] statusBarOrientation];
+        _camera.outputOrientation = statusBar;
         _camera.delegate = self;
         _beautyFilter = [[YZBrightness alloc] init];
         _pixelBuffer = [[YZNewPixelBuffer alloc] initWithSize:_size];
