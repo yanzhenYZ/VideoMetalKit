@@ -29,6 +29,15 @@
     [_videoCapture startRunning];
 }
 
+- (IBAction)beauty:(UISlider *)sender {
+    _videoCapture.beautyLevel = sender.value;
+}
+
+
+- (IBAction)bright:(UISlider *)sender {
+    _videoCapture.brightLevel = sender.value;
+}
+
 - (IBAction)switchCamera:(UISwitch *)sender {
     _videoCapture.front = sender.isOn;
 }
