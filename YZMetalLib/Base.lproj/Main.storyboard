@@ -9,21 +9,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="EJB-sd-piY">
-            <objects>
-                <viewController id="WJQ-1L-kfO" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="cgd-Da-qjg">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="eu6-pj-qlX"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Td2-Dn-wew" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1009" y="88"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="wtP-ap-ect">
             <objects>
@@ -216,7 +201,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="God-VR-S1F">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" systemColor="systemYellowColor"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q0G-Tk-cgh">
                                 <rect key="frame" x="0.0" y="44" width="234" height="40"/>
@@ -258,6 +243,31 @@
                                     <constraint firstAttribute="height" constant="320" id="Ymi-8h-3W6"/>
                                 </constraints>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jvw-w6-JwY">
+                                <rect key="frame" x="0.0" y="782" width="414" height="80"/>
+                                <subviews>
+                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" continuous="NO" maximumValue="300" stepValue="20" translatesAutoresizingMaskIntoConstraints="NO" id="9oz-82-aYO">
+                                        <rect key="frame" x="160" y="48" width="94" height="32"/>
+                                        <connections>
+                                            <action selector="bottomStepper:" destination="okL-zf-L5J" eventType="valueChanged" id="edp-xJ-cu5"/>
+                                        </connections>
+                                    </stepper>
+                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="300" stepValue="20" translatesAutoresizingMaskIntoConstraints="NO" id="9SY-Xg-CWk">
+                                        <rect key="frame" x="320" y="24" width="94" height="32"/>
+                                        <connections>
+                                            <action selector="rightStepper:" destination="okL-zf-L5J" eventType="valueChanged" id="Ai9-Kw-plY"/>
+                                        </connections>
+                                    </stepper>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="7T3-VW-Hih"/>
+                                    <constraint firstAttribute="trailing" secondItem="9SY-Xg-CWk" secondAttribute="trailing" id="9D5-Y6-l0I"/>
+                                    <constraint firstAttribute="bottom" secondItem="9oz-82-aYO" secondAttribute="bottom" id="Yz6-5D-gaL"/>
+                                    <constraint firstItem="9SY-Xg-CWk" firstAttribute="centerY" secondItem="jvw-w6-JwY" secondAttribute="centerY" id="axk-8N-dkE"/>
+                                    <constraint firstItem="9oz-82-aYO" firstAttribute="centerX" secondItem="jvw-w6-JwY" secondAttribute="centerX" id="nGR-ru-0ha"/>
+                                </constraints>
+                            </view>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="L8e-78-yNs">
                                 <rect key="frame" x="299.5" y="144.5" width="51" height="31"/>
                                 <connections>
@@ -275,22 +285,27 @@
                             <constraint firstItem="God-VR-S1F" firstAttribute="top" secondItem="Qnd-ep-FF9" secondAttribute="top" id="8Ww-r7-LXn"/>
                             <constraint firstAttribute="bottom" secondItem="God-VR-S1F" secondAttribute="bottom" id="A6s-CM-xWm"/>
                             <constraint firstItem="L8e-78-yNs" firstAttribute="centerY" secondItem="qCH-dg-ppx" secondAttribute="centerY" id="AYe-D7-KLJ"/>
+                            <constraint firstItem="qvf-oQ-zke" firstAttribute="bottom" secondItem="jvw-w6-JwY" secondAttribute="bottom" id="Jke-pT-hgh"/>
                             <constraint firstItem="qCH-dg-ppx" firstAttribute="top" secondItem="Qnd-ep-FF9" secondAttribute="top" id="Z5L-kh-KpX"/>
                             <constraint firstItem="God-VR-S1F" firstAttribute="leading" secondItem="Qnd-ep-FF9" secondAttribute="leading" id="eIi-gQ-rde"/>
+                            <constraint firstItem="jvw-w6-JwY" firstAttribute="leading" secondItem="qvf-oQ-zke" secondAttribute="leading" id="ktH-11-7N6"/>
                             <constraint firstItem="q0G-Tk-cgh" firstAttribute="top" secondItem="qvf-oQ-zke" secondAttribute="top" id="nOp-fE-WKs"/>
+                            <constraint firstItem="jvw-w6-JwY" firstAttribute="trailing" secondItem="qvf-oQ-zke" secondAttribute="trailing" id="ozz-yh-9Ho"/>
                             <constraint firstItem="L8e-78-yNs" firstAttribute="centerX" secondItem="qCH-dg-ppx" secondAttribute="centerX" id="zB2-Cq-rw7"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="i1I-1C-zdu"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="bottomLayout" destination="A6s-CM-xWm" id="sb8-cF-ByL"/>
+                        <outlet property="leftLayout" destination="2TP-Hw-ipZ" id="xKT-bD-6jI"/>
                         <outlet property="player" destination="qCH-dg-ppx" id="m5B-0d-8mN"/>
                         <outlet property="showView" destination="God-VR-S1F" id="da4-cO-HCt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xT9-ey-uDh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1967" y="1994"/>
+            <point key="canvasLocation" x="1966.6666666666667" y="1993.5267857142856"/>
         </scene>
         <!--Second View Controller-->
         <scene sceneID="3ki-po-OKQ">

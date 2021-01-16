@@ -11,6 +11,8 @@
 @interface ThirdViewController ()<YZVideoCaptureDelegate>
 @property (weak, nonatomic) IBOutlet UIView *showView;
 @property (weak, nonatomic) IBOutlet UIImageView *player;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftLayout;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomLayout;
 
 @property (nonatomic, strong) YZVideoCapture *videoCapture;
 @end
@@ -48,9 +50,15 @@
     }
 }
 
--(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    self.videoCapture.player = self.showView;
+//
+- (IBAction)bottomStepper:(UIStepper *)sender {
+    _bottomLayout.constant = sender.value;
 }
+
+- (IBAction)rightStepper:(UIStepper *)sender {
+    _leftLayout.constant = sender.value;
+}
+
 #pragma mark - YZVideoCaptureDelegate
 -(void)videoCapture:(YZVideoCapture *)videoCapture outputPixelBuffer:(CVPixelBufferRef)pixelBuffer {
     //[self showPixelBuffer:pixelBuffer];
