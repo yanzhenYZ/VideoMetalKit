@@ -9,8 +9,10 @@
 #import "AppDelegate.h"
 
 /**
- 4.0.6 切换显示视图， 调整显示视图大小
- 4.0.7 直接释放VideoCapture
+ 4.0.6 直接释放VideoCapture
+ 4.0.7 切换显示视图，
+ 
+ 4.0.8 调整显示视图大小
  */
 
 int main(int argc, char * argv[]) {

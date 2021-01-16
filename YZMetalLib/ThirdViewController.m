@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    _videoCapture = [[YZVideoCapture alloc] initWithSize:CGSizeMake(360, 640)];
+    _videoCapture = [[YZVideoCapture alloc] initWithSize:CGSizeMake(360, 640) front:NO];
     _videoCapture.player = self.showView;
     _videoCapture.fillMode = YZVideoFillModeScaleAspectFit;
     _videoCapture.delegate = self;
@@ -28,14 +28,29 @@
 }
 
 - (IBAction)reset:(UISwitch *)sender {
-    
+    if (sender.isOn) {
+        [self.videoCapture startRunning];
+    } else {
+        [self.videoCapture stopRunning];
+    }
 }
 
 - (IBAction)back:(id)sender {
-    [self.videoCapture stopRunning];
+    //直接释放capture
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (IBAction)switchShowView:(UISwitch *)sender {
+    if (sender.isOn) {
+        self.videoCapture.player = _player;
+    } else {
+        self.videoCapture.player = self.showView;
+    }
+}
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    self.videoCapture.player = self.showView;
+}
 #pragma mark - YZVideoCaptureDelegate
 -(void)videoCapture:(YZVideoCapture *)videoCapture outputPixelBuffer:(CVPixelBufferRef)pixelBuffer {
     //[self showPixelBuffer:pixelBuffer];

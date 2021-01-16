@@ -258,6 +258,12 @@
                                     <constraint firstAttribute="height" constant="320" id="Ymi-8h-3W6"/>
                                 </constraints>
                             </imageView>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="L8e-78-yNs">
+                                <rect key="frame" x="299.5" y="144.5" width="51" height="31"/>
+                                <connections>
+                                    <action selector="switchShowView:" destination="okL-zf-L5J" eventType="valueChanged" id="Wr8-se-uvK"/>
+                                </connections>
+                            </switch>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="qvf-oQ-zke"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -268,9 +274,11 @@
                             <constraint firstItem="qCH-dg-ppx" firstAttribute="leading" secondItem="q0G-Tk-cgh" secondAttribute="trailing" id="6CO-qQ-t7P"/>
                             <constraint firstItem="God-VR-S1F" firstAttribute="top" secondItem="Qnd-ep-FF9" secondAttribute="top" id="8Ww-r7-LXn"/>
                             <constraint firstAttribute="bottom" secondItem="God-VR-S1F" secondAttribute="bottom" id="A6s-CM-xWm"/>
+                            <constraint firstItem="L8e-78-yNs" firstAttribute="centerY" secondItem="qCH-dg-ppx" secondAttribute="centerY" id="AYe-D7-KLJ"/>
                             <constraint firstItem="qCH-dg-ppx" firstAttribute="top" secondItem="Qnd-ep-FF9" secondAttribute="top" id="Z5L-kh-KpX"/>
                             <constraint firstItem="God-VR-S1F" firstAttribute="leading" secondItem="Qnd-ep-FF9" secondAttribute="leading" id="eIi-gQ-rde"/>
                             <constraint firstItem="q0G-Tk-cgh" firstAttribute="top" secondItem="qvf-oQ-zke" secondAttribute="top" id="nOp-fE-WKs"/>
+                            <constraint firstItem="L8e-78-yNs" firstAttribute="centerX" secondItem="qCH-dg-ppx" secondAttribute="centerX" id="zB2-Cq-rw7"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="i1I-1C-zdu"/>

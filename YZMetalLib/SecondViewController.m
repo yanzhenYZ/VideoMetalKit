@@ -80,6 +80,7 @@
 }
 
 - (IBAction)back:(UIButton *)sender {
+    [self.videoCapture stopRunning];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
