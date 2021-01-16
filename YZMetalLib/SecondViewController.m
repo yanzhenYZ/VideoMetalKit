@@ -11,6 +11,10 @@
 @interface SecondViewController ()<YZVideoCaptureDelegate>
 @property (weak, nonatomic) IBOutlet UIView *showView;
 @property (weak, nonatomic) IBOutlet UIImageView *player;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *modeSegment;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *frameRateSegment;
+
+
 @property (nonatomic, strong) YZVideoCapture *videoCapture;
 @property (nonatomic, strong) CIContext *context;
 @end
@@ -23,12 +27,23 @@
     _context = [CIContext contextWithOptions:nil];
     _videoCapture = [[YZVideoCapture alloc] initWithSize:CGSizeMake(360, 640)];
     _videoCapture.player = self.showView;
-    _videoCapture.fillMode = YZVideoFillModeScaleAspectFit;
+//    _videoCapture.fillMode = YZVideoFillModeScaleAspectFit;
     _videoCapture.delegate = self;
     [_videoCapture startRunning];
     
-    //[self.view bringSubviewToFront:self.player];
+
+    _frameRateSegment.selectedSegmentIndex = 1;
     
+}
+
+- (IBAction)fillMode:(UISegmentedControl *)sender {
+    if (sender.selectedSegmentIndex == 0) {
+        _videoCapture.fillMode = YZVideoFillModeScaleToFill;
+    } else if (sender.selectedSegmentIndex == 1) {
+        _videoCapture.fillMode = YZVideoFillModeScaleAspectFit;
+    } else if (sender.selectedSegmentIndex == 2) {
+        _videoCapture.fillMode = YZVideoFillModeScaleAspectFill;
+    }
 }
 
 - (IBAction)frameRateChange:(UISegmentedControl *)sender {
@@ -64,6 +79,9 @@
     }
 }
 
+- (IBAction)back:(UIButton *)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 #pragma mark - YZVideoCaptureDelegate
 -(void)videoCapture:(YZVideoCapture *)videoCapture outputPixelBuffer:(CVPixelBufferRef)pixelBuffer {
