@@ -63,5 +63,6 @@ typedef NS_ENUM(NSInteger, YZVideoFillMode) {
 
 @optional
 - (void)videoCapture:(YZVideoCapture *)videoCapture outputPixelBuffer:(CVPixelBufferRef)pixelBuffer;
+- (void)videoCapture:(YZVideoCapture *)videoCapture dropFrames:(int)frames;
 
 @end

@@ -183,6 +183,9 @@
     if (_output != output) { return; }
     if ([YZMetalDevice semaphoreWaitNow] != 0) {
         _dropFrames++;
+        if ([_delegate respondsToSelector:@selector(videoCamera:dropFrames:)]) {
+            [_delegate videoCamera:self dropFrames:_dropFrames];
+        }
         return;
     }
     CFRetain(sampleBuffer);

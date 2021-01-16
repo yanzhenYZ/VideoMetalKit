@@ -13,7 +13,7 @@
 @protocol YZVideoCameraOutputDelegate <NSObject>
 @optional
 - (void)videoCamera:(YZVideoCamera *)camera output:(CMSampleBufferRef)sampleBuffer;
-
+- (void)videoCamera:(YZVideoCamera *)camera dropFrames:(int)frams;
 @end
 
 @interface YZVideoCamera : YZMetalOutput//use filter

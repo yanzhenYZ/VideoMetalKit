@@ -109,11 +109,30 @@
                                             <action selector="sizeChange:" destination="7EB-Y3-ORg" eventType="valueChanged" id="smu-eW-ldx"/>
                                         </connections>
                                     </segmentedControl>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="QKq-6H-Qky">
+                                        <rect key="frame" x="8" y="0.0" width="378" height="32"/>
+                                        <segments>
+                                            <segment title="10"/>
+                                            <segment title="15"/>
+                                            <segment title="20"/>
+                                            <segment title="25"/>
+                                            <segment title="30"/>
+                                            <segment title="40"/>
+                                            <segment title="50"/>
+                                            <segment title="60"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="frameRateChange:" destination="7EB-Y3-ORg" eventType="valueChanged" id="aL3-Vk-ifA"/>
+                                        </connections>
+                                    </segmentedControl>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                 <constraints>
+                                    <constraint firstItem="QKq-6H-Qky" firstAttribute="top" secondItem="Bvn-VZ-Irp" secondAttribute="top" id="5Um-ci-DyA"/>
                                     <constraint firstItem="HXf-6D-Fg3" firstAttribute="leading" secondItem="Bvn-VZ-Irp" secondAttribute="leading" constant="8" id="Ddc-aX-uAc"/>
                                     <constraint firstAttribute="bottom" secondItem="HXf-6D-Fg3" secondAttribute="bottom" id="FrW-a1-LmM"/>
+                                    <constraint firstItem="QKq-6H-Qky" firstAttribute="leading" secondItem="Bvn-VZ-Irp" secondAttribute="leading" constant="8" id="HS9-cQ-8xa"/>
+                                    <constraint firstAttribute="trailing" secondItem="QKq-6H-Qky" secondAttribute="trailing" constant="8" id="Krr-VN-DtR"/>
                                     <constraint firstAttribute="trailing" secondItem="HXf-6D-Fg3" secondAttribute="trailing" constant="8" id="R1a-4Y-7NG"/>
                                     <constraint firstAttribute="height" constant="80" id="hCn-PL-nBd"/>
                                 </constraints>

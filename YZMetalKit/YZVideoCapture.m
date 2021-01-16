@@ -143,6 +143,15 @@
 
 
 #pragma mark - YZVideoCameraOutputDelegate
+- (void)videoCamera:(YZVideoCamera *)camera dropFrames:(int)frams {
+    if ([_delegate respondsToSelector:@selector(videoCapture:dropFrames:)]) {
+        [_delegate videoCapture:self dropFrames:frams];
+    }
+}
+
+//- (void)videoCamera:(YZVideoCamera *)camera output:(CMSampleBufferRef)sampleBuffer {
+//
+//}
 
 #pragma mark - YZNewPixelBufferDelegate
 - (void)outputPixelBuffer:(CVPixelBufferRef)buffer {

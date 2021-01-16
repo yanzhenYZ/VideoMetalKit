@@ -31,6 +31,26 @@
     
 }
 
+- (IBAction)frameRateChange:(UISegmentedControl *)sender {
+    if (sender.selectedSegmentIndex == 0) {
+        _videoCapture.frameRate = 10;
+    } else if (sender.selectedSegmentIndex == 1) {
+        _videoCapture.frameRate = 15;
+    } else if (sender.selectedSegmentIndex == 2) {
+        _videoCapture.frameRate = 20;
+    } else if (sender.selectedSegmentIndex == 2) {
+        _videoCapture.frameRate = 25;
+    } else if (sender.selectedSegmentIndex == 3) {
+        _videoCapture.frameRate = 30;
+    } else if (sender.selectedSegmentIndex == 4) {
+        _videoCapture.frameRate = 40;
+    } else if (sender.selectedSegmentIndex == 5) {
+        _videoCapture.frameRate = 50;
+    } else if (sender.selectedSegmentIndex == 6) {
+        _videoCapture.frameRate = 60;
+    }
+}
+
 - (IBAction)sizeChange:(UISegmentedControl *)sender {
     if (sender.selectedSegmentIndex == 0) {
         _videoCapture.size = CGSizeMake(480, 640);
@@ -47,7 +67,11 @@
 
 #pragma mark - YZVideoCaptureDelegate
 -(void)videoCapture:(YZVideoCapture *)videoCapture outputPixelBuffer:(CVPixelBufferRef)pixelBuffer {
-    [self showPixelBuffer:pixelBuffer];
+//    [self showPixelBuffer:pixelBuffer];
+}
+
+-(void)videoCapture:(YZVideoCapture *)videoCapture dropFrames:(int)frames {
+    NSLog(@"12344____%d", frames);
 }
 
 - (void)showPixelBuffer:(CVPixelBufferRef)pixel {
