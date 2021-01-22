@@ -96,7 +96,11 @@ static id _metalDevice;
     id<MTLFunction> fragmentFunction = [_defaultLibrary newFunctionWithName:fragment];
     MTLRenderPipelineDescriptor *desc = [[MTLRenderPipelineDescriptor alloc] init];
     desc.colorAttachments[0].pixelFormat = MTLPixelFormatBGRA8Unorm;//bgra
-    desc.rasterSampleCount = 1;
+    if (@available(iOS 11.0, macOS 10.13, *)) {//每个像素中的采样点数
+        desc.rasterSampleCount = 1;
+    } else {
+        desc.sampleCount = 1;
+    }
     desc.vertexFunction = vertexFunction;
     desc.fragmentFunction = fragmentFunction;
     

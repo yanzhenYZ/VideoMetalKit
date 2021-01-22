@@ -605,7 +605,7 @@
 				CURRENT_PROJECT_VERSION = 20210116;
 				DEVELOPMENT_TEAM = 7XP66VHL84;
 				INFOPLIST_FILE = YZMetalLib/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -626,7 +626,7 @@
 				CURRENT_PROJECT_VERSION = 20210116;
 				DEVELOPMENT_TEAM = 7XP66VHL84;
 				INFOPLIST_FILE = YZMetalLib/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
