@@ -6,7 +6,6 @@
 //
 
 #import "YZMetalFilter.h"
-#import "YZMetalDevice.h"
 
 @interface YZMetalFilter ()
 
