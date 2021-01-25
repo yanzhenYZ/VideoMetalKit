@@ -6,5 +6,6 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "YZOutputCapture.h"
 #import "YZVideoCapture.h"
 #import "YZImage.h"

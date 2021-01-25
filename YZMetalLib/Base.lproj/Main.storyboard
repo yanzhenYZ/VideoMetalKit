@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MMS-D6-eSb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="E9T-rL-jwP">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -39,6 +39,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B9v-Fg-h7c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="455" y="2858"/>
+        </scene>
+        <!--Output View Controller-->
+        <scene sceneID="FhW-vb-mSx">
+            <objects>
+                <viewController id="LuW-mE-lcf" customClass="OutputViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dv0-ye-Gva">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="49D-rd-Ghw"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="LBo-0E-wv5"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jb5-th-CK1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="894" y="792"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="UE2-HT-ud7">
@@ -84,11 +100,25 @@
                                     <segue destination="okL-zf-L5J" kind="show" id="kC6-GV-qrc"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fXD-MN-j9F">
+                                <rect key="frame" x="287" y="423" width="70" height="50"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="1z3-Xi-qD2"/>
+                                    <constraint firstAttribute="height" constant="50" id="JCu-Ag-h2R"/>
+                                </constraints>
+                                <state key="normal" title="output"/>
+                                <connections>
+                                    <segue destination="LuW-mE-lcf" kind="show" id="XZM-l1-ubk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="DbE-ha-Uo0"/>
                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                         <constraints>
+                            <constraint firstItem="fXD-MN-j9F" firstAttribute="leading" secondItem="Pm6-25-GcM" secondAttribute="trailing" constant="50" id="9ei-tz-F4b"/>
                             <constraint firstItem="Ema-9p-Mz6" firstAttribute="top" secondItem="Pm6-25-GcM" secondAttribute="bottom" constant="55" id="AEF-lg-FuR"/>
+                            <constraint firstItem="fXD-MN-j9F" firstAttribute="centerY" secondItem="Pm6-25-GcM" secondAttribute="centerY" id="CLd-80-fYh"/>
                             <constraint firstItem="Pm6-25-GcM" firstAttribute="top" secondItem="zfE-fK-Oyc" secondAttribute="bottom" constant="50" id="FlV-B3-aKL"/>
                             <constraint firstItem="zfE-fK-Oyc" firstAttribute="centerX" secondItem="hnn-3j-ROn" secondAttribute="centerX" id="PWe-cC-BdW"/>
                             <constraint firstItem="Ema-9p-Mz6" firstAttribute="centerX" secondItem="hnn-3j-ROn" secondAttribute="centerX" id="Wbp-k7-ge5"/>
