@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B135ACA25BE64F8006F6205 /* YZImageInput.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B135AC825BE64F8006F6205 /* YZImageInput.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9B135ACB25BE64F8006F6205 /* YZImageInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B135AC925BE64F8006F6205 /* YZImageInput.m */; };
+		9B135ACF25BE65DB006F6205 /* YZImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B135ACE25BE65DB006F6205 /* YZImageViewController.m */; };
 		9B77FBA325A949440028A004 /* YZMetalKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B77FBA125A949440028A004 /* YZMetalKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9B77FBA625A949440028A004 /* YZMetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B77FB9F25A949440028A004 /* YZMetalKit.framework */; };
 		9B77FBA725A949440028A004 /* YZMetalKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9B77FB9F25A949440028A004 /* YZMetalKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -68,6 +71,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9B135AC825BE64F8006F6205 /* YZImageInput.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZImageInput.h; sourceTree = "<group>"; };
+		9B135AC925BE64F8006F6205 /* YZImageInput.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZImageInput.m; sourceTree = "<group>"; };
+		9B135ACD25BE65DB006F6205 /* YZImageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZImageViewController.h; sourceTree = "<group>"; };
+		9B135ACE25BE65DB006F6205 /* YZImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZImageViewController.m; sourceTree = "<group>"; };
 		9B77FB9F25A949440028A004 /* YZMetalKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YZMetalKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B77FBA125A949440028A004 /* YZMetalKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZMetalKit.h; sourceTree = "<group>"; };
 		9B77FBA225A949440028A004 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -169,6 +176,8 @@
 			children = (
 				9B77FBB525A949700028A004 /* YZVideoCamera.h */,
 				9B77FBB425A949700028A004 /* YZVideoCamera.m */,
+				9B135AC825BE64F8006F6205 /* YZImageInput.h */,
+				9B135AC925BE64F8006F6205 /* YZImageInput.m */,
 			);
 			path = Input;
 			sourceTree = "<group>";
@@ -232,6 +241,8 @@
 			children = (
 				9BB00040257FB7F400207AF3 /* AppDelegate.h */,
 				9BB00041257FB7F400207AF3 /* AppDelegate.m */,
+				9B135ACD25BE65DB006F6205 /* YZImageViewController.h */,
+				9B135ACE25BE65DB006F6205 /* YZImageViewController.m */,
 				9BE85D5125B2D7C6005C7D82 /* FirstViewController.h */,
 				9BE85D5225B2D7C6005C7D82 /* FirstViewController.m */,
 				9B77FBE125A94A9F0028A004 /* SecondViewController.h */,
@@ -256,6 +267,7 @@
 			files = (
 				9B77FBE725A94B9C0028A004 /* YZVideoCapture.h in Headers */,
 				9B77FBD525A949700028A004 /* YZBrightness.h in Headers */,
+				9B135ACA25BE64F8006F6205 /* YZImageInput.h in Headers */,
 				9B77FBDC25A949700028A004 /* YZMetalDevice.h in Headers */,
 				9B77FBD225A949700028A004 /* YZMTKView.h in Headers */,
 				9B77FBD725A949700028A004 /* YZMetalFilter.h in Headers */,
@@ -370,6 +382,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B77FBCB25A949700028A004 /* YZBrightness.metal in Sources */,
+				9B135ACB25BE64F8006F6205 /* YZImageInput.m in Sources */,
 				9B77FBE825A94B9C0028A004 /* YZVideoCapture.m in Sources */,
 				9B77FBCC25A949700028A004 /* YZVideoCamera.m in Sources */,
 				9B77FBCF25A949700028A004 /* YZNewPixelBuffer.m in Sources */,
@@ -393,6 +406,7 @@
 				9BB00042257FB7F400207AF3 /* AppDelegate.m in Sources */,
 				9BB00053257FB7F600207AF3 /* main.m in Sources */,
 				9BE85D5325B2D7C6005C7D82 /* FirstViewController.m in Sources */,
+				9B135ACF25BE65DB006F6205 /* YZImageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
