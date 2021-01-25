@@ -8,7 +8,7 @@
 #import "OutputViewController.h"
 #import <YZMetalKit/YZOutputCapture.h>
 
-@interface OutputViewController ()
+@interface OutputViewController ()<YZOutputCaptureDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *palyer;
 @property (nonatomic, strong) CIContext *context;
 
@@ -23,6 +23,12 @@
     self.title = @"output";
     _context = [CIContext contextWithOptions:nil];
     
+    
+    _capture = [[YZOutputCapture alloc] initWithSize:CGSizeMake(360, 640) front:NO];
+    _capture.player = self.view;
+    _capture.fillMode = YZOutputFillModeScaleAspectFit;
+    _capture.delegate = self;
+    [_capture startRunning];
 }
 
 - (IBAction)backT:(UIButton *)sender {
@@ -33,6 +39,19 @@
     
 }
 
+#pragma mark - YZOutputCaptureDelegate
+- (void)videoCapture:(YZOutputCapture *)videoCapture decodePixelBuffer:(CVPixelBufferRef)pixelBuffer {
+    [self showPixelBuffer:pixelBuffer];
+}
+
+- (void)videoCapture:(YZOutputCapture *)videoCapture outputPixelBuffer:(CVPixelBufferRef)pixelBuffer {
+    //[self showPixelBuffer:pixelBuffer];
+}
+
+
+- (void)videoCapture:(YZOutputCapture *)videoCapture dropFrames:(int)frames {
+    
+}
 
 - (void)showPixelBuffer:(CVPixelBufferRef)pixel {
     CVPixelBufferRetain(pixel);
