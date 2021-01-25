@@ -1,5 +1,5 @@
 //
-//  FirstViewController.h
+//  ThirdViewController.h
 //  YZMetalLib
 //
 //  Created by yanzhen on 2021/1/16.
@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FirstViewController : UIViewController
+@interface ThirdViewController : UIViewController
 
 @end
 

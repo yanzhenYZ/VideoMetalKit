@@ -31,9 +31,11 @@
     return self;
 }
 
+//输出默认分辨率
 -(void)newTextureAvailable:(id<MTLTexture>)texture commandBuffer:(id<MTLCommandBuffer>)commandBuffer {
     [commandBuffer waitUntilCompleted];
-    [self dealPixelBuffer:texture];
+    [self dealTextureSize:texture];
+    //[self dealPixelBuffer:texture];
     if (!_pixelBuffer) { return; }
     
     CVPixelBufferLockBaseAddress(_pixelBuffer, 0);
@@ -51,13 +53,32 @@
     [super newTextureAvailable:texture commandBuffer:commandBuffer];
 }
 
+
+#pragma mark - output texture size
+- (void)dealTextureSize:(id<MTLTexture>)texture {
+    CGFloat width = texture.width;
+    CGFloat height = texture.height;
+    if (!CGSizeEqualToSize(_size, CGSizeMake(width, height))) {
+        if (_pixelBuffer) {
+            CVPixelBufferRelease(_pixelBuffer);
+            _pixelBuffer = nil;
+        }
+        _size = CGSizeMake(width, height);
+    }
+    if (!_pixelBuffer) {
+        [self generatePixelBuffer];
+    }
+}
+
 #pragma mark  - private render
 - (void)dealPixelBuffer:(id<MTLTexture>)texture {
     CGFloat width = texture.width;
     CGFloat height = texture.height;
     if (_lastTextureSize.width == height && _lastTextureSize.height == width) {//交换了宽高
-        CVPixelBufferRelease(_pixelBuffer);
-        _pixelBuffer = nil;
+        if (_pixelBuffer) {
+            CVPixelBufferRelease(_pixelBuffer);
+            _pixelBuffer = nil;
+        }
         _size = CGSizeMake(_size.height, _size.width);
     }
     _lastTextureSize = CGSizeMake(width, height);

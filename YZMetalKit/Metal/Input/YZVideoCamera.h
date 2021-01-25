@@ -11,14 +11,14 @@
 
 @class YZVideoCamera;
 @protocol YZVideoCameraOutputDelegate <NSObject>
-
+@optional
 - (void)videoCamera:(YZVideoCamera *)camera output:(CMSampleBufferRef)sampleBuffer;
-
+- (void)videoCamera:(YZVideoCamera *)camera dropFrames:(int)frams;
 @end
 
 @interface YZVideoCamera : YZMetalOutput//use filter
 @property (nonatomic, weak) id<YZVideoCameraOutputDelegate> delegate;
-/**default is 15*/
+/** default is 15, you can set (0,60), some device not support 60 */
 @property (nonatomic, assign) int32_t frameRate;
 @property (nonatomic, copy) AVCaptureSessionPreset preset;
 

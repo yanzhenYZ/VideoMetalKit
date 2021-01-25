@@ -54,6 +54,7 @@
         _orientation = [[YZMetalOrientation alloc] init];
         _cameraQueue = dispatch_queue_create("com.yanzhen.video.camera.queue", 0);
         _cameraRenderQueue = dispatch_queue_create("com.yanzhen.video.camera.render.queue", 0);
+        _frameRate = 15;
         _userBGRA = YES;
         _preset = preset;
         [self _configVideoSession];
@@ -141,6 +142,12 @@
 }
 
 - (void)setFrameRate:(int32_t)frameRate {
+    if (frameRate <= 0) {
+        _frameRate = 15;
+    } else if (frameRate > 60) {
+        _frameRate = 60;
+    }
+    if (_frameRate == frameRate) { return; }
     _frameRate = frameRate;
     [YZMetalDevice semaphoreWaitForever];
     [_session beginConfiguration];
@@ -159,6 +166,11 @@
     [_session beginConfiguration];
     if ([_session canSetSessionPreset:preset]) {
         _session.sessionPreset = preset;
+    } else if ([preset isEqualToString:AVCaptureSessionPreset1920x1080]) {
+        if ([_session canSetSessionPreset:AVCaptureSessionPreset1280x720]) {
+            _preset = AVCaptureSessionPreset1280x720;
+            _session.sessionPreset = AVCaptureSessionPreset1280x720;
+        }
     }
     _camera.activeVideoMinFrameDuration = CMTimeMake(1, self.frameRate);
     _camera.activeVideoMaxFrameDuration = CMTimeMake(1, self.frameRate);
@@ -171,6 +183,9 @@
     if (_output != output) { return; }
     if ([YZMetalDevice semaphoreWaitNow] != 0) {
         _dropFrames++;
+        if ([_delegate respondsToSelector:@selector(videoCamera:dropFrames:)]) {
+            [_delegate videoCamera:self dropFrames:_dropFrames];
+        }
         return;
     }
     CFRetain(sampleBuffer);
@@ -402,9 +417,10 @@
     if ([_session canSetSessionPreset:_preset]) {
         _session.sessionPreset = _preset;
     }
-    [_session commitConfiguration];
     
-    self.frameRate = 15;
+    _camera.activeVideoMinFrameDuration = CMTimeMake(1, _frameRate);
+    _camera.activeVideoMaxFrameDuration = CMTimeMake(1, _frameRate);
+    [_session commitConfiguration];
 }
 
 #pragma mark - observer

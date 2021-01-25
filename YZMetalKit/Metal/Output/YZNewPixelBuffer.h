@@ -10,7 +10,7 @@
 #import <Metal/Metal.h>
 
 @protocol YZNewPixelBufferDelegate <NSObject>
-
+@optional
 - (void)outputPixelBuffer:(CVPixelBufferRef)buffer;
 
 @end
