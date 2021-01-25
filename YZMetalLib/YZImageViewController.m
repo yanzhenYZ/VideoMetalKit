@@ -6,10 +6,10 @@
 //
 
 #import "YZImageViewController.h"
-#import <YZMetalKit/YZMetalKit.h>
+#import <YZMetalKit/YZImage.h>
 
 @interface YZImageViewController ()
-@property (nonatomic, strong) YZImageInput *input;
+@property (nonatomic, strong) YZImage *image;
 @end
 
 @implementation YZImageViewController
@@ -19,10 +19,11 @@
     // Do any additional setup after loading the view.
     UIImage *image = [UIImage imageNamed:@"123"];
 //    NSLog(@"123:%@", image);
-    _input = [[YZImageInput alloc] initWithImage:image];
+    _image = [[YZImage alloc] initWithImage:image];
+    _image.player = self.view;
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [_input processImage];
+    [_image processImage];
 }
 @end
