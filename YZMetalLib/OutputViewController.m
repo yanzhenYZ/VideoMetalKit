@@ -9,6 +9,7 @@
 #import <YZMetalKit/YZOutputCapture.h>
 
 @interface OutputViewController ()<YZOutputCaptureDelegate>
+@property (weak, nonatomic) IBOutlet UIView *showView;
 @property (weak, nonatomic) IBOutlet UIImageView *palyer;
 @property (nonatomic, strong) CIContext *context;
 
@@ -24,8 +25,8 @@
     _context = [CIContext contextWithOptions:nil];
     
     
-    _capture = [[YZOutputCapture alloc] initWithSize:CGSizeMake(360, 640) front:NO];
-    _capture.player = self.view;
+    _capture = [[YZOutputCapture alloc] initWithSize:CGSizeMake(360, 640) front:YES];
+    _capture.player = self.showView;
     _capture.fillMode = YZOutputFillModeScaleAspectFit;
     _capture.delegate = self;
     [_capture startRunning];
@@ -35,13 +36,13 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (IBAction)switchCamera:(id)sender {
-    
+- (IBAction)switchCamera:(UISwitch *)sender {
+    _capture.front = sender.isOn;
 }
 
 #pragma mark - YZOutputCaptureDelegate
 - (void)videoCapture:(YZOutputCapture *)videoCapture decodePixelBuffer:(CVPixelBufferRef)pixelBuffer {
-    [self showPixelBuffer:pixelBuffer];
+    //[self showPixelBuffer:pixelBuffer];
 }
 
 - (void)videoCapture:(YZOutputCapture *)videoCapture outputPixelBuffer:(CVPixelBufferRef)pixelBuffer {

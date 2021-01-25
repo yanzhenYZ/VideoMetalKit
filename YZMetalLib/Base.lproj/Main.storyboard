@@ -109,6 +109,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="palyer" destination="cAF-jS-0QI" id="KSS-7I-Ti2"/>
+                        <outlet property="showView" destination="Ewa-Px-4ch" id="sZd-Nc-4QZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jb5-th-CK1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

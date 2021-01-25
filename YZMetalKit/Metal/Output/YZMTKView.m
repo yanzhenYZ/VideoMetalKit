@@ -10,6 +10,8 @@
 #import "YZMetalOrientation.h"
 #import "YZShaderTypes.h"
 
+#define PIXELBUFFER 0
+
 @interface YZMTKView ()<MTKViewDelegate>
 @property (nonatomic, strong) id<MTLRenderPipelineState> pipelineState;
 @property (nonatomic, strong) id<MTLTexture> texture;
@@ -18,9 +20,23 @@
 @property (nonatomic) double green;
 @property (nonatomic) double blue;
 @property (nonatomic) double alpha;
+#if PIXELBUFFER
+@property (nonatomic, assign) CVMetalTextureCacheRef textureCache;
+#endif
 @end
 
 @implementation YZMTKView
+
+#if PIXELBUFFER
+- (void)dealloc
+{
+    if (_textureCache) {
+        CVMetalTextureCacheFlush(_textureCache, 0);
+        CFRelease(_textureCache);
+        _textureCache = nil;
+    }
+}
+#endif
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -28,15 +44,6 @@
     if (self) {
         [self _configSelf];
         self.currentBounds = self.bounds;
-    }
-    return self;
-}
-
-- (instancetype)initWithCoder:(NSCoder *)coder
-{
-    self = [super initWithCoder:coder];
-    if (self) {
-        [self _configSelf];
     }
     return self;
 }
@@ -55,6 +62,24 @@
     _green = green;
     _blue = blue;
     _alpha = alpha;
+}
+
+- (void)showPixelBuffer:(CVPixelBufferRef)pixelBuffer {
+#if PIXELBUFFER
+    int width = (int)CVPixelBufferGetWidth(pixelBuffer);
+    int height = (int)CVPixelBufferGetHeight(pixelBuffer);
+    CVMetalTextureRef tmpTexture = NULL;
+    CVReturn status =  CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault, self.textureCache, pixelBuffer, NULL, MTLPixelFormatBGRA8Unorm, width, height, 0, &tmpTexture);
+    if (status != kCVReturnSuccess) {
+        CVPixelBufferRelease(pixelBuffer);
+        return;
+    }
+    
+    self.drawableSize = CGSizeMake(width, height);
+    self.texture = CVMetalTextureGetTexture(tmpTexture);
+    CFRelease(tmpTexture);
+    [self draw];
+#endif
 }
 
 -(void)newTextureAvailable:(id<MTLTexture>)texture commandBuffer:(id<MTLCommandBuffer>)commandBuffer {
@@ -117,6 +142,9 @@
     self.device = YZMetalDevice.defaultDevice.device;
     self.contentMode = UIViewContentModeScaleToFill;
     _pipelineState = [YZMetalDevice.defaultDevice newRenderPipeline:@"YZInputVertex" fragment:@"YZFragment"];
+#if PIXELBUFFER
+    CVMetalTextureCacheCreate(NULL, NULL, self.device, NULL, &_textureCache);
+#endif
 }
 
 - (void)layoutSubviews {

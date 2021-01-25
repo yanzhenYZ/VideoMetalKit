@@ -133,7 +133,7 @@
     if ([_delegate respondsToSelector:@selector(videoCapture:outputPixelBuffer:)]) {
         [_delegate videoCapture:self outputPixelBuffer:buffer];
     }
-    
+    [self.mtkView showPixelBuffer:buffer];
     if ([_delegate respondsToSelector:@selector(videoCapture:decodePixelBuffer:)]) {
         [_delegate videoCapture:self decodePixelBuffer:buffer];
     }
