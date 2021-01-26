@@ -343,7 +343,7 @@
                                     <constraint firstAttribute="bottom" secondItem="Bka-BZ-P1G" secondAttribute="bottom" id="zaE-E4-v4s"/>
                                 </constraints>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qCH-dg-ppx">
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qCH-dg-ppx">
                                 <rect key="frame" x="234" y="0.0" width="180" height="320"/>
                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                 <constraints>
@@ -376,7 +376,7 @@
                                     <constraint firstItem="9oz-82-aYO" firstAttribute="centerX" secondItem="jvw-w6-JwY" secondAttribute="centerX" id="nGR-ru-0ha"/>
                                 </constraints>
                             </view>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="L8e-78-yNs">
+                            <switch hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="L8e-78-yNs">
                                 <rect key="frame" x="299.5" y="144.5" width="51" height="31"/>
                                 <connections>
                                     <action selector="switchShowView:" destination="okL-zf-L5J" eventType="valueChanged" id="Wr8-se-uvK"/>

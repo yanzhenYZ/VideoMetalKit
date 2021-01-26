@@ -10,10 +10,12 @@
 #import "YZNewPixelBuffer.h"
 #import "YZMTKView.h"
 #import "YZBrightness.h"
+#import "YZBlendFilter.h"
 
 @interface YZVideoCapture ()<YZVideoCameraOutputDelegate, YZNewPixelBufferDelegate>
 @property (nonatomic, strong) YZVideoCamera *camera;
 @property (nonatomic, strong) YZBrightness *beautyFilter;
+@property (nonatomic, strong) YZBlendFilter *blendFilter;
 @property (nonatomic, strong) YZMTKView *mtkView;
 @property (nonatomic, strong) YZNewPixelBuffer *pixelBuffer;
 @end
@@ -44,7 +46,12 @@
         _pixelBuffer.delegate = self;
         
         [_camera addFilter:_beautyFilter];
-        [_beautyFilter addFilter:_pixelBuffer];
+        
+        _blendFilter = [[YZBlendFilter alloc] init];
+        [_beautyFilter addFilter:_blendFilter];
+        [_blendFilter addFilter:_pixelBuffer];
+        
+        //[_beautyFilter addFilter:_pixelBuffer];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarDidChanged:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
     }
     return self;

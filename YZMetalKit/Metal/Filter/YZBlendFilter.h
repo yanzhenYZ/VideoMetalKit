@@ -5,9 +5,11 @@
 //  Created by yanzhen on 2021/1/26.
 //
 
+#import <UIKit/UIKit.h>
 #import "YZMetalFilter.h"
 
 @interface YZBlendFilter : YZMetalFilter
-
+- (void)setWatermark:(UIImage *)image;
+- (void)processImage;
 @end
 
