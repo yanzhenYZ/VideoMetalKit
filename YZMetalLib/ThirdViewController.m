@@ -23,7 +23,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     UIImage *image = [UIImage imageNamed:@"123"];
-    
+    NSLog(@"99:%@", image);
     _videoCapture = [[YZVideoCapture alloc] initWithSize:CGSizeMake(360, 640) front:NO];
     _videoCapture.player = self.showView;
     _videoCapture.fillMode = YZVideoFillModeScaleAspectFit;

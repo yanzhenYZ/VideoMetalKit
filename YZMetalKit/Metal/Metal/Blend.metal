@@ -49,39 +49,9 @@ fragment half4 YZBlendFragment(YZBlendVertexIO fragmentInput [[stage_in]],
 
     constexpr sampler quadSampler2;
     half4 textureColor2 = inputTexture2.sample(quadSampler2, fragmentInput.textureCoordinate2);
-    
-    if (fragmentInput.textureCoordinate.x < 0.5 || fragmentInput.textureCoordinate.y > 0.5) {
-        return textureColor2;
-    }
-    return mix(textureColor, textureColor2, half(1));
-}
 
-//typedef struct
-//{
-//    float mixturePercent;
-//} DissolveBlendUniform;
-//
-//fragment half4 dissolveBlendFragment(YZBlendVertexIO fragmentInput [[stage_in]],
-//                                     texture2d<half> inputTexture [[texture(0)]],
-//                                     texture2d<half> inputTexture2 [[texture(1)]],
-//                                     constant DissolveBlendUniform& uniform [[ buffer(1) ]])
-//{
-//    constexpr sampler quadSampler;
-//    float2 uv = fragmentInput.textureCoordinate;
-//    if (uv.x > 0.5) {
-//        uv.x = (uv.x - 0.5) * 2.0;
-//    }
-//
-//    if (uv.y < 0.5) {
-//        uv.y = uv.y * 2.0;
-//    }
-//    half4 textureColor = inputTexture.sample(quadSampler, uv);
-//
-//    constexpr sampler quadSampler2;
-//    half4 textureColor2 = inputTexture2.sample(quadSampler2, fragmentInput.textureCoordinate2);
-//
-//    if (fragmentInput.textureCoordinate.x < 0.5 || fragmentInput.textureCoordinate.y > 0.5) {
-//        return textureColor2 * half(uniform.mixturePercent);
-//    }
-//    return mix(textureColor, textureColor2, half(uniform.mixturePercent));
-//}
+    if (fragmentInput.textureCoordinate.x < 0.5 || fragmentInput.textureCoordinate.y > 0.5) {
+        return textureColor2 * half(1.0);
+    }
+    return mix(textureColor, textureColor2, half(0.5));
+}
