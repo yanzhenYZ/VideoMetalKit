@@ -150,7 +150,10 @@
     [_camera stopRunning];
 }
 
-
+-(void)setWatermark:(UIImage *)image {
+    [_blendFilter setWatermark:image];
+    [_blendFilter processImage];
+}
 #pragma mark - YZVideoCameraOutputDelegate
 - (void)videoCamera:(YZVideoCamera *)camera dropFrames:(int)frams {
     if ([_delegate respondsToSelector:@selector(videoCapture:dropFrames:)]) {
