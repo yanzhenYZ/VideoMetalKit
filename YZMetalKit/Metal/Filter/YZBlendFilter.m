@@ -22,15 +22,9 @@
 {
     self = [super initWithVertexFunctionName:@"YZBlendVertex" fragmentFunctionName:@"YZBlendFragment"];
     if (self) {
-        _frame = CGRectMake(0, 0, 100, 100);
-        //_frame = CGRectMake(380, 0, 100, 100);
+        
     }
     return self;
-}
-
-- (simd_float4)getRenderFrame:(id<MTLTexture>)texture {
-    simd_float4 frame = {0.5, 0, 0.5, 0.5};
-    return frame;
 }
 
 #pragma mark - YZFilterProtocol
@@ -74,8 +68,9 @@
 }
 
 #pragma mark - out
-- (void)setWatermark:(UIImage *)image {
+- (void)setWatermark:(UIImage *)image frame:(CGRect)frame {
     _image = image;
+    _frame = frame;
 }
 
 - (void)processImage {
@@ -89,4 +84,30 @@
         weakSlef.imageTexture = texture;
     }];
 }
+
+#pragma mark - private
+- (simd_float4)getRenderFrame:(id<MTLTexture>)texture {
+    NSUInteger width = texture.width;
+    NSUInteger height = texture.height;
+    if (_frame.origin.x >= width || _frame.origin.y >= height) {
+        simd_float4 frame = {0, 0, 0, 0};
+        return frame;
+    }
+    
+    if (_frame.origin.x + _frame.size.width > width) {
+        _frame = CGRectMake(_frame.origin.x, _frame.origin.y, width - _frame.origin.x, _frame.size.height);
+    }
+    
+    if (_frame.origin.y + _frame.size.height > height) {
+        _frame = CGRectMake(_frame.origin.x, _frame.origin.y, _frame.size.width, height - _frame.origin.y);
+    }
+    float x = _frame.origin.x / width;
+    float y = _frame.origin.y / height;
+    float w = _frame.size.width / width;
+    float h = _frame.size.height / height;
+    simd_float4 frame = {x, y, w, h};
+    //simd_float4 frame = {0.5, 0, 0.5, 0.5};
+    return frame;
+}
+
 @end

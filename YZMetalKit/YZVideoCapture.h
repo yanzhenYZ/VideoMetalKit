@@ -56,7 +56,7 @@ typedef NS_ENUM(NSInteger, YZVideoFillMode) {
 /** stop video capture */
 - (void)stopRunning;
 
-- (void)setWatermark:(UIImage *)image;
+- (void)setWatermark:(UIImage *)image frame:(CGRect)frame;
 
 @end
 

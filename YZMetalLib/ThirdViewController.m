@@ -29,7 +29,7 @@
     _videoCapture.fillMode = YZVideoFillModeScaleAspectFit;
     _videoCapture.delegate = self;
     
-    [_videoCapture setWatermark:image];
+    [_videoCapture setWatermark:image frame:CGRectMake(0, 0, 100, 100)];
     
     [_videoCapture startRunning];
 }

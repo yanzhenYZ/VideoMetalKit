@@ -150,8 +150,8 @@
     [_camera stopRunning];
 }
 
--(void)setWatermark:(UIImage *)image {
-    [_blendFilter setWatermark:image];
+-(void)setWatermark:(UIImage *)image frame:(CGRect)frame {
+    [_blendFilter setWatermark:image frame:frame];
     [_blendFilter processImage];
 }
 #pragma mark - YZVideoCameraOutputDelegate

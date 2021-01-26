@@ -9,7 +9,7 @@
 #import "YZMetalFilter.h"
 
 @interface YZBlendFilter : YZMetalFilter
-- (void)setWatermark:(UIImage *)image;
+- (void)setWatermark:(UIImage *)image frame:(CGRect)frame;
 - (void)processImage;
 @end
 
