@@ -52,9 +52,9 @@ fragment half4 YZBlendFragment(YZBlendVertexIO fragmentInput [[stage_in]],
         
         constexpr sampler quadSampler;
         half4 textureColor = inputTexture.sample(quadSampler, uv);
-        return mix(textureColor, textureColor2, half(0.5));
+        return half4(mix(textureColor.rgb, textureColor2.rgb, textureColor2.a * half(0.)), textureColor.a);
     } else {
-        return textureColor2 * half(1.0);
+        return textureColor2;
     }
 }
 
