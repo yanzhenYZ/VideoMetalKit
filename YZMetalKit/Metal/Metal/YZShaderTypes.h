@@ -12,14 +12,14 @@
 typedef enum YZBlendVertexIndex
 {
     YZBlendVertexIndexPosition  = 0,
-    YZBlendVertexIndexY         = 1,
-    YZBlendVertexIndexUV        = 2
+    YZBlendVertexIndexVideo     = 1,
+    YZBlendVertexIndexImage     = 2
 } YZBlendVertexIndex;
 
 typedef enum YZBlendFragmentIndex
 {
-    YZBlendFragmentIndexY  = 0,
-    YZBlendFragmentIndexUV = 1
+    YZBlendFragmentIndexVideo = 0,
+    YZBlendFragmentIndexImage = 1
 } YZBlendFragmentIndex;
 
 #pragma mark - YZVideoCamera

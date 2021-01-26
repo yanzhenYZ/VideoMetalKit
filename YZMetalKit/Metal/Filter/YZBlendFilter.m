@@ -45,10 +45,10 @@
         [encoder setVertexBytes:&vertices length:sizeof(simd_float8) atIndex:YZBlendVertexIndexPosition];
         
         simd_float8 textureCoordinates = [YZMetalOrientation defaultTextureCoordinates];
-        [encoder setVertexBytes:&textureCoordinates length:sizeof(simd_float8) atIndex:YZBlendVertexIndexY];
-        [encoder setFragmentTexture:_imageTexture atIndex:YZBlendFragmentIndexY];
-        [encoder setVertexBytes:&textureCoordinates length:sizeof(simd_float8) atIndex:YZBlendVertexIndexUV];
-        [encoder setFragmentTexture:texture atIndex:YZBlendFragmentIndexUV];
+        [encoder setVertexBytes:&textureCoordinates length:sizeof(simd_float8) atIndex:YZBlendVertexIndexVideo];
+        [encoder setFragmentTexture:texture atIndex:YZBlendFragmentIndexVideo];
+        [encoder setVertexBytes:&textureCoordinates length:sizeof(simd_float8) atIndex:YZBlendVertexIndexImage];
+        [encoder setFragmentTexture:_imageTexture atIndex:YZBlendFragmentIndexImage];
         
         [encoder drawPrimitives:MTLPrimitiveTypeTriangleStrip vertexStart:0 vertexCount:4];
         [encoder endEncoding];

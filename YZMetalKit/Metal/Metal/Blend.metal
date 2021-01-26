@@ -19,8 +19,8 @@ struct YZBlendVertexIO
 
 
 vertex YZBlendVertexIO YZBlendVertex(const device packed_float2 *position [[buffer(YZBlendVertexIndexPosition)]],
-                                       const device packed_float2 *texturecoord [[buffer(YZBlendVertexIndexY)]],
-                                       const device packed_float2 *texturecoord2 [[buffer(YZBlendVertexIndexUV)]],
+                                       const device packed_float2 *texturecoord [[buffer(YZBlendVertexIndexVideo)]],
+                                       const device packed_float2 *texturecoord2 [[buffer(YZBlendVertexIndexImage)]],
                                        uint vertexID [[vertex_id]])
 {
     YZBlendVertexIO outputVertices;
@@ -33,15 +33,15 @@ vertex YZBlendVertexIO YZBlendVertex(const device packed_float2 *position [[buff
 }
 
 fragment half4 YZBlendFragment(YZBlendVertexIO fragmentInput [[stage_in]],
-                                     texture2d<half> inputTexture [[texture(YZBlendFragmentIndexY)]],
-                                     texture2d<half> inputTexture2 [[texture(YZBlendFragmentIndexUV)]])
+                                     texture2d<half> inputTexture [[texture(YZBlendFragmentIndexVideo)]],
+                                     texture2d<half> inputTexture2 [[texture(YZBlendFragmentIndexImage)]])
 {
     
-    float2 uv = fragmentInput.textureCoordinate;
+    float2 uv = fragmentInput.textureCoordinate2;
     float4 uniform = float4(0.5,0.0,0.5,0.5);
 
-    constexpr sampler quadSampler2;
-    half4 textureColor2 = inputTexture2.sample(quadSampler2, fragmentInput.textureCoordinate2);
+    constexpr sampler quadSampler;
+    half4 textureColor = inputTexture.sample(quadSampler, fragmentInput.textureCoordinate);
     
     bool includeX = uv.x >= uniform.x && uv.x <= (uniform.x + uniform.z);
     bool includeY = uv.y >= uniform.y && uv.y <= (uniform.y + uniform.w);
@@ -50,36 +50,11 @@ fragment half4 YZBlendFragment(YZBlendVertexIO fragmentInput [[stage_in]],
         uv.x = (uv.x - uniform.x) * (1/uniform.z);
         uv.y = (uv.y - uniform.y) * (1/uniform.w);
         
-        constexpr sampler quadSampler;
-        half4 textureColor = inputTexture.sample(quadSampler, uv);
-        return half4(mix(textureColor.rgb, textureColor2.rgb, textureColor2.a * half(0.)), textureColor.a);
+        constexpr sampler quadSampler2;
+        half4 textureColor2 = inputTexture2.sample(quadSampler2, uv);
+        return half4(mix(textureColor.rgb, textureColor2.rgb, textureColor2.a), textureColor.a);
+        //return half4(mix(textureColor.rgb, textureColor2.rgb, textureColor2.a * half(0.5)), textureColor.a);
     } else {
-        return textureColor2;
+        return textureColor;
     }
 }
-
-//fragment half4 YZBlendFragment(YZBlendVertexIO fragmentInput [[stage_in]],
-//                                     texture2d<half> inputTexture [[texture(YZBlendFragmentIndexY)]],
-//                                     texture2d<half> inputTexture2 [[texture(YZBlendFragmentIndexUV)]])
-//{
-//
-//    float2 uv = fragmentInput.textureCoordinate;
-//    float4 uniform = float4(0.5,0.0,0.5,0.5);
-//
-//    constexpr sampler quadSampler2;
-//    half4 textureColor2 = inputTexture2.sample(quadSampler2, fragmentInput.textureCoordinate2);
-//
-//    bool includeX = uv.x >= uniform.x && uv.x <= (uniform.x + uniform.z);
-//    bool includeY = uv.y >= uniform.y && uv.y <= (uniform.y + uniform.w);
-//
-//    if (includeX && includeY) {
-//        uv.x = (uv.x - uniform.x) * (1/uniform.z);
-//        uv.y = (uv.y - uniform.y) * (1/uniform.w);
-//
-//        constexpr sampler quadSampler;
-//        half4 textureColor = inputTexture.sample(quadSampler, uv);
-//        return mix(textureColor, textureColor2, half(0.5));
-//    } else {
-//        return textureColor2 * half(1.0);
-//    }
-//}
