@@ -74,10 +74,10 @@
             [self.mtkView removeFromSuperview];
             self.mtkView.frame = player.bounds;
             [player addSubview:self.mtkView];
-            [self.beautyFilter addFilter:self.mtkView];
+            [self.blendFilter addFilter:self.mtkView];
         } else {
             [self.mtkView removeFromSuperview];
-            [self.beautyFilter removeFilter:self.mtkView];
+            [self.blendFilter removeFilter:self.mtkView];
         }
     }];
 }
