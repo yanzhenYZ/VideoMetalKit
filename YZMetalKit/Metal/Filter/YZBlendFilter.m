@@ -50,6 +50,9 @@
         [encoder setVertexBytes:&textureCoordinates length:sizeof(simd_float8) atIndex:YZBlendVertexIndexImage];
         [encoder setFragmentTexture:_imageTexture atIndex:YZBlendFragmentIndexImage];
         
+        simd_float4 frame = {0.5, 0, 0.5, 0.5};
+        [encoder setFragmentBytes:&frame length:sizeof(simd_float4) atIndex:YZUniformIndexNormal];
+        
         [encoder drawPrimitives:MTLPrimitiveTypeTriangleStrip vertexStart:0 vertexCount:4];
         [encoder endEncoding];
         
