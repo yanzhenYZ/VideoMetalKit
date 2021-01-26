@@ -36,22 +36,48 @@ fragment half4 YZBlendFragment(YZBlendVertexIO fragmentInput [[stage_in]],
                                      texture2d<half> inputTexture [[texture(YZBlendFragmentIndexY)]],
                                      texture2d<half> inputTexture2 [[texture(YZBlendFragmentIndexUV)]])
 {
-    constexpr sampler quadSampler;
+    
     float2 uv = fragmentInput.textureCoordinate;
-    if (uv.x > 0.5) {
-        uv.x = (uv.x - 0.5) * 2.0;
-    }
-
-    if (uv.y < 0.5) {
-        uv.y = uv.y * 2.0;
-    }
-    half4 textureColor = inputTexture.sample(quadSampler, uv);
+    float4 uniform = float4(0.5,0.0,0.5,0.5);
 
     constexpr sampler quadSampler2;
     half4 textureColor2 = inputTexture2.sample(quadSampler2, fragmentInput.textureCoordinate2);
-
-    if (fragmentInput.textureCoordinate.x < 0.5 || fragmentInput.textureCoordinate.y > 0.5) {
+    
+    bool includeX = uv.x >= uniform.x && uv.x <= (uniform.x + uniform.z);
+    bool includeY = uv.y >= uniform.y && uv.y <= (uniform.y + uniform.w);
+    
+    if (includeX && includeY) {
+        uv.x = (uv.x - uniform.x) * (1/uniform.z);
+        uv.y = (uv.y - uniform.y) * (1/uniform.w);
+        
+        constexpr sampler quadSampler;
+        half4 textureColor = inputTexture.sample(quadSampler, uv);
+        return mix(textureColor, textureColor2, half(0.5));
+    } else {
         return textureColor2 * half(1.0);
     }
-    return mix(textureColor, textureColor2, half(0.5));
 }
+
+//fragment half4 YZBlendFragment(YZBlendVertexIO fragmentInput [[stage_in]],
+//                                     texture2d<half> inputTexture [[texture(YZBlendFragmentIndexY)]],
+//                                     texture2d<half> inputTexture2 [[texture(YZBlendFragmentIndexUV)]])
+//{
+//    constexpr sampler quadSampler;
+//    float2 uv = fragmentInput.textureCoordinate;
+//    if (uv.x > 0.5) {
+//        uv.x = (uv.x - 0.5) * 2.0;
+//    }
+//
+//    if (uv.y < 0.5) {
+//        uv.y = uv.y * 2.0;
+//    }
+//    half4 textureColor = inputTexture.sample(quadSampler, uv);
+//
+//    constexpr sampler quadSampler2;
+//    half4 textureColor2 = inputTexture2.sample(quadSampler2, fragmentInput.textureCoordinate2);
+//
+//    if (fragmentInput.textureCoordinate.x < 0.5 || fragmentInput.textureCoordinate.y > 0.5) {
+//        return textureColor2 * half(1.0);
+//    }
+//    return mix(textureColor, textureColor2, half(0.5));
+//}
