@@ -113,6 +113,7 @@
         w = insetRect.size.width / bounds.size.width;
         h = insetRect.size.height / bounds.size.height;
     }
+    
     simd_float8 vertices = {-w, h, w, h, -w, -h, w, -h};
     [encoder setVertexBytes:&vertices length:sizeof(simd_float8) atIndex:YZVertexIndexPosition];
     

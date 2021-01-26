@@ -8,6 +8,20 @@
 #ifndef YZShaderTypes_h
 #define YZShaderTypes_h
 
+#pragma mark - blend
+typedef enum YZBlendVertexIndex
+{
+    YZBlendVertexIndexPosition  = 0,
+    YZBlendVertexIndexY         = 1,
+    YZBlendVertexIndexUV        = 2
+} YZBlendVertexIndex;
+
+typedef enum YZBlendFragmentIndex
+{
+    YZBlendFragmentIndexY  = 0,
+    YZBlendFragmentIndexUV = 1
+} YZBlendFragmentIndex;
+
 #pragma mark - YZVideoCamera
 typedef enum YZFullRangeVertexIndex
 {
