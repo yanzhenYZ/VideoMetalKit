@@ -22,14 +22,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    UIImage *image = [UIImage imageNamed:@"123"];
+    UIImage *image = [UIImage imageNamed:@"test3"];
     NSLog(@"99:%@", image);
     _videoCapture = [[YZVideoCapture alloc] initWithSize:CGSizeMake(360, 640) front:NO];
     _videoCapture.player = self.showView;
     _videoCapture.fillMode = YZVideoFillModeScaleAspectFit;
     _videoCapture.delegate = self;
     
-    [_videoCapture setWatermark:image frame:CGRectMake(0, 0, 100, 100)];
+    [_videoCapture setWatermark:image frame:CGRectMake(0, 0, 100, 71)];
     
     [_videoCapture startRunning];
 }
