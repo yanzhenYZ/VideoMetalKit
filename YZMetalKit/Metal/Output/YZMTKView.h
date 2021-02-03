@@ -18,5 +18,6 @@ typedef NS_ENUM(NSInteger, YZMTKViewFillMode) {
 @interface YZMTKView : MTKView<YZFilterProtocol>
 @property (nonatomic) YZMTKViewFillMode fillMode;
 
+- (void)showPixelBuffer:(CVPixelBufferRef)pixelBuffer;
 - (void)setBackgroundColorRed:(double)red green:(double)green blue:(double)blue alpha:(double)alpha;
 @end

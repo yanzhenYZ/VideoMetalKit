@@ -1,26 +1,22 @@
 //
-//  YZVideoCapture.m
+//  YZOutputCapture.m
 //  YZMetalKit
 //
-//  Created by yanzhen on 2021/1/9.
+//  Created by yanzhen on 2021/1/25.
 //
 
-#import "YZVideoCapture.h"
+#import "YZOutputCapture.h"
 #import "YZVideoCamera.h"
 #import "YZNewPixelBuffer.h"
 #import "YZMTKView.h"
-#import "YZBrightness.h"
-#import "YZBlendFilter.h"
 
-@interface YZVideoCapture ()<YZVideoCameraOutputDelegate, YZNewPixelBufferDelegate>
+@interface YZOutputCapture ()<YZVideoCameraOutputDelegate, YZNewPixelBufferDelegate>
 @property (nonatomic, strong) YZVideoCamera *camera;
-@property (nonatomic, strong) YZBrightness *beautyFilter;
-@property (nonatomic, strong) YZBlendFilter *blendFilter;
 @property (nonatomic, strong) YZMTKView *mtkView;
 @property (nonatomic, strong) YZNewPixelBuffer *pixelBuffer;
 @end
 
-@implementation YZVideoCapture
+@implementation YZOutputCapture
 - (void)dealloc
 {
     [NSNotificationCenter.defaultCenter removeObserver:self];
@@ -41,17 +37,10 @@
         UIInterfaceOrientation statusBar = [[UIApplication sharedApplication] statusBarOrientation];
         _camera.outputOrientation = statusBar;
         _camera.delegate = self;
-        _beautyFilter = [[YZBrightness alloc] init];
         _pixelBuffer = [[YZNewPixelBuffer alloc] initWithSize:_size];
         _pixelBuffer.delegate = self;
         
-        [_camera addFilter:_beautyFilter];
-        
-        _blendFilter = [[YZBlendFilter alloc] init];
-        [_beautyFilter addFilter:_blendFilter];
-        [_blendFilter addFilter:_pixelBuffer];
-        
-        //[_beautyFilter addFilter:_pixelBuffer];
+        [_camera addFilter:_pixelBuffer];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarDidChanged:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
     }
     return self;
@@ -74,15 +63,15 @@
             [self.mtkView removeFromSuperview];
             self.mtkView.frame = player.bounds;
             [player addSubview:self.mtkView];
-            [self.blendFilter addFilter:self.mtkView];
+            //[self.beautyFilter addFilter:self.mtkView];
         } else {
             [self.mtkView removeFromSuperview];
-            [self.blendFilter removeFilter:self.mtkView];
+            //[self.beautyFilter removeFilter:self.mtkView];
         }
     }];
 }
 
--(void)setFillMode:(YZVideoFillMode)fillMode {
+- (void)setFillMode:(YZOutputFillMode)fillMode {
     _fillMode = fillMode;
     _mtkView.fillMode = (YZMTKViewFillMode)fillMode;
 }
@@ -118,29 +107,6 @@
     return _camera.videoMirrored;
 }
 
-- (void)setBeautyEnable:(BOOL)beautyEnable {
-    _beautyFilter.enable = beautyEnable;
-}
-
-- (BOOL)beautyEnable {
-    return _beautyFilter.enable;
-}
-
-- (void)setBeautyLevel:(float)beautyLevel {
-    _beautyFilter.beautyLevel = beautyLevel;
-}
-
-- (float)beautyLevel {
-    return _beautyFilter.beautyLevel;
-}
-
-- (void)setBrightLevel:(float)brightLevel {
-    _beautyFilter.brightLevel = brightLevel;
-}
-
-- (float)brightLevel {
-    return _beautyFilter.brightLevel;
-}
 #pragma mark - camera
 - (void)startRunning {
     [_camera startRunning];
@@ -150,10 +116,7 @@
     [_camera stopRunning];
 }
 
--(void)setWatermark:(UIImage *)image frame:(CGRect)frame {
-    [_blendFilter setWatermark:image frame:frame];
-    [_blendFilter processImage];
-}
+
 #pragma mark - YZVideoCameraOutputDelegate
 - (void)videoCamera:(YZVideoCamera *)camera dropFrames:(int)frams {
     if ([_delegate respondsToSelector:@selector(videoCapture:dropFrames:)]) {
@@ -169,6 +132,10 @@
 - (void)outputPixelBuffer:(CVPixelBufferRef)buffer {
     if ([_delegate respondsToSelector:@selector(videoCapture:outputPixelBuffer:)]) {
         [_delegate videoCapture:self outputPixelBuffer:buffer];
+    }
+    [self.mtkView showPixelBuffer:buffer];
+    if ([_delegate respondsToSelector:@selector(videoCapture:decodePixelBuffer:)]) {
+        [_delegate videoCapture:self decodePixelBuffer:buffer];
     }
 }
 
@@ -188,7 +155,7 @@
         return AVCaptureSessionPresetiFrame960x540;
     } else if (maxWH <= 1280 && minWH <= 720) {
         return AVCaptureSessionPreset1280x720;
-    } 
+    }
     return AVCaptureSessionPreset1920x1080;
 }
 
@@ -202,3 +169,4 @@
     }
 }
 @end
+

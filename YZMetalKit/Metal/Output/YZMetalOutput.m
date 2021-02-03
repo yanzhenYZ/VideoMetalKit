@@ -38,18 +38,18 @@
 
 - (void)removeFilter:(id<YZFilterProtocol>)filter {
     [YZMetalDevice semaphoreWaitForever];
-    [self.filters removeObject:filter];
+    [_filters removeObject:filter];
     [YZMetalDevice semaphoreSignal];
 }
 
 - (void)removeAllFilters {
     [YZMetalDevice semaphoreWaitForever];
-    [self.filters removeAllObjects];
+    [_filters removeAllObjects];
     [YZMetalDevice semaphoreSignal];
 }
 
 - (NSArray<id<YZFilterProtocol>> *)allFilters {
-    return [NSArray arrayWithArray:self.filters];
+    return [_filters copy];
 }
 #pragma mark -
 - (NSMutableArray<id<YZFilterProtocol>> *)filters {

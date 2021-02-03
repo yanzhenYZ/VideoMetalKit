@@ -12,6 +12,12 @@
 		9B135ACF25BE65DB006F6205 /* YZImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B135ACE25BE65DB006F6205 /* YZImageViewController.m */; };
 		9B135AD425BE73E1006F6205 /* YZImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B135AD225BE73E1006F6205 /* YZImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9B135AD525BE73E1006F6205 /* YZImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B135AD325BE73E1006F6205 /* YZImage.m */; };
+		9B135AE025BECC2A006F6205 /* YZOutputCapture.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B135ADE25BECC2A006F6205 /* YZOutputCapture.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9B135AE125BECC2A006F6205 /* YZOutputCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B135ADF25BECC2A006F6205 /* YZOutputCapture.m */; };
+		9B135AE825BECCAC006F6205 /* OutputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B135AE725BECCAC006F6205 /* OutputViewController.m */; };
+		9B135B0725BFBDF4006F6205 /* Blend.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9B135B0625BFBDF4006F6205 /* Blend.metal */; };
+		9B135B0B25BFC7B4006F6205 /* YZBlendFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B135B0925BFC7B4006F6205 /* YZBlendFilter.h */; };
+		9B135B0C25BFC7B4006F6205 /* YZBlendFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B135B0A25BFC7B4006F6205 /* YZBlendFilter.m */; };
 		9B77FBA325A949440028A004 /* YZMetalKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B77FBA125A949440028A004 /* YZMetalKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9B77FBA625A949440028A004 /* YZMetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B77FB9F25A949440028A004 /* YZMetalKit.framework */; };
 		9B77FBA725A949440028A004 /* YZMetalKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9B77FB9F25A949440028A004 /* YZMetalKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -79,6 +85,13 @@
 		9B135ACE25BE65DB006F6205 /* YZImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZImageViewController.m; sourceTree = "<group>"; };
 		9B135AD225BE73E1006F6205 /* YZImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZImage.h; sourceTree = "<group>"; };
 		9B135AD325BE73E1006F6205 /* YZImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZImage.m; sourceTree = "<group>"; };
+		9B135ADE25BECC2A006F6205 /* YZOutputCapture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZOutputCapture.h; sourceTree = "<group>"; };
+		9B135ADF25BECC2A006F6205 /* YZOutputCapture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZOutputCapture.m; sourceTree = "<group>"; };
+		9B135AE625BECCAC006F6205 /* OutputViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OutputViewController.h; sourceTree = "<group>"; };
+		9B135AE725BECCAC006F6205 /* OutputViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OutputViewController.m; sourceTree = "<group>"; };
+		9B135B0625BFBDF4006F6205 /* Blend.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Blend.metal; sourceTree = "<group>"; };
+		9B135B0925BFC7B4006F6205 /* YZBlendFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZBlendFilter.h; sourceTree = "<group>"; };
+		9B135B0A25BFC7B4006F6205 /* YZBlendFilter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZBlendFilter.m; sourceTree = "<group>"; };
 		9B77FB9F25A949440028A004 /* YZMetalKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YZMetalKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B77FBA125A949440028A004 /* YZMetalKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZMetalKit.h; sourceTree = "<group>"; };
 		9B77FBA225A949440028A004 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -144,6 +157,8 @@
 			isa = PBXGroup;
 			children = (
 				9B77FBA125A949440028A004 /* YZMetalKit.h */,
+				9B135ADE25BECC2A006F6205 /* YZOutputCapture.h */,
+				9B135ADF25BECC2A006F6205 /* YZOutputCapture.m */,
 				9B77FBE525A94B9C0028A004 /* YZVideoCapture.h */,
 				9B77FBE625A94B9C0028A004 /* YZVideoCapture.m */,
 				9B135AD225BE73E1006F6205 /* YZImage.h */,
@@ -173,6 +188,7 @@
 				9B77FBB225A949700028A004 /* YZBrightness.metal */,
 				9B77FBB025A949700028A004 /* YZVertexFragment.metal */,
 				9B77FBAF25A949700028A004 /* YZYUVToRGBConversion.metal */,
+				9B135B0625BFBDF4006F6205 /* Blend.metal */,
 			);
 			path = Metal;
 			sourceTree = "<group>";
@@ -206,6 +222,8 @@
 			children = (
 				9B77FBBF25A949700028A004 /* YZBrightness.h */,
 				9B77FBBE25A949700028A004 /* YZBrightness.m */,
+				9B135B0925BFC7B4006F6205 /* YZBlendFilter.h */,
+				9B135B0A25BFC7B4006F6205 /* YZBlendFilter.m */,
 			);
 			path = Filter;
 			sourceTree = "<group>";
@@ -247,14 +265,16 @@
 			children = (
 				9BB00040257FB7F400207AF3 /* AppDelegate.h */,
 				9BB00041257FB7F400207AF3 /* AppDelegate.m */,
-				9B135ACD25BE65DB006F6205 /* YZImageViewController.h */,
-				9B135ACE25BE65DB006F6205 /* YZImageViewController.m */,
+				9BE85D5725B2E187005C7D82 /* ThirdViewController.h */,
+				9BE85D5825B2E187005C7D82 /* ThirdViewController.m */,
 				9BE85D5125B2D7C6005C7D82 /* FirstViewController.h */,
 				9BE85D5225B2D7C6005C7D82 /* FirstViewController.m */,
 				9B77FBE125A94A9F0028A004 /* SecondViewController.h */,
 				9B77FBE225A94A9F0028A004 /* SecondViewController.m */,
-				9BE85D5725B2E187005C7D82 /* ThirdViewController.h */,
-				9BE85D5825B2E187005C7D82 /* ThirdViewController.m */,
+				9B135AE625BECCAC006F6205 /* OutputViewController.h */,
+				9B135AE725BECCAC006F6205 /* OutputViewController.m */,
+				9B135ACD25BE65DB006F6205 /* YZImageViewController.h */,
+				9B135ACE25BE65DB006F6205 /* YZImageViewController.m */,
 				9BB00049257FB7F400207AF3 /* Main.storyboard */,
 				9BB0004C257FB7F600207AF3 /* Assets.xcassets */,
 				9BB0004E257FB7F600207AF3 /* LaunchScreen.storyboard */,
@@ -272,7 +292,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B77FBE725A94B9C0028A004 /* YZVideoCapture.h in Headers */,
+				9B135AE025BECC2A006F6205 /* YZOutputCapture.h in Headers */,
 				9B77FBD525A949700028A004 /* YZBrightness.h in Headers */,
+				9B135B0B25BFC7B4006F6205 /* YZBlendFilter.h in Headers */,
 				9B135AD425BE73E1006F6205 /* YZImage.h in Headers */,
 				9B77FBDC25A949700028A004 /* YZMetalDevice.h in Headers */,
 				9B77FBD225A949700028A004 /* YZMTKView.h in Headers */,
@@ -389,6 +411,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B77FBCB25A949700028A004 /* YZBrightness.metal in Sources */,
+				9B135B0725BFBDF4006F6205 /* Blend.metal in Sources */,
 				9B135ACB25BE64F8006F6205 /* YZImageInput.m in Sources */,
 				9B77FBE825A94B9C0028A004 /* YZVideoCapture.m in Sources */,
 				9B77FBCC25A949700028A004 /* YZVideoCamera.m in Sources */,
@@ -400,8 +423,10 @@
 				9B77FBD425A949700028A004 /* YZBrightness.m in Sources */,
 				9B77FBC825A949700028A004 /* YZYUVToRGBConversion.metal in Sources */,
 				9B77FBD025A949700028A004 /* YZMTKView.m in Sources */,
+				9B135AE125BECC2A006F6205 /* YZOutputCapture.m in Sources */,
 				9B77FBD825A949700028A004 /* YZMetalDevice.m in Sources */,
 				9B77FBD925A949700028A004 /* YZMetalOrientation.m in Sources */,
+				9B135B0C25BFC7B4006F6205 /* YZBlendFilter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +437,7 @@
 				9B77FBE325A94A9F0028A004 /* SecondViewController.m in Sources */,
 				9BE85D5925B2E187005C7D82 /* ThirdViewController.m in Sources */,
 				9BB00042257FB7F400207AF3 /* AppDelegate.m in Sources */,
+				9B135AE825BECCAC006F6205 /* OutputViewController.m in Sources */,
 				9BB00053257FB7F600207AF3 /* main.m in Sources */,
 				9BE85D5325B2D7C6005C7D82 /* FirstViewController.m in Sources */,
 				9B135ACF25BE65DB006F6205 /* YZImageViewController.m in Sources */,
@@ -452,7 +478,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20210123;
+				CURRENT_PROJECT_VERSION = 20210125;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 7XP66VHL84;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -467,7 +493,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = mh_dylib;
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 2.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = yanzhen.YZMetalKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -482,7 +508,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20210123;
+				CURRENT_PROJECT_VERSION = 20210125;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 7XP66VHL84;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -497,7 +523,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = mh_dylib;
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 2.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = yanzhen.YZMetalKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
