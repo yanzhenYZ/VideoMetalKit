@@ -15,8 +15,9 @@
  
  
  
- 1. PixelBuffer输出尺寸问题 -- 001：MTLTexture
+ 1. PixelBuffer输出尺寸问题 -- 001：直接修改MTLTexture尺寸
  2. PixelBuffer输出尺寸问题 -- 002：CropFilter
+ 3. PixelBuffer输出buffer做美颜，然后做渲染可行性方案
  
  */
 int main(int argc, char * argv[]) {
