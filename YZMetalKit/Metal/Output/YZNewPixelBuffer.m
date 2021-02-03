@@ -11,6 +11,8 @@
 #import "YZMetalDevice.h"
 #import "YZShaderTypes.h"
 
+#define TOUTPUT 1
+
 @interface YZNewPixelBuffer ()
 @property (nonatomic, assign) CVMetalTextureCacheRef textureCache;
 @property (nonatomic, strong) id<MTLTexture> texture;
@@ -38,11 +40,66 @@
     self = [super init];
     if (self) {
         CVMetalTextureCacheCreate(kCFAllocatorDefault, NULL, YZMetalDevice.defaultDevice.device, NULL, &_textureCache);
+#if TOUTPUT
+        _size = CGSizeMake(360, 640);
+        NSDictionary *pixelAttributes = @{(NSString *)kCVPixelBufferIOSurfacePropertiesKey:@{}};
+        CVReturn result = CVPixelBufferCreate(kCFAllocatorDefault,
+                                                _size.width,
+                                                _size.height,
+                                                kCVPixelFormatType_32BGRA,
+                                                (__bridge CFDictionaryRef)(pixelAttributes),
+                                                &_pixelBuffer);
+        if (result != kCVReturnSuccess) {
+            NSLog(@"YZNewPixelBuffer to create cvpixelbuffer %d", result);
+            return nil;
+        }
+        
+        CVMetalTextureRef textureRef = NULL;
+        CVReturn status = CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault, _textureCache, _pixelBuffer, nil, MTLPixelFormatBGRA8Unorm, _size.width, _size.height, 0, &textureRef);
+        if (kCVReturnSuccess != status) {
+            return nil;
+        }
+        _texture = CVMetalTextureGetTexture(textureRef);
+        CFRelease(textureRef);
+        textureRef = NULL;
+#endif
     }
     return self;
 }
 
--(void)newTextureAvailable:(id<MTLTexture>)texture {
+#if TOUTPUT
+- (void)newTextureAvailable:(id<MTLTexture>)texture {
+    if (!_pixelBuffer) { return; }
+    MTLRenderPassDescriptor *desc = [YZMetalDevice newRenderPassDescriptor:_texture];
+    id<MTLCommandBuffer> commandBuffer = [YZMetalDevice.defaultDevice commandBuffer];
+    id<MTLRenderCommandEncoder> encoder = [commandBuffer renderCommandEncoderWithDescriptor:desc];
+    if (!encoder) {
+        NSLog(@"YZNewPixelBuffer render endcoder Fail");
+        return;
+    }
+
+    [encoder setFrontFacingWinding:MTLWindingCounterClockwise];
+    [encoder setRenderPipelineState:self.pipelineState];
+    simd_float8 vertices = [YZMetalOrientation defaultVertices];
+    [encoder setVertexBytes:&vertices length:sizeof(simd_float8) atIndex:YZVertexIndexPosition];
+    
+    simd_float8 textureCoordinates = [YZMetalOrientation defaultTextureCoordinates];
+    [encoder setVertexBytes:&textureCoordinates length:sizeof(simd_float8) atIndex:YZVertexIndexTextureCoordinate];
+    [encoder setFragmentTexture:texture atIndex:YZFragmentTextureIndexNormal];
+    
+    [encoder drawPrimitives:MTLPrimitiveTypeTriangleStrip vertexStart:0 vertexCount:4];
+    [encoder endEncoding];
+    
+    [commandBuffer commit];
+    [commandBuffer waitUntilCompleted];
+    
+    if ([_delegate respondsToSelector:@selector(outputPixelBuffer:)]) {
+        [_delegate outputPixelBuffer:_pixelBuffer];
+    }
+    [super newTextureAvailable:_texture];
+}
+#else
+- (void)newTextureAvailable:(id<MTLTexture>)texture {
     [self newDealTextureSize:texture];
     if (!_pixelBuffer) { return; }
     
@@ -74,7 +131,7 @@
     }
     [super newTextureAvailable:_texture];
 }
-
+#endif
 #pragma mark - output texture size
 - (void)newDealTextureSize:(id<MTLTexture>)texture {
     CGFloat width = texture.width;

@@ -55,7 +55,7 @@
 
 #pragma mark - YZVideoCaptureDelegate
 -(void)videoCapture:(YZVideoCapture *)videoCapture outputPixelBuffer:(CVPixelBufferRef)pixelBuffer {
-    //[self showPixelBuffer:pixelBuffer];
+    [self showPixelBuffer:pixelBuffer];
 }
 
 -(void)videoCapture:(YZVideoCapture *)videoCapture dropFrames:(int)frames {
