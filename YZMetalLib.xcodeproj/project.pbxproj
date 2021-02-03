@@ -265,10 +265,10 @@
 			children = (
 				9BB00040257FB7F400207AF3 /* AppDelegate.h */,
 				9BB00041257FB7F400207AF3 /* AppDelegate.m */,
-				9BE85D5725B2E187005C7D82 /* ThirdViewController.h */,
-				9BE85D5825B2E187005C7D82 /* ThirdViewController.m */,
 				9BE85D5125B2D7C6005C7D82 /* FirstViewController.h */,
 				9BE85D5225B2D7C6005C7D82 /* FirstViewController.m */,
+				9BE85D5725B2E187005C7D82 /* ThirdViewController.h */,
+				9BE85D5825B2E187005C7D82 /* ThirdViewController.m */,
 				9B77FBE125A94A9F0028A004 /* SecondViewController.h */,
 				9B77FBE225A94A9F0028A004 /* SecondViewController.m */,
 				9B135AE625BECCAC006F6205 /* OutputViewController.h */,
@@ -660,7 +660,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.0.8;
+				MARKETING_VERSION = 5.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.3ttech.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -681,7 +681,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.0.8;
+				MARKETING_VERSION = 5.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.3ttech.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";

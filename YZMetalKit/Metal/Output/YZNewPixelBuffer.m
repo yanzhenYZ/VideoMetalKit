@@ -8,7 +8,7 @@
 #import "YZNewPixelBuffer.h"
 
 @interface YZNewPixelBuffer ()
-@property (nonatomic) CGSize lastTextureSize;
+@property (nonatomic) CGSize size;
 @end
 
 @implementation YZNewPixelBuffer {
@@ -22,11 +22,11 @@
     }
 }
 
--(instancetype)initWithSize:(CGSize)size {
-    self = [super initWithVertexFunctionName:nil fragmentFunctionName:nil];
+- (instancetype)init
+{
+    self = [super init];
     if (self) {
-        _size = size;
-        _pixelBuffer = nil;
+        
     }
     return self;
 }
@@ -71,57 +71,6 @@
 }
 
 #pragma mark  - private render
-- (void)dealPixelBuffer:(id<MTLTexture>)texture {
-    CGFloat width = texture.width;
-    CGFloat height = texture.height;
-    if (_lastTextureSize.width == height && _lastTextureSize.height == width) {//交换了宽高
-        if (_pixelBuffer) {
-            CVPixelBufferRelease(_pixelBuffer);
-            _pixelBuffer = nil;
-        }
-        _size = CGSizeMake(_size.height, _size.width);
-    }
-    _lastTextureSize = CGSizeMake(width, height);
-    if (CGSizeEqualToSize(_size, _lastTextureSize)) {
-        if (!_pixelBuffer) {
-            [self generatePixelBuffer];
-        }
-        return;
-    }
-    
-    CGFloat bufferRatio = width / height;
-    CGFloat outoutRatio = _size.width / _size.height;
-    if (bufferRatio > outoutRatio * 1.1 || bufferRatio < outoutRatio * 0.9) {
-        CGSize outputSize = _size;
-        if (bufferRatio > outoutRatio) {
-            CGFloat outputW = width * outoutRatio / bufferRatio;
-            if (_size.height > height) {
-                outputSize = CGSizeMake(outputW / (_size.height / height), height);
-            } else {
-                outputSize = CGSizeMake(outputW, height);
-            }
-        } else {
-            CGFloat outoutH = height * bufferRatio / outoutRatio;
-            if (_size.width > width) {
-                outputSize = CGSizeMake(width, outoutH / (_size.width / width));
-            } else {
-                outputSize = CGSizeMake(width, outoutH);
-            }
-        }
-        if (CGSizeEqualToSize(_size, outputSize) && _pixelBuffer) {
-            return;
-        }
-        _size = outputSize;
-    } else {
-        _size = CGSizeMake(width, height);
-    }
-    if (_pixelBuffer) {
-        CVPixelBufferRelease(_pixelBuffer);
-        _pixelBuffer = nil;
-    }
-    [self generatePixelBuffer];
-}
-
 - (void)generatePixelBuffer {
     NSDictionary *pixelAttributes = @{(NSString *)kCVPixelBufferIOSurfacePropertiesKey:@{}};
     CVReturn result = CVPixelBufferCreate(kCFAllocatorDefault,

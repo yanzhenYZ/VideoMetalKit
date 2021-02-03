@@ -8,6 +8,14 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 
+
+/**
+ 
+ 1. MTLTexture绑定PixelBuffer
+ 2. PixelBuffer输出尺寸问题 -- 001：MTLTexture
+ 3. PixelBuffer输出尺寸问题 -- 002：CropFilter
+ 
+ */
 int main(int argc, char * argv[]) {
     NSString * appDelegateClassName;
     @autoreleasepool {

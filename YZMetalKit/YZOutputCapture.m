@@ -37,7 +37,7 @@
         UIInterfaceOrientation statusBar = [[UIApplication sharedApplication] statusBarOrientation];
         _camera.outputOrientation = statusBar;
         _camera.delegate = self;
-        _pixelBuffer = [[YZNewPixelBuffer alloc] initWithSize:_size];
+        _pixelBuffer = [[YZNewPixelBuffer alloc] init];
         _pixelBuffer.delegate = self;
         
         [_camera addFilter:_pixelBuffer];

@@ -42,7 +42,7 @@
         _camera.outputOrientation = statusBar;
         _camera.delegate = self;
         _beautyFilter = [[YZBrightness alloc] init];
-        _pixelBuffer = [[YZNewPixelBuffer alloc] initWithSize:_size];
+        _pixelBuffer = [[YZNewPixelBuffer alloc] init];
         _pixelBuffer.delegate = self;
         
         [_camera addFilter:_beautyFilter];
