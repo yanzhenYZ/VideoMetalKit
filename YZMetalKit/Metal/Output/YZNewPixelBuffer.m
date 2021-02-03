@@ -72,7 +72,7 @@
     if ([_delegate respondsToSelector:@selector(outputPixelBuffer:)]) {
         [_delegate outputPixelBuffer:_pixelBuffer];
     }
-    [super newTextureAvailable:texture];
+    [super newTextureAvailable:_texture];
 }
 
 #pragma mark - output texture size
