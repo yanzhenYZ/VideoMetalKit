@@ -43,6 +43,7 @@
     if (address) {
         size_t bytesPerRow = CVPixelBufferGetBytesPerRow(_pixelBuffer);
         MTLRegion region = MTLRegionMake2D(0, 0, _size.width, _size.height);
+#warning mark - getBytes
         [texture getBytes:address bytesPerRow:bytesPerRow fromRegion:region mipmapLevel:0];
     }
     CVPixelBufferUnlockBaseAddress(_pixelBuffer, 0);
