@@ -14,10 +14,13 @@
  0. MTLTexture绑定PixelBuffer
  
  
+ 1.
+   001. PixelBuffer输出尺寸问题 -- 001：直接修改MTLTexture尺寸
+   002. PixelBuffer输出尺寸问题 -- 002：CropFilter
  
- 1. PixelBuffer输出尺寸问题 -- 001：直接修改MTLTexture尺寸
- 2. PixelBuffer输出尺寸问题 -- 002：CropFilter
- 3. PixelBuffer输出buffer做美颜，然后做渲染可行性方案
+ 2. PixelBuffer输出buffer做美颜，然后做渲染可行性方案
+   001: 输出buffer,接着还是Texture做渲染
+   002: 用输出PixelBuffer做渲染
  
  */
 int main(int argc, char * argv[]) {
