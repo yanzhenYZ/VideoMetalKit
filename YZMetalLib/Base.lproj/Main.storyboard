@@ -366,14 +366,27 @@
                                             <action selector="rightStepper:" destination="okL-zf-L5J" eventType="valueChanged" id="Ai9-Kw-plY"/>
                                         </connections>
                                     </stepper>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hZg-it-qSZ">
+                                        <rect key="frame" x="0.0" y="50" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="SS8-Mf-TrE"/>
+                                            <constraint firstAttribute="width" constant="30" id="flu-5H-Dpm"/>
+                                        </constraints>
+                                        <state key="normal" title="Add"/>
+                                        <connections>
+                                            <action selector="addNewPicture:" destination="okL-zf-L5J" eventType="touchUpInside" id="OX5-A2-jPN"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="7T3-VW-Hih"/>
                                     <constraint firstAttribute="trailing" secondItem="9SY-Xg-CWk" secondAttribute="trailing" id="9D5-Y6-l0I"/>
+                                    <constraint firstItem="hZg-it-qSZ" firstAttribute="leading" secondItem="jvw-w6-JwY" secondAttribute="leading" id="NIN-dw-9Ej"/>
                                     <constraint firstAttribute="bottom" secondItem="9oz-82-aYO" secondAttribute="bottom" id="Yz6-5D-gaL"/>
                                     <constraint firstItem="9SY-Xg-CWk" firstAttribute="centerY" secondItem="jvw-w6-JwY" secondAttribute="centerY" id="axk-8N-dkE"/>
                                     <constraint firstItem="9oz-82-aYO" firstAttribute="centerX" secondItem="jvw-w6-JwY" secondAttribute="centerX" id="nGR-ru-0ha"/>
+                                    <constraint firstAttribute="bottom" secondItem="hZg-it-qSZ" secondAttribute="bottom" id="tZM-Vo-LO7"/>
                                 </constraints>
                             </view>
                             <switch hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="L8e-78-yNs">

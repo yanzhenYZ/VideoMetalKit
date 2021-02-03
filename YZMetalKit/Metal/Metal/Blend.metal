@@ -17,7 +17,7 @@ struct YZBlendVertexIO
     float2 textureCoordinate2 [[user(texturecoord2)]];
 };
 
-typedef struct//必须四个每行
+typedef struct
 {
     float4 frame;
 } YZBlendUniform;

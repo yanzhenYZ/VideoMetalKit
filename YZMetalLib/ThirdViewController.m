@@ -8,7 +8,7 @@
 #import "ThirdViewController.h"
 #import <YZMetalKit/YZMetalKit.h>
 
-@interface ThirdViewController ()<YZVideoCaptureDelegate>
+@interface ThirdViewController ()<YZVideoCaptureDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *showView;
 @property (weak, nonatomic) IBOutlet UIImageView *player;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftLayout;
@@ -29,7 +29,7 @@
     _videoCapture.fillMode = YZVideoFillModeScaleAspectFit;
     _videoCapture.delegate = self;
     
-    [_videoCapture setWatermark:image frame:CGRectMake(0, 0, 100, 71)];
+//    [_videoCapture setWatermark:image frame:CGRectMake(0, 0, 100, 71)];
     
     [_videoCapture startRunning];
 }
@@ -62,6 +62,28 @@
 
 - (IBAction)rightStepper:(UIStepper *)sender {
     _leftLayout.constant = sender.value;
+}
+
+- (IBAction)addNewPicture:(UIButton *)sender {
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+
+    imagePickerController.delegate=self;
+
+    //imagePickerController.allowsEditing=YES;
+
+    imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+
+    [self presentViewController:imagePickerController animated:YES completion:nil];
+   
+}
+
+#pragma mark - UIImagePickerControllerDelegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info {
+    UIImage *image = info[UIImagePickerControllerOriginalImage];
+    NSLog(@"cc:%@:%d", image, image.imageOrientation);
+    [_videoCapture setWatermark:image frame:CGRectMake(0, 0, image.size.width / 10, image.size.height / 10)];
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - YZVideoCaptureDelegate
