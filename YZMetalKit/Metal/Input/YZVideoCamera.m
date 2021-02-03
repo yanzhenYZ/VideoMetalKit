@@ -257,7 +257,7 @@
     
     [commandBuffer commit];
     [self.allFilters enumerateObjectsUsingBlock:^(id<YZFilterProtocol>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [obj newTextureAvailable:outputTexture commandBuffer:commandBuffer];
+        [obj newTextureAvailable:outputTexture];
     }];
 }
 
@@ -352,7 +352,7 @@
     
     [commandBuffer commit];
     [self.allFilters enumerateObjectsUsingBlock:^(id<YZFilterProtocol>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [obj newTextureAvailable:texture commandBuffer:commandBuffer];
+        [obj newTextureAvailable:texture];
     }];
 }
 

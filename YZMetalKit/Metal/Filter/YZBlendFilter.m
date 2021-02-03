@@ -28,7 +28,7 @@
 }
 
 #pragma mark - YZFilterProtocol
-- (void)newTextureAvailable:(id<MTLTexture>)texture commandBuffer:(id<MTLCommandBuffer>)commandBuffer {
+- (void)newTextureAvailable:(id<MTLTexture>)texture{
     if (_imageTexture && _frame.size.width > 0 && _frame.size.height > 0) {
         MTLTextureDescriptor *textureDesc = [MTLTextureDescriptor texture2DDescriptorWithPixelFormat:MTLPixelFormatBGRA8Unorm width:texture.width height:texture.height mipmapped:NO];
         textureDesc.usage = MTLTextureUsageShaderRead | MTLTextureUsageShaderWrite | MTLTextureUsageRenderTarget;
@@ -61,9 +61,9 @@
         
         [commandBuffer commit];
         
-        [super newTextureAvailable:outputTexture commandBuffer:commandBuffer];
+        [super newTextureAvailable:outputTexture];
     } else {
-        [super newTextureAvailable:texture commandBuffer:commandBuffer];
+        [super newTextureAvailable:texture];
     }
 }
 

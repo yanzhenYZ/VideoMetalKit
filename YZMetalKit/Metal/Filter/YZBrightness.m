@@ -31,14 +31,14 @@
 }
 
 
-- (void)newTextureAvailable:(id<MTLTexture>)texture commandBuffer:(id<MTLCommandBuffer>)commandBuffer {
+- (void)newTextureAvailable:(id<MTLTexture>)texture {
     if (_enable && (_beautyLevel > 0 || _brightLevel > 0)) {
         MTLTextureDescriptor *desc = [MTLTextureDescriptor texture2DDescriptorWithPixelFormat:MTLPixelFormatBGRA8Unorm width:texture.width height:texture.height mipmapped:NO];
         desc.usage = MTLTextureUsageShaderRead | MTLTextureUsageShaderWrite | MTLTextureUsageRenderTarget;
         id<MTLTexture> outputTexture = [YZMetalDevice.defaultDevice.device newTextureWithDescriptor:desc];
         [self renderTexture:texture outputTexture:outputTexture];
     } else {
-        [super newTextureAvailable:texture commandBuffer:commandBuffer];
+        [super newTextureAvailable:texture];
     }
 }
 
@@ -66,6 +66,6 @@
     [encoder endEncoding];
     
     [commandBuffer commit];
-    [super newTextureAvailable:outputTexture commandBuffer:commandBuffer];
+    [super newTextureAvailable:outputTexture];
 }
 @end

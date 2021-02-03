@@ -42,19 +42,15 @@
     return self;
 }
 
--(void)newTextureAvailable:(id<MTLTexture>)texture commandBuffer:(id<MTLCommandBuffer>)commandBuffer {
+-(void)newTextureAvailable:(id<MTLTexture>)texture {
     [self newDealTextureSize:texture];
     if (!_pixelBuffer) { return; }
     
-    [self nnnBuffer:texture];
-}
-
-- (void)nnnBuffer:(id<MTLTexture>)texture {
     MTLRenderPassDescriptor *desc = [YZMetalDevice newRenderPassDescriptor:_texture];
     id<MTLCommandBuffer> commandBuffer = [YZMetalDevice.defaultDevice commandBuffer];
     id<MTLRenderCommandEncoder> encoder = [commandBuffer renderCommandEncoderWithDescriptor:desc];
     if (!encoder) {
-        NSLog(@"YZVideoCamera render endcoder Fail");
+        NSLog(@"YZNewPixelBuffer render endcoder Fail");
         return;
     }
 
@@ -76,7 +72,7 @@
     if ([_delegate respondsToSelector:@selector(outputPixelBuffer:)]) {
         [_delegate outputPixelBuffer:_pixelBuffer];
     }
-    [super newTextureAvailable:texture commandBuffer:commandBuffer];
+    [super newTextureAvailable:texture];
 }
 
 #pragma mark - output texture size
@@ -112,6 +108,5 @@
     _texture = CVMetalTextureGetTexture(textureRef);
     CFRelease(textureRef);
     textureRef = NULL;
-    NSLog(@"bb009:%@:%@",_texture, self.pipelineState);
 }
 @end

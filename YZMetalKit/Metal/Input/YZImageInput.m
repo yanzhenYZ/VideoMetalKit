@@ -44,7 +44,7 @@
 
 - (void)filter:(id<MTLTexture>)texture {
     [self.allFilters enumerateObjectsUsingBlock:^(id<YZFilterProtocol>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [obj newTextureAvailable:texture commandBuffer:nil];
+        [obj newTextureAvailable:texture];
     }];
 }
 @end

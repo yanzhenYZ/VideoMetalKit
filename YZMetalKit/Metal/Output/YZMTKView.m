@@ -82,7 +82,7 @@
 #endif
 }
 
--(void)newTextureAvailable:(id<MTLTexture>)texture commandBuffer:(id<MTLCommandBuffer>)commandBuffer {
+-(void)newTextureAvailable:(id<MTLTexture>)texture{
     _texture = texture;
     self.drawableSize = CGSizeMake(texture.width, texture.height);
     [self draw];
