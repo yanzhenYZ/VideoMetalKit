@@ -17,12 +17,16 @@
 
 @interface YZCropFilter : YZMetalFilter
 @property (nonatomic, weak) id<YZCropFilterDelegate> delegate;
+@property (nonatomic) CGSize size;
 
 -(instancetype)initWithSize:(CGSize)size;
 
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)new NS_UNAVAILABLE;
 - (instancetype)initWithVertexFunctionName:(NSString *)vertex fragmentFunctionName:(NSString *)fragment NS_UNAVAILABLE;
+
+
+- (void)createNewTexture;
 
 @end
 

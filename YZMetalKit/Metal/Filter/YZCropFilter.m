@@ -14,7 +14,6 @@
 @interface YZCropFilter ()
 @property (nonatomic, assign) CVMetalTextureCacheRef textureCache;
 @property (nonatomic, strong) id<MTLTexture> texture;
-@property (nonatomic) CGSize size;
 @end
 
 @implementation YZCropFilter {
@@ -44,7 +43,11 @@
 }
 
 - (void)newTextureAvailable:(id<MTLTexture>)texture {
-    [self newDealTextureSize:texture];
+    [self dealTextureSize:CGSizeMake(texture.width, texture.height)];
+    [self dealTexture:texture];
+}
+
+- (void)dealTexture:(id<MTLTexture>)texture {
     if (!_pixelBuffer) { return; }
     
     MTLRenderPassDescriptor *desc = [YZMetalDevice newRenderPassDescriptor:_texture];
@@ -61,6 +64,7 @@
     [encoder setVertexBytes:&vertices length:sizeof(simd_float8) atIndex:YZVertexIndexPosition];
     
     simd_float8 textureCoordinates = [YZMetalOrientation defaultTextureCoordinates];
+    //simd_float8 textureCoordinates = {0.125, 0, 0.875, 0, 0.125, 1, 0.875, 1};
     [encoder setVertexBytes:&textureCoordinates length:sizeof(simd_float8) atIndex:YZVertexIndexTextureCoordinate];
     [encoder setFragmentTexture:texture atIndex:YZFragmentTextureIndexNormal];
     
@@ -76,19 +80,29 @@
     [super newTextureAvailable:_texture];
 }
 
-#pragma mark - output texture size
-- (void)newDealTextureSize:(id<MTLTexture>)texture {
-    CGFloat width = texture.width;
-    CGFloat height = texture.height;
-    if (!CGSizeEqualToSize(_size, CGSizeMake(width, height))) {
+
+#pragma mark - private and super
+- (void)dealTextureSize:(CGSize)size {
+    if (!CGSizeEqualToSize(_size, size)) {
         if (_pixelBuffer) {
             CVPixelBufferRelease(_pixelBuffer);
             _pixelBuffer = nil;
         }
-        _size = CGSizeMake(width, height);
+        _size = size;
     }
     
     if (_pixelBuffer) { return; }
+    [self createNewTexture];
+}
+
+#pragma mark - output texture size
+
+
+- (void)createNewTexture {
+    if (_pixelBuffer) {
+        CVPixelBufferRelease(_pixelBuffer);
+        _pixelBuffer = nil;
+    }
     NSDictionary *pixelAttributes = @{(NSString *)kCVPixelBufferIOSurfacePropertiesKey:@{}};
     CVReturn result = CVPixelBufferCreate(kCFAllocatorDefault,
                                             _size.width,
@@ -102,7 +116,7 @@
     }
     
     CVMetalTextureRef textureRef = NULL;
-    CVReturn status = CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault, _textureCache, _pixelBuffer, nil, MTLPixelFormatBGRA8Unorm, width, height, 0, &textureRef);
+    CVReturn status = CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault, _textureCache, _pixelBuffer, nil, MTLPixelFormatBGRA8Unorm, _size.width, _size.height, 0, &textureRef);
     if (kCVReturnSuccess != status) {
         return;
     }
