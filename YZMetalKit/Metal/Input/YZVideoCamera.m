@@ -34,7 +34,10 @@
 }
 
 - (void)dealloc {
-    [self stopRunning];
+    if (self.session.isRunning) {
+        [self.session stopRunning];
+    }
+    
     [NSNotificationCenter.defaultCenter removeObserver:self];
     if (_textureCache) {
         CVMetalTextureCacheFlush(_textureCache, 0);
@@ -150,10 +153,10 @@
     if (_frameRate == frameRate) { return; }
     _frameRate = frameRate;
     [YZMetalDevice semaphoreWaitForever];
-    [_session beginConfiguration];
+    [_camera lockForConfiguration:nil];
     _camera.activeVideoMinFrameDuration = CMTimeMake(1, frameRate);
     _camera.activeVideoMaxFrameDuration = CMTimeMake(1, frameRate);
-    [_session commitConfiguration];
+    [_camera unlockForConfiguration];
     [YZMetalDevice semaphoreSignal];
 }
 

@@ -11,7 +11,7 @@
 #import "YZMetalDevice.h"
 #import "YZShaderTypes.h"
 
-#define TOUTPUT 1
+#define TOUTPUT 0
 
 @interface YZNewPixelBuffer ()
 @property (nonatomic, assign) CVMetalTextureCacheRef textureCache;
@@ -84,8 +84,11 @@
     [encoder setVertexBytes:&vertices length:sizeof(simd_float8) atIndex:YZVertexIndexPosition];
     
     //CGRectMake(0.125, 0, 0.75, 1)//{0, 0, 1, 0, 0, 1, 1, 1};{0.125, 0, 0.75, 0, 0.125, 1, 0.75, 1};
-    //simd_float8 textureCoordinates = [YZMetalOrientation defaultTextureCoordinates];
+#if TOUTPUT
     simd_float8 textureCoordinates = {0.125, 0, 0.875, 0, 0.125, 1, 0.875, 1};
+#else
+    simd_float8 textureCoordinates = [YZMetalOrientation defaultTextureCoordinates];
+#endif
     [encoder setVertexBytes:&textureCoordinates length:sizeof(simd_float8) atIndex:YZVertexIndexTextureCoordinate];
     [encoder setFragmentTexture:texture atIndex:YZFragmentTextureIndexNormal];
     
