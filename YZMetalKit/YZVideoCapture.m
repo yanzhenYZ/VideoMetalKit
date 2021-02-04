@@ -8,6 +8,7 @@
 #import "YZVideoCapture.h"
 #import "YZVideoCamera.h"
 #import "YZCropFilter.h"
+#import "YZCropSizeFilter.h"
 //#import "YZNewPixelBuffer.h"
 #import "YZMTKView.h"
 #import "YZBrightness.h"
@@ -44,7 +45,7 @@
         _camera.outputOrientation = statusBar;
         _camera.delegate = self;
         _beautyFilter = [[YZBrightness alloc] init];
-        _cropFilter = [[YZCropFilter alloc] init];
+        _cropFilter = [[YZCropFilter alloc] initWithSize:size];
         _cropFilter.delegate = self;
 //        _pixelBuffer = [[YZNewPixelBuffer alloc] init];
 //        _pixelBuffer.delegate = self;

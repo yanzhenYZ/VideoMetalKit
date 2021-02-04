@@ -18,6 +18,10 @@
 @interface YZCropFilter : YZMetalFilter
 @property (nonatomic, weak) id<YZCropFilterDelegate> delegate;
 
+-(instancetype)initWithSize:(CGSize)size;
+
+- (instancetype)init NS_UNAVAILABLE;
+- (instancetype)new NS_UNAVAILABLE;
 - (instancetype)initWithVertexFunctionName:(NSString *)vertex fragmentFunctionName:(NSString *)fragment NS_UNAVAILABLE;
 
 @end

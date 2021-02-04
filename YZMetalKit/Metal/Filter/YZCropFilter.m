@@ -33,10 +33,11 @@
     }
 }
 
-- (instancetype)init
+- (instancetype)initWithSize:(CGSize)size
 {
     self = [super init];
     if (self) {
+        _size = size;
         CVMetalTextureCacheCreate(kCFAllocatorDefault, NULL, YZMetalDevice.defaultDevice.device, NULL, &_textureCache);
     }
     return self;
