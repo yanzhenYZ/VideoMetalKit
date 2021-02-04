@@ -30,7 +30,10 @@
 }
 
 - (void)calculateCropTextureCoordinates:(CGSize)size {
-    //{0.125, 0, 0.875, 0, 0.125, 1, 0.875, 1}
+    if (CGSizeEqualToSize(self.size, size)) {
+        _cropRegion = CGRectMake(0, 0, 1, 1);
+        return;
+    }
     CGFloat width = size.width - self.size.width;
     CGFloat x = width / 2 / size.width;
     CGFloat w = 1 - 2 * x;
@@ -55,12 +58,14 @@
 
 //get rect, 主动改变size
 - (simd_float8)getTextureCoordinates {
+    if (CGRectEqualToRect(_cropRegion, CGRectMake(0, 0, 1, 1))) {
+        return [YZMetalOrientation defaultTextureCoordinates];
+    }
     CGFloat minX = _cropRegion.origin.x;
     CGFloat minY = _cropRegion.origin.y;
     CGFloat maxX = CGRectGetMaxX(_cropRegion);
     CGFloat maxY = CGRectGetMaxY(_cropRegion);
     simd_float8 textureCoordinates = {minX, minY, maxX, minY, minX, maxY, maxX, maxY};
     return textureCoordinates;
-    //return [YZMetalOrientation defaultTextureCoordinates];
 }
 @end

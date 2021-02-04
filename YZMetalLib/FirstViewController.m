@@ -22,7 +22,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     _context = [CIContext contextWithOptions:nil];
-    _videoCapture = [[YZVideoCapture alloc] initWithSize:CGSizeMake(424, 240)];
+    _videoCapture = [[YZVideoCapture alloc] initWithSize:CGSizeMake(480, 480)];
     _videoCapture.player = self.showView;
     _videoCapture.fillMode = YZVideoFillModeScaleAspectFit;
     _videoCapture.delegate = self;
