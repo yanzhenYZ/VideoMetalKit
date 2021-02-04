@@ -9,3 +9,5 @@
 #import "YZOutputCapture.h"
 #import "YZVideoCapture.h"
 #import "YZImage.h"
+
+#import "YZNOBeautyCapture.h"
