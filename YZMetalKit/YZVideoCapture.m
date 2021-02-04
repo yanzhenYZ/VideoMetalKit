@@ -7,17 +7,19 @@
 
 #import "YZVideoCapture.h"
 #import "YZVideoCamera.h"
-#import "YZNewPixelBuffer.h"
+#import "YZCropFilter.h"
+//#import "YZNewPixelBuffer.h"
 #import "YZMTKView.h"
 #import "YZBrightness.h"
 #import "YZBlendFilter.h"
 
-@interface YZVideoCapture ()<YZVideoCameraOutputDelegate, YZNewPixelBufferDelegate>
+@interface YZVideoCapture ()<YZVideoCameraOutputDelegate, YZCropFilterDelegate/*YZNewPixelBufferDelegate*/>
 @property (nonatomic, strong) YZVideoCamera *camera;
 @property (nonatomic, strong) YZBrightness *beautyFilter;
 @property (nonatomic, strong) YZBlendFilter *blendFilter;
 @property (nonatomic, strong) YZMTKView *mtkView;
-@property (nonatomic, strong) YZNewPixelBuffer *pixelBuffer;
+@property (nonatomic, strong) YZCropFilter *cropFilter;
+//@property (nonatomic, strong) YZNewPixelBuffer *pixelBuffer;
 @end
 
 @implementation YZVideoCapture
@@ -42,14 +44,17 @@
         _camera.outputOrientation = statusBar;
         _camera.delegate = self;
         _beautyFilter = [[YZBrightness alloc] init];
-        _pixelBuffer = [[YZNewPixelBuffer alloc] init];
-        _pixelBuffer.delegate = self;
+        _cropFilter = [[YZCropFilter alloc] init];
+        _cropFilter.delegate = self;
+//        _pixelBuffer = [[YZNewPixelBuffer alloc] init];
+//        _pixelBuffer.delegate = self;
         
         [_camera addFilter:_beautyFilter];
         
         _blendFilter = [[YZBlendFilter alloc] init];
         [_beautyFilter addFilter:_blendFilter];
-        [_blendFilter addFilter:_pixelBuffer];
+        [_blendFilter addFilter:_cropFilter];
+//        [_blendFilter addFilter:_pixelBuffer];
         
         //[_beautyFilter addFilter:_pixelBuffer];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarDidChanged:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
@@ -165,7 +170,7 @@
 //
 //}
 
-#pragma mark - YZNewPixelBufferDelegate
+#pragma mark - YZNewPixelBufferDelegate || YZCropFilterDelegate
 - (void)outputPixelBuffer:(CVPixelBufferRef)buffer {
     if ([_delegate respondsToSelector:@selector(videoCapture:outputPixelBuffer:)]) {
         [_delegate videoCapture:self outputPixelBuffer:buffer];
