@@ -43,7 +43,9 @@
 }
 
 - (void)newTextureAvailable:(id<MTLTexture>)texture {
-    [self dealTextureSize:CGSizeMake(texture.width, texture.height)];
+    if ([self dealTextureSize:CGSizeMake(texture.width, texture.height)]) {
+        [self createNewTexture];
+    }
     [self dealTexture:texture];
 }
 
@@ -63,7 +65,8 @@
     simd_float8 vertices = [YZMetalOrientation defaultVertices];
     [encoder setVertexBytes:&vertices length:sizeof(simd_float8) atIndex:YZVertexIndexPosition];
     
-    simd_float8 textureCoordinates = [YZMetalOrientation defaultTextureCoordinates];
+    simd_float8 textureCoordinates = [self getTextureCoordinates];
+    //[YZMetalOrientation defaultTextureCoordinates];
     //simd_float8 textureCoordinates = {0.125, 0, 0.875, 0, 0.125, 1, 0.875, 1};
     [encoder setVertexBytes:&textureCoordinates length:sizeof(simd_float8) atIndex:YZVertexIndexTextureCoordinate];
     [encoder setFragmentTexture:texture atIndex:YZFragmentTextureIndexNormal];
@@ -81,23 +84,7 @@
 }
 
 
-#pragma mark - private and super
-- (void)dealTextureSize:(CGSize)size {
-    if (!CGSizeEqualToSize(_size, size)) {
-        if (_pixelBuffer) {
-            CVPixelBufferRelease(_pixelBuffer);
-            _pixelBuffer = nil;
-        }
-        _size = size;
-    }
-    
-    if (_pixelBuffer) { return; }
-    [self createNewTexture];
-}
-
-#pragma mark - output texture size
-
-
+#pragma mark - super
 - (void)createNewTexture {
     if (_pixelBuffer) {
         CVPixelBufferRelease(_pixelBuffer);
@@ -123,5 +110,22 @@
     _texture = CVMetalTextureGetTexture(textureRef);
     CFRelease(textureRef);
     textureRef = NULL;
+}
+
+- (BOOL)dealTextureSize:(CGSize)size { //private
+    if (!CGSizeEqualToSize(_size, size)) {
+        if (_pixelBuffer) {
+            CVPixelBufferRelease(_pixelBuffer);
+            _pixelBuffer = nil;
+        }
+        _size = size;
+    }
+    
+    if (_pixelBuffer) { return NO; }
+    return YES;
+}
+
+- (simd_float8)getTextureCoordinates {
+    return [YZMetalOrientation defaultTextureCoordinates];
 }
 @end

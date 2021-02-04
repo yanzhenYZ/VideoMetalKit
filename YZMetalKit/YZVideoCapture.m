@@ -45,7 +45,7 @@
         _camera.outputOrientation = statusBar;
         _camera.delegate = self;
         _beautyFilter = [[YZBrightness alloc] init];
-        _cropFilter = [[YZCropFilter alloc] initWithSize:size];
+        _cropFilter = [[YZCropSizeFilter alloc] initWithSize:size];
         _cropFilter.delegate = self;
 //        _pixelBuffer = [[YZNewPixelBuffer alloc] init];
 //        _pixelBuffer.delegate = self;
