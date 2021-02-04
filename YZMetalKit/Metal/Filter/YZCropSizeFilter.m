@@ -7,6 +7,7 @@
 
 #import "YZCropSizeFilter.h"
 #import "YZMetalOrientation.h"
+#import "YZMetalDevice.h"
 
 @interface YZCropSizeFilter ()
 @property (nonatomic) CGRect cropRegion;
@@ -25,6 +26,13 @@
 }
 
 - (void)changeSize:(CGSize)size {
+    [YZMetalDevice semaphoreWaitForever];
+    self.size = size;
+    [self createNewTexture];
+    [YZMetalDevice semaphoreSignal];
+}
+
+- (void)switchSize:(CGSize)size {
     self.size = CGSizeMake(self.size.height, self.size.width);
     [self calculateCropTextureCoordinates:size];
 }
@@ -46,10 +54,10 @@
 #pragma mark - super
 - (BOOL)dealTextureSize:(CGSize)size {
     if (size.width > size.height && self.size.width < self.size.height) {//横屏
-        [self changeSize:size];
+        [self switchSize:size];
         return YES;
     } else if (size.width < size.height && self.size.height < self.size.width) {
-        [self changeSize:size];
+        [self switchSize:size];
         return YES;
     }
     [self calculateCropTextureCoordinates:size];

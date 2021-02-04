@@ -98,6 +98,7 @@
         _size = size;
         AVCaptureSessionPreset preset = [self getSessionPreset:size];
         _camera.preset = preset;
+        [_cropFilter changeSize:size];
     }
 }
 

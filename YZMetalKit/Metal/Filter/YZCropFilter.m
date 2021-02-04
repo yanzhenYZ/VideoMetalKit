@@ -83,7 +83,7 @@
     [super newTextureAvailable:_texture];
 }
 
-
+-(void)changeSize:(CGSize)size {}
 #pragma mark - super
 - (void)createNewTexture {
     if (_pixelBuffer) {

@@ -26,6 +26,8 @@
 - (instancetype)initWithVertexFunctionName:(NSString *)vertex fragmentFunctionName:(NSString *)fragment NS_UNAVAILABLE;
 
 
+- (void)changeSize:(CGSize)size;
+
 - (void)createNewTexture;
 
 @end
