@@ -532,7 +532,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20210125;
+				CURRENT_PROJECT_VERSION = 20210218;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 7XP66VHL84;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -547,7 +547,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = mh_dylib;
-				MARKETING_VERSION = 2.0.1;
+				MARKETING_VERSION = 2.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = yanzhen.YZMetalKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -562,7 +562,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20210125;
+				CURRENT_PROJECT_VERSION = 20210218;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 7XP66VHL84;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -577,7 +577,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = mh_dylib;
-				MARKETING_VERSION = 2.0.1;
+				MARKETING_VERSION = 2.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = yanzhen.YZMetalKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;

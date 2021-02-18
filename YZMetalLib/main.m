@@ -18,7 +18,7 @@
  
  
  2. PixelBuffer输出buffer做美颜，然后做渲染可行性方案
-   001: 输出buffer,接着还是Texture做渲染
+   001: 输出buffer,接着还是Texture做渲染  XXX不可行
    002: 用输出PixelBuffer做渲染
  
  3. 新流程
