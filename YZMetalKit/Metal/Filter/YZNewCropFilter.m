@@ -11,6 +11,12 @@
 #import "YZShaderTypes.h"
 #import <simd/simd.h>
 
+/**
+ 缩放分辨率
+ changeSize
+ */
+//可以绑定到任何Metal Filter
+
 @interface YZNewCropFilter ()
 @property (nonatomic) CGSize size;
 @property (nonatomic) CGRect cropRegion;
@@ -35,7 +41,7 @@
 }
 //CPU %2
 - (void)dealTexture:(id<MTLTexture>)texture {
-    MTLTextureDescriptor *desc = [MTLTextureDescriptor texture2DDescriptorWithPixelFormat:MTLPixelFormatBGRA8Unorm width:texture.width height:texture.height mipmapped:NO];
+    MTLTextureDescriptor *desc = [MTLTextureDescriptor texture2DDescriptorWithPixelFormat:MTLPixelFormatBGRA8Unorm width:_size.width height:_size.height mipmapped:NO];
     desc.usage = MTLTextureUsageShaderRead | MTLTextureUsageShaderWrite | MTLTextureUsageRenderTarget;
     id<MTLTexture> outputTexture = [YZMetalDevice.defaultDevice.device newTextureWithDescriptor:desc];
     id<MTLCommandBuffer> commandBuffer = [YZMetalDevice.defaultDevice commandBuffer];
@@ -51,9 +57,7 @@
     simd_float8 vertices = [YZMetalOrientation defaultVertices];
     [encoder setVertexBytes:&vertices length:sizeof(simd_float8) atIndex:YZVertexIndexPosition];
     
-    //simd_float8 textureCoordinates = [self getTextureCoordinates];
-    simd_float8 textureCoordinates = [YZMetalOrientation defaultTextureCoordinates];
-    //simd_float8 textureCoordinates = {0.125, 0, 0.875, 0, 0.125, 1, 0.875, 1};
+    simd_float8 textureCoordinates = [self getTextureCoordinates];
     [encoder setVertexBytes:&textureCoordinates length:sizeof(simd_float8) atIndex:YZVertexIndexTextureCoordinate];
     [encoder setFragmentTexture:texture atIndex:YZFragmentTextureIndexNormal];
     
@@ -63,6 +67,7 @@
     [commandBuffer commit];
     
     [super newTextureAvailable:outputTexture];
+    //NSLog(@"__new crop:%d:%d", outputTexture.width, outputTexture.height);
 }
 
 -(void)changeSize:(CGSize)size {
@@ -70,31 +75,25 @@
 }
 
 #pragma mark - private
-#warning mark - YZ
-
 - (BOOL)needCutTexture:(CGSize)size {
-    return NO;
-//    if (size.width > size.height && self.size.width < self.size.height) {//横屏
-//        [self switchSize:size];
-//        return YES;
-//    } else if (size.width < size.height && self.size.height < self.size.width) {
-//        [self switchSize:size];
-//        return YES;
-//    }
-//    [self calculateCropTextureCoordinates:size];
-//    return NO;
-}
-
-- (void)switchSize:(CGSize)size {
-    self.size = CGSizeMake(self.size.height, self.size.width);
-    [self calculateCropTextureCoordinates:size];
-}
-
-- (void)calculateCropTextureCoordinates:(CGSize)size {
-    if (CGSizeEqualToSize(self.size, size)) {
-        _cropRegion = CGRectMake(0, 0, 1, 1);
-        return;
+    //if (!_scaleSize) { return NO; }
+    if (CGSizeEqualToSize(size, _size)) {
+        return NO;
     }
+    if (size.width > size.height && self.size.width < self.size.height) {//横屏
+        self.size = CGSizeMake(self.size.height, self.size.width);
+    } else if (size.width < size.height && self.size.height < self.size.width) {
+        self.size = CGSizeMake(self.size.height, self.size.width);
+    }
+    if (CGSizeEqualToSize(size, _size)) {
+        return NO;
+    }
+    [self calculateCropTextureCoordinates:size];
+    return YES;
+}
+
+#if 1 // 输出指定分辨率
+- (void)calculateCropTextureCoordinates:(CGSize)size {
     CGFloat width = size.width - self.size.width;
     CGFloat x = width / 2 / size.width;
     CGFloat w = 1 - 2 * x;
@@ -103,5 +102,26 @@
     CGFloat y = height / 2 / size.height;
     CGFloat h = 1 - 2 * y;
     _cropRegion = CGRectMake(x, y, w, h);
+}
+#else //缩放分辨率
+- (void)calculateCropTextureCoordinates:(CGSize)size {
+    CGFloat width = size.width - self.size.width;
+    CGFloat x = width / 2 / size.width;
+    CGFloat w = 1 - 2 * x;
+    
+    CGFloat height = size.height - self.size.height;
+    CGFloat y = height / 2 / size.height;
+    CGFloat h = 1 - 2 * y;
+    _cropRegion = CGRectMake(x, y, w, h);
+}
+
+#endif
+- (simd_float8)getTextureCoordinates {
+    CGFloat minX = _cropRegion.origin.x;
+    CGFloat minY = _cropRegion.origin.y;
+    CGFloat maxX = CGRectGetMaxX(_cropRegion);
+    CGFloat maxY = CGRectGetMaxY(_cropRegion);
+    simd_float8 textureCoordinates = {minX, minY, maxX, minY, minX, maxY, maxX, maxY};
+    return textureCoordinates;
 }
 @end

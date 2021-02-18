@@ -11,6 +11,8 @@
 
 @interface YZNewCropFilter : YZMetalFilter
 
+@property (nonatomic, assign) BOOL scaleSize;
+
 -(instancetype)initWithSize:(CGSize)size;
 
 - (instancetype)init NS_UNAVAILABLE;
