@@ -56,11 +56,12 @@
         _camera.outputOrientation = statusBar;
         _camera.delegate = self;
         
-        _beautyFilter = [[YZBrightness alloc] init];
-        [_camera addFilter:_beautyFilter];
-        
         _cropFilter = [[YZNewCropFilter alloc] initWithSize:size];
-        [_beautyFilter addFilter:_cropFilter];
+        [_camera addFilter:_cropFilter];
+        
+        _beautyFilter = [[YZBrightness alloc] init];
+        [_cropFilter addFilter:_beautyFilter];
+        
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarDidChanged:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
     }
