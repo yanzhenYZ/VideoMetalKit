@@ -16,10 +16,6 @@
 {
     self = [super initWithVertexFunctionName:@"YZBrightnessInputVertex" fragmentFunctionName:@"YZBrightnessFragment"];
     if (self) {
-        _enable = YES;
-        _beautyLevel = 0.5;
-        _brightLevel = 0.5;
-        
         /*
         simd_float8 vertices = [YZMetalOrientation defaultVertices];
         _vertexBuffer = [YZMetalDevice.defaultDevice.device newBufferWithBytes:&vertices length:sizeof(simd_float8) options:MTLResourceStorageModeShared];

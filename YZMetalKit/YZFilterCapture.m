@@ -56,9 +56,12 @@
         _camera.outputOrientation = statusBar;
         _camera.delegate = self;
         
+        _beautyFilter = [[YZBrightness alloc] init];
+        [_camera addFilter:_beautyFilter];
+        
         _cropFilter = [[YZCropFilter alloc] initWithSize:size];
         _cropFilter.delegate = self;
-        [_camera addFilter:_cropFilter];
+        [_beautyFilter addFilter:_cropFilter];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarDidChanged:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
     }
@@ -82,10 +85,10 @@
             [self.mtkView removeFromSuperview];
             self.mtkView.frame = player.bounds;
             [player addSubview:self.mtkView];
-            [self.camera addFilter:self.mtkView];
+            [self.beautyFilter addFilter:self.mtkView];
         } else {
             [self.mtkView removeFromSuperview];
-            [self.camera removeFilter:self.mtkView];
+            [self.beautyFilter removeFilter:self.mtkView];
         }
     }];
 }
