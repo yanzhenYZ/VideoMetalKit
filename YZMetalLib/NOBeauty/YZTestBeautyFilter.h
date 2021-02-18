@@ -6,9 +6,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreVideo/CVPixelBuffer.h>
+#import <MetalKit/MetalKit.h>
 
 @interface YZTestBeautyFilter : NSObject
 
+-(instancetype)initWithDevice:(id<MTLDevice>)device;
+- (void)dealPixelBuffer:(CVPixelBufferRef)pixelBuffer;
 @end
 
 

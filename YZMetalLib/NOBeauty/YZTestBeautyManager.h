@@ -6,9 +6,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreVideo/CVPixelBuffer.h>
 
 @interface YZTestBeautyManager : NSObject
-
+- (void)dealPixelBuffer:(CVPixelBufferRef)pixelBuffer;
 @end
 
 

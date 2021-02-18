@@ -15,6 +15,8 @@
 
 @property (nonatomic, strong) YZNOBeautyCapture *videoCapture;
 @property (nonatomic, strong) CIContext *context;
+
+@property (nonatomic, strong) YZTestBeautyManager *manager;
 @end
 
 @implementation YZNOBeautyViewController
@@ -29,6 +31,8 @@
 //    _videoCapture.fillMode = YZVideoFillModeScaleAspectFit;
     _videoCapture.delegate = self;
     [_videoCapture startRunning];
+    
+    _manager = [[YZTestBeautyManager alloc] init];
 }
 
 - (IBAction)switchNo:(UISwitch *)sender {
@@ -41,6 +45,7 @@
 
 #pragma mark - YZNOBeautyCaptureDelegate
 -(void)videoCapture:(YZNOBeautyCapture *)videoCapture outputPixelBuffer:(CVPixelBufferRef)pixelBuffer {
+    [_manager dealPixelBuffer:pixelBuffer];
     [self showPixelBuffer:pixelBuffer];
 }
 
