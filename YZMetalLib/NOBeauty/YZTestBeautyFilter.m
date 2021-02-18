@@ -44,16 +44,22 @@
     }
     id<MTLTexture> texture = CVMetalTextureGetTexture(tmpTexture);
     CFRelease(tmpTexture);
-    [self newTextureAvailable:texture];
-    
-}
 
-- (void)newTextureAvailable:(id<MTLTexture>)texture {
+    //two step
     MTLTextureDescriptor *desc = [MTLTextureDescriptor texture2DDescriptorWithPixelFormat:MTLPixelFormatBGRA8Unorm width:texture.width height:texture.height mipmapped:NO];
     desc.usage = MTLTextureUsageShaderRead | MTLTextureUsageShaderWrite | MTLTextureUsageRenderTarget;
     id<MTLTexture> outputTexture = [self.device newTextureWithDescriptor:desc];
     [self renderTexture:texture outputTexture:outputTexture];
+    
+    //just test outout buffer
+    CVPixelBufferLockBaseAddress(pixelBuffer, 0);
+    void *address = CVPixelBufferGetBaseAddress(pixelBuffer);
+    NSUInteger bytesPerRow = CVPixelBufferGetBytesPerRow(pixelBuffer);
+    MTLRegion region = MTLRegionMake2D(0, 0, width, height);
+    [outputTexture getBytes:address bytesPerRow:bytesPerRow fromRegion:region mipmapLevel:0];
+    CVPixelBufferUnlockBaseAddress(pixelBuffer, 0);
 }
+
 
 - (void)renderTexture:(id<MTLTexture>)texture outputTexture:(id<MTLTexture>)outputTexture {
     MTLRenderPassDescriptor *desc = [[MTLRenderPassDescriptor alloc] init];
@@ -77,13 +83,17 @@
     [encoder setVertexBytes:&textureCoordinates length:sizeof(simd_float8) atIndex:1];
     [encoder setFragmentTexture:texture atIndex:0];
 
-    simd_float2 uniform = {0.5, 0.5};
+    simd_float2 uniform = {0.5, 1};
     [encoder setFragmentBytes:&uniform length:sizeof(simd_float2) atIndex:0];
     
     [encoder drawPrimitives:MTLPrimitiveTypeTriangleStrip vertexStart:0 vertexCount:4];
     [encoder endEncoding];
     
     [commandBuffer commit];
+    //todo -- 
+    [commandBuffer waitUntilCompleted];
+    
+    
 }
 
 - (id<MTLRenderPipelineState>)newRenderPipeline:(NSString *)vertex fragment:(NSString *)fragment {
