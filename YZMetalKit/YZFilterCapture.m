@@ -15,12 +15,13 @@
 #import "YZBlendFilter.h"
 
 /**
- //节约一点资源
- camera --->(Crop) --> water --> beauty --> MTKView and PixelBuffer
+ //now
+ camera --> beauty --> MTKView and Crop
  
- camera --> water ? --> beauty ? --> MTKView and Crop
- 
- camera --> water ? --> beauty ? --> Crop --> MTKView
+ //to do
+ 2.1.1 camera --> Crop --> beauty --> MTKView
+ 2.1.2 camera --> Crop --> beauty --> PixelBuffer --> new MTKView
+ 2.1.3 camera --> Crop --> beauty --> water ? -->  PixelBuffer --> new MTKView
  */
 
 

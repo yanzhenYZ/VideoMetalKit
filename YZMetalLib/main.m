@@ -8,24 +8,6 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 
-
-/**
- //done
- 0. MTLTexture绑定PixelBuffer
- 1.
-   001. PixelBuffer输出尺寸问题 -- 001：直接修改MTLTexture尺寸
-   002. PixelBuffer输出尺寸问题 -- 002：CropFilter
- 
- 
- 2. PixelBuffer输出buffer做美颜，然后做渲染可行性方案
-   001: 输出buffer,接着还是Texture做渲染  XXX不可行
-   002: 用输出PixelBuffer做渲染
- 
- 3. 新流程
- camera --->(Crop) --> water --> beauty --> MTKView and PixelBuffer
- 
- 4. camera->Crop只做裁剪 把PixelBuffer分开
- */
 int main(int argc, char * argv[]) {
     NSString * appDelegateClassName;
     @autoreleasepool {
