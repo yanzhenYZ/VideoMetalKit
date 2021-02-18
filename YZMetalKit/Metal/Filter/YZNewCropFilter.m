@@ -77,8 +77,17 @@
 #pragma mark - private
 - (BOOL)needCutTexture:(CGSize)size {
     //if (!_scaleSize) { return NO; }
-    if (CGSizeEqualToSize(size, _size)) {
+    if ([self scaleCropSize:size]) {
         return NO;
+    }
+    [self calculateCropTextureCoordinates:size];
+    return YES;
+}
+
+#if 1 //输出指定size
+- (BOOL)scaleCropSize:(CGSize)size {
+    if (CGSizeEqualToSize(size, _size)) {
+        return YES;
     }
     if (size.width > size.height && self.size.width < self.size.height) {//横屏
         self.size = CGSizeMake(self.size.height, self.size.width);
@@ -86,36 +95,38 @@
         self.size = CGSizeMake(self.size.height, self.size.width);
     }
     if (CGSizeEqualToSize(size, _size)) {
-        return NO;
+        return YES;
     }
-    [self calculateCropTextureCoordinates:size];
-    return YES;
+    return NO;
 }
-
-#if 1 // 输出指定分辨率
-- (void)calculateCropTextureCoordinates:(CGSize)size {
-    CGFloat width = size.width - self.size.width;
-    CGFloat x = width / 2 / size.width;
-    CGFloat w = 1 - 2 * x;
-    
-    CGFloat height = size.height - self.size.height;
-    CGFloat y = height / 2 / size.height;
-    CGFloat h = 1 - 2 * y;
-    _cropRegion = CGRectMake(x, y, w, h);
+#else //输出scale size
+- (BOOL)scaleCropSize:(CGSize)size {
+    if (CGSizeEqualToSize(size, _size)) {
+        return YES;
+    }
+    if (size.width > size.height && self.size.width < self.size.height) {//横屏
+        self.size = CGSizeMake(self.size.height, self.size.width);
+    } else if (size.width < size.height && self.size.height < self.size.width) {
+        self.size = CGSizeMake(self.size.height, self.size.width);
+    }
+    if (CGSizeEqualToSize(size, _size)) {
+        return YES;
+    }
+    return NO;
 }
-#else //缩放分辨率
-- (void)calculateCropTextureCoordinates:(CGSize)size {
-    CGFloat width = size.width - self.size.width;
-    CGFloat x = width / 2 / size.width;
-    CGFloat w = 1 - 2 * x;
-    
-    CGFloat height = size.height - self.size.height;
-    CGFloat y = height / 2 / size.height;
-    CGFloat h = 1 - 2 * y;
-    _cropRegion = CGRectMake(x, y, w, h);
-}
-
 #endif
+
+- (void)calculateCropTextureCoordinates:(CGSize)size {
+    CGFloat width = size.width - self.size.width;
+    CGFloat x = width / 2 / size.width;
+    CGFloat w = 1 - 2 * x;
+    
+    CGFloat height = size.height - self.size.height;
+    CGFloat y = height / 2 / size.height;
+    CGFloat h = 1 - 2 * y;
+    _cropRegion = CGRectMake(x, y, w, h);
+}
+
 - (simd_float8)getTextureCoordinates {
     CGFloat minX = _cropRegion.origin.x;
     CGFloat minY = _cropRegion.origin.y;
