@@ -31,6 +31,8 @@
 		9B6DC26225DE50A5002B77E8 /* YZFilterCapture.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B6DC26025DE50A5002B77E8 /* YZFilterCapture.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9B6DC26325DE50A5002B77E8 /* YZFilterCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6DC26125DE50A5002B77E8 /* YZFilterCapture.m */; };
 		9B6DC26B25DE51AB002B77E8 /* FiltersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6DC26A25DE51AB002B77E8 /* FiltersViewController.m */; };
+		9B6DC27425DE64CC002B77E8 /* YZNewCropFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B6DC27225DE64CC002B77E8 /* YZNewCropFilter.h */; };
+		9B6DC27525DE64CC002B77E8 /* YZNewCropFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6DC27325DE64CC002B77E8 /* YZNewCropFilter.m */; };
 		9B77FBA325A949440028A004 /* YZMetalKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B77FBA125A949440028A004 /* YZMetalKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9B77FBA625A949440028A004 /* YZMetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B77FB9F25A949440028A004 /* YZMetalKit.framework */; };
 		9B77FBA725A949440028A004 /* YZMetalKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9B77FB9F25A949440028A004 /* YZMetalKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -122,6 +124,8 @@
 		9B6DC26125DE50A5002B77E8 /* YZFilterCapture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZFilterCapture.m; sourceTree = "<group>"; };
 		9B6DC26925DE51AB002B77E8 /* FiltersViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FiltersViewController.h; sourceTree = "<group>"; };
 		9B6DC26A25DE51AB002B77E8 /* FiltersViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FiltersViewController.m; sourceTree = "<group>"; };
+		9B6DC27225DE64CC002B77E8 /* YZNewCropFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZNewCropFilter.h; sourceTree = "<group>"; };
+		9B6DC27325DE64CC002B77E8 /* YZNewCropFilter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZNewCropFilter.m; sourceTree = "<group>"; };
 		9B77FB9F25A949440028A004 /* YZMetalKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YZMetalKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B77FBA125A949440028A004 /* YZMetalKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZMetalKit.h; sourceTree = "<group>"; };
 		9B77FBA225A949440028A004 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -302,6 +306,8 @@
 				9B77FBBE25A949700028A004 /* YZBrightness.m */,
 				9B135B0925BFC7B4006F6205 /* YZBlendFilter.h */,
 				9B135B0A25BFC7B4006F6205 /* YZBlendFilter.m */,
+				9B6DC27225DE64CC002B77E8 /* YZNewCropFilter.h */,
+				9B6DC27325DE64CC002B77E8 /* YZNewCropFilter.m */,
 			);
 			path = Filter;
 			sourceTree = "<group>";
@@ -366,6 +372,7 @@
 				9B77FBE725A94B9C0028A004 /* YZVideoCapture.h in Headers */,
 				9B135AE025BECC2A006F6205 /* YZOutputCapture.h in Headers */,
 				9B6DC23425CBE266002B77E8 /* YZCropFilter.h in Headers */,
+				9B6DC27425DE64CC002B77E8 /* YZNewCropFilter.h in Headers */,
 				9B77FBD525A949700028A004 /* YZBrightness.h in Headers */,
 				9B6DC24725CC082D002B77E8 /* YZNOBeautyCapture.h in Headers */,
 				9B135B0B25BFC7B4006F6205 /* YZBlendFilter.h in Headers */,
@@ -494,6 +501,7 @@
 				9B135AD525BE73E1006F6205 /* YZImage.m in Sources */,
 				9B6DC26325DE50A5002B77E8 /* YZFilterCapture.m in Sources */,
 				9B77FBCF25A949700028A004 /* YZNewPixelBuffer.m in Sources */,
+				9B6DC27525DE64CC002B77E8 /* YZNewCropFilter.m in Sources */,
 				9B6DC24825CC082D002B77E8 /* YZNOBeautyCapture.m in Sources */,
 				9B77FBC925A949700028A004 /* YZVertexFragment.metal in Sources */,
 				9B77FBDA25A949700028A004 /* YZMetalFilter.m in Sources */,

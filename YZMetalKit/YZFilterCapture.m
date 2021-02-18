@@ -7,8 +7,7 @@
 
 #import "YZFilterCapture.h"
 #import "YZVideoCamera.h"
-#import "YZCropFilter.h"
-#import "YZCropSizeFilter.h"
+#import "YZNewCropFilter.h"
 #import "YZNewPixelBuffer.h"
 #import "YZMTKView.h"
 #import "YZBrightness.h"
@@ -25,13 +24,13 @@
  */
 
 
-@interface YZFilterCapture ()<YZVideoCameraOutputDelegate, YZCropFilterDelegate/*YZNewPixelBufferDelegate*/>
+@interface YZFilterCapture ()<YZVideoCameraOutputDelegate, YZNewCropFilterDelegate/*YZNewPixelBufferDelegate*/>
 @property (nonatomic, strong) YZVideoCamera *camera;
 
 @property (nonatomic, strong) YZBrightness *beautyFilter;
 @property (nonatomic, strong) YZBlendFilter *blendFilter;
 @property (nonatomic, strong) YZMTKView *mtkView;
-@property (nonatomic, strong) YZCropFilter *cropFilter;
+@property (nonatomic, strong) YZNewCropFilter *cropFilter;
 @property (nonatomic, strong) YZNewPixelBuffer *pixelBuffer;
 @end
 
@@ -60,7 +59,7 @@
         _beautyFilter = [[YZBrightness alloc] init];
         [_camera addFilter:_beautyFilter];
         
-        _cropFilter = [[YZCropFilter alloc] initWithSize:size];
+        _cropFilter = [[YZNewCropFilter alloc] initWithSize:size];
         _cropFilter.delegate = self;
         [_beautyFilter addFilter:_cropFilter];
         
