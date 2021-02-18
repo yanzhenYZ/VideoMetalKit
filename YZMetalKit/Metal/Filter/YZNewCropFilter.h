@@ -9,15 +9,7 @@
 #import <CoreVideo/CVPixelBuffer.h>
 #import <Metal/Metal.h>
 
-@protocol YZNewCropFilterDelegate <NSObject>
-@optional
-- (void)outputPixelBuffer:(CVPixelBufferRef)buffer;
-
-@end
-
 @interface YZNewCropFilter : YZMetalFilter
-@property (nonatomic, weak) id<YZNewCropFilterDelegate> delegate;
-@property (nonatomic) CGSize size;
 
 -(instancetype)initWithSize:(CGSize)size;
 

@@ -8,14 +8,14 @@
 #import "YZNewCropFilter.h"
 
 @interface YZNewCropFilter ()
-
+@property (nonatomic) CGSize size;
 @end
 
 @implementation YZNewCropFilter
 - (instancetype)initWithSize:(CGSize)size {
     self = [super init];
     if (self) {
-        
+        _size = size;
     }
     return self;
 }
