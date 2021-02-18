@@ -13,6 +13,8 @@
 
 /**
  缩放分辨率
+    001 424x240 && 840x480 分辨率问题
+    002 每次都缩放
  changeSize
  */
 //可以绑定到任何Metal Filter
@@ -67,7 +69,7 @@
     [commandBuffer commit];
     
     [super newTextureAvailable:outputTexture];
-    //NSLog(@"__new crop:%d:%d", outputTexture.width, outputTexture.height);
+    NSLog(@"__new crop:%d:%d", outputTexture.width, outputTexture.height);
 }
 
 -(void)changeSize:(CGSize)size {
@@ -120,12 +122,21 @@
         return YES;
     }
     //生成新的size最大缩放接近size
-//    if (textureRatio > sizeRatio) {
-//        CGFloat ratio = size.height / _size.height;
-//        _size = CGSizeMake(_size.width * ratio, _size.height * ratio);
-//    } else {
-//        
-//    }
+    if (textureRatio > sizeRatio) {
+        CGFloat outputW = size.width * sizeRatio / textureRatio;
+        if (_size.height > size.height) {
+            _size = CGSizeMake(outputW / (_size.height / size.height), size.height);
+        } else {
+            _size = CGSizeMake(outputW, size.height);
+        }
+    } else {
+        CGFloat outoutH = size.height * textureRatio / sizeRatio;
+        if (_size.width > size.width) {
+            _size = CGSizeMake(size.width, outoutH / (_size.width / size.width));
+        } else {
+            _size = CGSizeMake(size.width, outoutH);
+        }
+    }
     return NO;
 }
 #endif
