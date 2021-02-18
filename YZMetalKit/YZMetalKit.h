@@ -11,3 +11,6 @@
 #import "YZImage.h"
 
 #import "YZNOBeautyCapture.h"
+
+//use
+#import "YZFilterCapture.h"

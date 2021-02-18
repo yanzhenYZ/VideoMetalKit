@@ -28,6 +28,9 @@
 		9B6DC25425CC0C4D002B77E8 /* YZTestBeautyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6DC25325CC0C4D002B77E8 /* YZTestBeautyManager.m */; };
 		9B6DC25825CC0C71002B77E8 /* YZTestBeautyFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6DC25725CC0C71002B77E8 /* YZTestBeautyFilter.m */; };
 		9B6DC25D25DE4108002B77E8 /* YZTestBeauty.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9B6DC25C25DE4108002B77E8 /* YZTestBeauty.metal */; };
+		9B6DC26225DE50A5002B77E8 /* YZFilterCapture.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B6DC26025DE50A5002B77E8 /* YZFilterCapture.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9B6DC26325DE50A5002B77E8 /* YZFilterCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6DC26125DE50A5002B77E8 /* YZFilterCapture.m */; };
+		9B6DC26B25DE51AB002B77E8 /* FiltersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6DC26A25DE51AB002B77E8 /* FiltersViewController.m */; };
 		9B77FBA325A949440028A004 /* YZMetalKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B77FBA125A949440028A004 /* YZMetalKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9B77FBA625A949440028A004 /* YZMetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B77FB9F25A949440028A004 /* YZMetalKit.framework */; };
 		9B77FBA725A949440028A004 /* YZMetalKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9B77FB9F25A949440028A004 /* YZMetalKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -115,6 +118,10 @@
 		9B6DC25625CC0C71002B77E8 /* YZTestBeautyFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZTestBeautyFilter.h; sourceTree = "<group>"; };
 		9B6DC25725CC0C71002B77E8 /* YZTestBeautyFilter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZTestBeautyFilter.m; sourceTree = "<group>"; };
 		9B6DC25C25DE4108002B77E8 /* YZTestBeauty.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = YZTestBeauty.metal; sourceTree = "<group>"; };
+		9B6DC26025DE50A5002B77E8 /* YZFilterCapture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZFilterCapture.h; sourceTree = "<group>"; };
+		9B6DC26125DE50A5002B77E8 /* YZFilterCapture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZFilterCapture.m; sourceTree = "<group>"; };
+		9B6DC26925DE51AB002B77E8 /* FiltersViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FiltersViewController.h; sourceTree = "<group>"; };
+		9B6DC26A25DE51AB002B77E8 /* FiltersViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FiltersViewController.m; sourceTree = "<group>"; };
 		9B77FB9F25A949440028A004 /* YZMetalKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YZMetalKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B77FBA125A949440028A004 /* YZMetalKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZMetalKit.h; sourceTree = "<group>"; };
 		9B77FBA225A949440028A004 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -190,10 +197,38 @@
 			path = NOBeauty;
 			sourceTree = "<group>";
 		};
+		9B6DC26725DE50FA002B77E8 /* Filters */ = {
+			isa = PBXGroup;
+			children = (
+				9B6DC26925DE51AB002B77E8 /* FiltersViewController.h */,
+				9B6DC26A25DE51AB002B77E8 /* FiltersViewController.m */,
+			);
+			path = Filters;
+			sourceTree = "<group>";
+		};
+		9B6DC26E25DE51E4002B77E8 /* Captures */ = {
+			isa = PBXGroup;
+			children = (
+				9BE85D5125B2D7C6005C7D82 /* FirstViewController.h */,
+				9BE85D5225B2D7C6005C7D82 /* FirstViewController.m */,
+				9BE85D5725B2E187005C7D82 /* ThirdViewController.h */,
+				9BE85D5825B2E187005C7D82 /* ThirdViewController.m */,
+				9B77FBE125A94A9F0028A004 /* SecondViewController.h */,
+				9B77FBE225A94A9F0028A004 /* SecondViewController.m */,
+				9B135AE625BECCAC006F6205 /* OutputViewController.h */,
+				9B135AE725BECCAC006F6205 /* OutputViewController.m */,
+				9B135ACD25BE65DB006F6205 /* YZImageViewController.h */,
+				9B135ACE25BE65DB006F6205 /* YZImageViewController.m */,
+			);
+			path = Captures;
+			sourceTree = "<group>";
+		};
 		9B77FBA025A949440028A004 /* YZMetalKit */ = {
 			isa = PBXGroup;
 			children = (
 				9B77FBA125A949440028A004 /* YZMetalKit.h */,
+				9B6DC26025DE50A5002B77E8 /* YZFilterCapture.h */,
+				9B6DC26125DE50A5002B77E8 /* YZFilterCapture.m */,
 				9B6DC24525CC082D002B77E8 /* YZNOBeautyCapture.h */,
 				9B6DC24625CC082D002B77E8 /* YZNOBeautyCapture.m */,
 				9B135ADE25BECC2A006F6205 /* YZOutputCapture.h */,
@@ -308,16 +343,8 @@
 			children = (
 				9BB00040257FB7F400207AF3 /* AppDelegate.h */,
 				9BB00041257FB7F400207AF3 /* AppDelegate.m */,
-				9BE85D5125B2D7C6005C7D82 /* FirstViewController.h */,
-				9BE85D5225B2D7C6005C7D82 /* FirstViewController.m */,
-				9BE85D5725B2E187005C7D82 /* ThirdViewController.h */,
-				9BE85D5825B2E187005C7D82 /* ThirdViewController.m */,
-				9B77FBE125A94A9F0028A004 /* SecondViewController.h */,
-				9B77FBE225A94A9F0028A004 /* SecondViewController.m */,
-				9B135AE625BECCAC006F6205 /* OutputViewController.h */,
-				9B135AE725BECCAC006F6205 /* OutputViewController.m */,
-				9B135ACD25BE65DB006F6205 /* YZImageViewController.h */,
-				9B135ACE25BE65DB006F6205 /* YZImageViewController.m */,
+				9B6DC26725DE50FA002B77E8 /* Filters */,
+				9B6DC26E25DE51E4002B77E8 /* Captures */,
 				9B6DC24C25CC0879002B77E8 /* NOBeauty */,
 				9BB00049257FB7F400207AF3 /* Main.storyboard */,
 				9BB0004C257FB7F600207AF3 /* Assets.xcassets */,
@@ -335,6 +362,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B6DC26225DE50A5002B77E8 /* YZFilterCapture.h in Headers */,
 				9B77FBE725A94B9C0028A004 /* YZVideoCapture.h in Headers */,
 				9B135AE025BECC2A006F6205 /* YZOutputCapture.h in Headers */,
 				9B6DC23425CBE266002B77E8 /* YZCropFilter.h in Headers */,
@@ -464,6 +492,7 @@
 				9B77FBE825A94B9C0028A004 /* YZVideoCapture.m in Sources */,
 				9B77FBCC25A949700028A004 /* YZVideoCamera.m in Sources */,
 				9B135AD525BE73E1006F6205 /* YZImage.m in Sources */,
+				9B6DC26325DE50A5002B77E8 /* YZFilterCapture.m in Sources */,
 				9B77FBCF25A949700028A004 /* YZNewPixelBuffer.m in Sources */,
 				9B6DC24825CC082D002B77E8 /* YZNOBeautyCapture.m in Sources */,
 				9B77FBC925A949700028A004 /* YZVertexFragment.metal in Sources */,
@@ -490,6 +519,7 @@
 				9BB00042257FB7F400207AF3 /* AppDelegate.m in Sources */,
 				9B135AE825BECCAC006F6205 /* OutputViewController.m in Sources */,
 				9BB00053257FB7F600207AF3 /* main.m in Sources */,
+				9B6DC26B25DE51AB002B77E8 /* FiltersViewController.m in Sources */,
 				9B6DC25825CC0C71002B77E8 /* YZTestBeautyFilter.m in Sources */,
 				9BE85D5325B2D7C6005C7D82 /* FirstViewController.m in Sources */,
 				9B6DC24F25CC0891002B77E8 /* YZNOBeautyViewController.m in Sources */,
