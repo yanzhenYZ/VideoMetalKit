@@ -37,6 +37,18 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+#pragma mark - YZFilterCaptureDelegate
+/** 640 x 480 15fps
+ 1. Camera --> Crop & MTKView        10-11%
+ 1. Camera --> Crop & MTKView & Show 16-17%
+ 
+ 
+ 
+ */
+-(void)videoCapture:(YZFilterCapture *)videoCapture outputPixelBuffer:(CVPixelBufferRef)pixelBuffer {
+    //[self showPixelBuffer:pixelBuffer];
+}
+
 - (void)showPixelBuffer:(CVPixelBufferRef)pixel {
     CVPixelBufferRetain(pixel);
     CIImage *ciImage = [CIImage imageWithCVImageBuffer:pixel];
@@ -47,7 +59,7 @@
     CGImageRelease(videoImageRef);
     CVPixelBufferRelease(pixel);
     dispatch_async(dispatch_get_main_queue(), ^{
-        //self.smallPlayer.image = image;
+        self.smallPlayer.image = image;
     });
 }
 #pragma mark - system

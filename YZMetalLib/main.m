@@ -24,6 +24,7 @@
  3. 新流程
  camera --->(Crop) --> water --> beauty --> MTKView and PixelBuffer
  
+ 4. camera->Crop只做裁剪 把PixelBuffer分开
  */
 int main(int argc, char * argv[]) {
     NSString * appDelegateClassName;

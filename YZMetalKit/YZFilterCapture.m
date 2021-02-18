@@ -9,23 +9,29 @@
 #import "YZVideoCamera.h"
 #import "YZCropFilter.h"
 #import "YZCropSizeFilter.h"
-//#import "YZNewPixelBuffer.h"
+#import "YZNewPixelBuffer.h"
 #import "YZMTKView.h"
 #import "YZBrightness.h"
 #import "YZBlendFilter.h"
 
 /**
+ //节约一点资源
  camera --->(Crop) --> water --> beauty --> MTKView and PixelBuffer
+ 
+ camera --> water ? --> beauty ? --> MTKView and Crop
+ 
+ camera --> water ? --> beauty ? --> Crop --> MTKView
  */
 
 
 @interface YZFilterCapture ()<YZVideoCameraOutputDelegate, YZCropFilterDelegate/*YZNewPixelBufferDelegate*/>
 @property (nonatomic, strong) YZVideoCamera *camera;
+
 @property (nonatomic, strong) YZBrightness *beautyFilter;
 @property (nonatomic, strong) YZBlendFilter *blendFilter;
 @property (nonatomic, strong) YZMTKView *mtkView;
 @property (nonatomic, strong) YZCropFilter *cropFilter;
-//@property (nonatomic, strong) YZNewPixelBuffer *pixelBuffer;
+@property (nonatomic, strong) YZNewPixelBuffer *pixelBuffer;
 @end
 
 @implementation YZFilterCapture
@@ -49,20 +55,11 @@
         UIInterfaceOrientation statusBar = [[UIApplication sharedApplication] statusBarOrientation];
         _camera.outputOrientation = statusBar;
         _camera.delegate = self;
-        _beautyFilter = [[YZBrightness alloc] init];
-        _cropFilter = [[YZCropSizeFilter alloc] initWithSize:size];
+        
+        _cropFilter = [[YZCropFilter alloc] initWithSize:size];
         _cropFilter.delegate = self;
-//        _pixelBuffer = [[YZNewPixelBuffer alloc] init];
-//        _pixelBuffer.delegate = self;
+        [_camera addFilter:_cropFilter];
         
-        [_camera addFilter:_beautyFilter];
-        
-        _blendFilter = [[YZBlendFilter alloc] init];
-        [_beautyFilter addFilter:_blendFilter];
-        [_blendFilter addFilter:_cropFilter];
-//        [_blendFilter addFilter:_pixelBuffer];
-        
-        //[_beautyFilter addFilter:_pixelBuffer];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarDidChanged:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
     }
     return self;
@@ -85,10 +82,10 @@
             [self.mtkView removeFromSuperview];
             self.mtkView.frame = player.bounds;
             [player addSubview:self.mtkView];
-            [self.blendFilter addFilter:self.mtkView];
+            [self.camera addFilter:self.mtkView];
         } else {
             [self.mtkView removeFromSuperview];
-            [self.blendFilter removeFilter:self.mtkView];
+            [self.camera removeFilter:self.mtkView];
         }
     }];
 }

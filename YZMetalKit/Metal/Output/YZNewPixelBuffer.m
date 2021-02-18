@@ -106,7 +106,7 @@
 #else
 - (void)newTextureAvailable:(id<MTLTexture>)texture {
     [self newDealTextureSize:texture];
-    if (!_pixelBuffer) { return; }
+    if (!_pixelBuffer || !_texture) { return; }
     
     MTLRenderPassDescriptor *desc = [YZMetalDevice newRenderPassDescriptor:_texture];
     id<MTLCommandBuffer> commandBuffer = [YZMetalDevice.defaultDevice commandBuffer];
