@@ -24,7 +24,7 @@
     // Do any additional setup after loading the view.
     _context = [CIContext contextWithOptions:nil];
     
-    _capture = [[YZFilterCapture alloc] initWithSize:CGSizeMake(240, 240) front:YES];
+    _capture = [[YZFilterCapture alloc] initWithSize:CGSizeMake(240, 320) front:YES];
     _capture.fillMode = YZFilterFillModeScaleAspectFit;
     _capture.player = self.player;
 //    _videoCapture.fillMode = YZVideoFillModeScaleAspectFit;

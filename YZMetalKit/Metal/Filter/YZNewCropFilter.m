@@ -84,7 +84,7 @@
     return YES;
 }
 
-#if 1 //输出指定size
+#if 0 //输出指定size
 - (BOOL)scaleCropSize:(CGSize)size {
     if (CGSizeEqualToSize(size, _size)) {
         return YES;
@@ -112,6 +112,20 @@
     if (CGSizeEqualToSize(size, _size)) {
         return YES;
     }
+    
+    
+    CGFloat sizeRatio = _size.width / _size.height;
+    CGFloat textureRatio = size.width / size.height;
+    if (textureRatio == sizeRatio) {
+        return YES;
+    }
+    //生成新的size最大缩放接近size
+//    if (textureRatio > sizeRatio) {
+//        CGFloat ratio = size.height / _size.height;
+//        _size = CGSizeMake(_size.width * ratio, _size.height * ratio);
+//    } else {
+//        
+//    }
     return NO;
 }
 #endif
