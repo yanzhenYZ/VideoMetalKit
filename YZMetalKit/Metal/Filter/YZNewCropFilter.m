@@ -69,7 +69,7 @@
     [commandBuffer commit];
     
     [super newTextureAvailable:outputTexture];
-    NSLog(@"__new crop:%d:%d", outputTexture.width, outputTexture.height);
+    //NSLog(@"__new crop:%d:%d", outputTexture.width, outputTexture.height);
 }
 
 -(void)changeSize:(CGSize)size {
@@ -78,7 +78,7 @@
 
 #pragma mark - private
 - (BOOL)needCutTexture:(CGSize)size {
-    //if (!_scaleSize) { return NO; }
+    if (!_scaleSize) { return NO; }
     if ([self scaleCropSize:size]) {
         return NO;
     }
@@ -86,7 +86,7 @@
     return YES;
 }
 
-#if 0 //输出指定size
+#if 1 //输出指定size
 - (BOOL)scaleCropSize:(CGSize)size {
     if (CGSizeEqualToSize(size, _size)) {
         return YES;
@@ -122,6 +122,7 @@
         return YES;
     }
     //生成新的size最大缩放接近size
+    ////424x240 && 840x480 分辨率缩放需要/4???
     if (textureRatio > sizeRatio) {
         CGFloat outputW = size.width * sizeRatio / textureRatio;
         if (_size.height > size.height) {
