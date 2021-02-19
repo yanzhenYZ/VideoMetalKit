@@ -1,18 +1,16 @@
 //
-//  YZMTKView.m
-//  YZMetalLib
+//  YZNewMTKView.m
+//  YZMetalKit
 //
-//  Created by yanzhen on 2020/12/10.
+//  Created by yanzhen on 2021/2/19.
 //
 
-#import "YZMTKView.h"
+#import "YZNewMTKView.h"
 #import "YZMetalDevice.h"
 #import "YZMetalOrientation.h"
 #import "YZShaderTypes.h"
 
-#define PIXELBUFFER 0
-
-@interface YZMTKView ()<MTKViewDelegate>
+@interface YZNewMTKView ()<MTKViewDelegate>
 @property (nonatomic, strong) id<MTLRenderPipelineState> pipelineState;
 @property (nonatomic, strong) id<MTLTexture> texture;
 @property (nonatomic) CGRect currentBounds;
@@ -20,14 +18,11 @@
 @property (nonatomic) double green;
 @property (nonatomic) double blue;
 @property (nonatomic) double alpha;
-#if PIXELBUFFER
 @property (nonatomic, assign) CVMetalTextureCacheRef textureCache;
-#endif
 @end
 
-@implementation YZMTKView
+@implementation YZNewMTKView
 
-#if PIXELBUFFER
 - (void)dealloc
 {
     if (_textureCache) {
@@ -36,7 +31,6 @@
         _textureCache = nil;
     }
 }
-#endif
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -53,9 +47,9 @@
     self.currentBounds = self.bounds;
 }
 
-- (void)setFillMode:(YZMTKViewFillMode)fillMode {
+- (void)setFillMode:(YZNewMTKViewFillMode)fillMode {
     _fillMode = fillMode;
-    if (fillMode == YZMTKViewFillModeScaleAspectFill) {
+    if (fillMode == YZNewMTKViewFillModeScaleAspectFill) {
         self.contentMode = (UIViewContentMode)fillMode;
     } else {
         self.contentMode = UIViewContentModeScaleToFill;
@@ -70,7 +64,6 @@
 }
 
 - (void)showPixelBuffer:(CVPixelBufferRef)pixelBuffer {
-#if PIXELBUFFER
     int width = (int)CVPixelBufferGetWidth(pixelBuffer);
     int height = (int)CVPixelBufferGetHeight(pixelBuffer);
     CVMetalTextureRef tmpTexture = NULL;
@@ -83,13 +76,6 @@
     self.drawableSize = CGSizeMake(width, height);
     self.texture = CVMetalTextureGetTexture(tmpTexture);
     CFRelease(tmpTexture);
-    [self draw];
-#endif
-}
-
--(void)newTextureAvailable:(id<MTLTexture>)texture{
-    _texture = texture;
-    self.drawableSize = CGSizeMake(texture.width, texture.height);
     [self draw];
 }
 
@@ -112,7 +98,7 @@
 
     CGFloat w = 1;
     CGFloat h = 1;
-    if (_fillMode == YZMTKViewFillModeScaleAspectFit) {//for background color
+    if (_fillMode == YZNewMTKViewFillModeScaleAspectFit) {//for background color
         CGRect bounds = self.currentBounds;
         CGRect insetRect = AVMakeRectWithAspectRatioInsideRect(self.drawableSize, bounds);
         w = insetRect.size.width / bounds.size.width;
@@ -148,9 +134,7 @@
     self.device = YZMetalDevice.defaultDevice.device;
     self.contentMode = UIViewContentModeScaleToFill;
     _pipelineState = [YZMetalDevice.defaultDevice newRenderPipeline:@"YZInputVertex" fragment:@"YZFragment"];
-#if PIXELBUFFER
     CVMetalTextureCacheCreate(NULL, NULL, self.device, NULL, &_textureCache);
-#endif
 }
 
 - (void)layoutSubviews {

@@ -33,6 +33,8 @@
 		9B6DC26B25DE51AB002B77E8 /* FiltersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6DC26A25DE51AB002B77E8 /* FiltersViewController.m */; };
 		9B6DC27425DE64CC002B77E8 /* YZNewCropFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B6DC27225DE64CC002B77E8 /* YZNewCropFilter.h */; };
 		9B6DC27525DE64CC002B77E8 /* YZNewCropFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6DC27325DE64CC002B77E8 /* YZNewCropFilter.m */; };
+		9B6DC27B25DF5801002B77E8 /* YZNewMTKView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B6DC27925DF5801002B77E8 /* YZNewMTKView.h */; };
+		9B6DC27C25DF5801002B77E8 /* YZNewMTKView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6DC27A25DF5801002B77E8 /* YZNewMTKView.m */; };
 		9B77FBA325A949440028A004 /* YZMetalKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B77FBA125A949440028A004 /* YZMetalKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9B77FBA625A949440028A004 /* YZMetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B77FB9F25A949440028A004 /* YZMetalKit.framework */; };
 		9B77FBA725A949440028A004 /* YZMetalKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9B77FB9F25A949440028A004 /* YZMetalKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -126,6 +128,8 @@
 		9B6DC26A25DE51AB002B77E8 /* FiltersViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FiltersViewController.m; sourceTree = "<group>"; };
 		9B6DC27225DE64CC002B77E8 /* YZNewCropFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZNewCropFilter.h; sourceTree = "<group>"; };
 		9B6DC27325DE64CC002B77E8 /* YZNewCropFilter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZNewCropFilter.m; sourceTree = "<group>"; };
+		9B6DC27925DF5801002B77E8 /* YZNewMTKView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZNewMTKView.h; sourceTree = "<group>"; };
+		9B6DC27A25DF5801002B77E8 /* YZNewMTKView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZNewMTKView.m; sourceTree = "<group>"; };
 		9B77FB9F25A949440028A004 /* YZMetalKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YZMetalKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B77FBA125A949440028A004 /* YZMetalKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZMetalKit.h; sourceTree = "<group>"; };
 		9B77FBA225A949440028A004 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -291,6 +295,8 @@
 				9B77FBB725A949700028A004 /* YZMetalOutput.m */,
 				9B77FBBC25A949700028A004 /* YZNewPixelBuffer.h */,
 				9B77FBB825A949700028A004 /* YZNewPixelBuffer.m */,
+				9B6DC27925DF5801002B77E8 /* YZNewMTKView.h */,
+				9B6DC27A25DF5801002B77E8 /* YZNewMTKView.m */,
 			);
 			path = Output;
 			sourceTree = "<group>";
@@ -374,6 +380,7 @@
 				9B6DC23425CBE266002B77E8 /* YZCropFilter.h in Headers */,
 				9B6DC27425DE64CC002B77E8 /* YZNewCropFilter.h in Headers */,
 				9B77FBD525A949700028A004 /* YZBrightness.h in Headers */,
+				9B6DC27B25DF5801002B77E8 /* YZNewMTKView.h in Headers */,
 				9B6DC24725CC082D002B77E8 /* YZNOBeautyCapture.h in Headers */,
 				9B135B0B25BFC7B4006F6205 /* YZBlendFilter.h in Headers */,
 				9B135AD425BE73E1006F6205 /* YZImage.h in Headers */,
@@ -495,6 +502,7 @@
 				9B77FBCB25A949700028A004 /* YZBrightness.metal in Sources */,
 				9B135B0725BFBDF4006F6205 /* Blend.metal in Sources */,
 				9B6DC23B25CBEAAD002B77E8 /* YZCropSizeFilter.m in Sources */,
+				9B6DC27C25DF5801002B77E8 /* YZNewMTKView.m in Sources */,
 				9B135ACB25BE64F8006F6205 /* YZImageInput.m in Sources */,
 				9B77FBE825A94B9C0028A004 /* YZVideoCapture.m in Sources */,
 				9B77FBCC25A949700028A004 /* YZVideoCamera.m in Sources */,
@@ -585,7 +593,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = mh_dylib;
-				MARKETING_VERSION = 2.1.1;
+				MARKETING_VERSION = 2.1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = yanzhen.YZMetalKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -615,7 +623,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = mh_dylib;
-				MARKETING_VERSION = 2.1.1;
+				MARKETING_VERSION = 2.1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = yanzhen.YZMetalKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;

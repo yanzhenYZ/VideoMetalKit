@@ -9,27 +9,20 @@
 #import "YZVideoCamera.h"
 #import "YZNewCropFilter.h"
 #import "YZNewPixelBuffer.h"
-#import "YZMTKView.h"
+#import "YZNewMTKView.h"
 #import "YZBrightness.h"
 #import "YZBlendFilter.h"
 
 /**
- //now
- camera --> beauty --> MTKView and Crop
- 
- //to do
- 2.1.1 camera --> Crop --> beauty --> MTKView
- 2.1.2 camera --> Crop --> beauty --> PixelBuffer --> new MTKView
  2.1.3 camera --> Crop --> beauty --> water ? -->  PixelBuffer --> new MTKView
  */
-
 
 @interface YZFilterCapture ()<YZVideoCameraOutputDelegate, YZNewPixelBufferDelegate>
 @property (nonatomic, strong) YZVideoCamera *camera;
 
 @property (nonatomic, strong) YZBrightness *beautyFilter;
 @property (nonatomic, strong) YZBlendFilter *blendFilter;
-@property (nonatomic, strong) YZMTKView *mtkView;
+@property (nonatomic, strong) YZNewMTKView *mtkView;
 @property (nonatomic, strong) YZNewCropFilter *cropFilter;
 @property (nonatomic, strong) YZNewPixelBuffer *pixelBuffer;
 @end
@@ -71,14 +64,15 @@
     return self;
 }
 
-- (YZMTKView *)mtkView {
+- (YZNewMTKView *)mtkView {
     if (!_mtkView) {
-        _mtkView = [[YZMTKView alloc] initWithFrame:CGRectZero];
-        _mtkView.fillMode = (YZMTKViewFillMode)_fillMode;
+        _mtkView = [[YZNewMTKView alloc] initWithFrame:CGRectZero];
+        _mtkView.fillMode = (YZNewMTKViewFillMode)_fillMode;
         _mtkView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     }
     return _mtkView;
 }
+
 #pragma mark - property
 - (void)setPlayer:(UIView *)player {
     if (_player == player) { return; }
@@ -88,17 +82,15 @@
             [self.mtkView removeFromSuperview];
             self.mtkView.frame = player.bounds;
             [player addSubview:self.mtkView];
-            [self.beautyFilter addFilter:self.mtkView];
         } else {
             [self.mtkView removeFromSuperview];
-            [self.beautyFilter removeFilter:self.mtkView];
         }
     }];
 }
 
 -(void)setFillMode:(YZFilterFillMode)fillMode {
     _fillMode = fillMode;
-    _mtkView.fillMode = (YZMTKViewFillMode)fillMode;
+    _mtkView.fillMode = (YZNewMTKViewFillMode)fillMode;
 }
 
 - (void)setSize:(CGSize)size {
@@ -185,14 +177,11 @@
     if ([_delegate respondsToSelector:@selector(videoCapture:outputPixelBuffer:)]) {
         [_delegate videoCapture:self outputPixelBuffer:buffer];
     }
+    
+    if (_player) {
+        [_mtkView showPixelBuffer:buffer];
+    }
 }
-
-#pragma mark - YZNewPixelBufferDelegate || YZCropFilterDelegate
-//- (void)outputPixelBuffer:(CVPixelBufferRef)buffer {
-//    if ([_delegate respondsToSelector:@selector(videoCapture:outputPixelBuffer:)]) {
-//        [_delegate videoCapture:self outputPixelBuffer:buffer];
-//    }
-//}
 
 #pragma mark - system note
 - (void)statusBarDidChanged:(NSNotification *)note {
