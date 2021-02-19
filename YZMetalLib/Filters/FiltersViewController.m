@@ -11,6 +11,7 @@
 @interface FiltersViewController ()<YZFilterCaptureDelegate>
 @property (weak, nonatomic) IBOutlet UIView *player;
 @property (weak, nonatomic) IBOutlet UIImageView *smallPlayer;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *waterMarkSegment;
 
 
 @property (nonatomic, strong) YZFilterCapture *capture;
@@ -22,6 +23,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    _waterMarkSegment.selectedSegmentIndex = 2;
+    
     _context = [CIContext contextWithOptions:nil];
     //424x240 && 840x480 分辨率问题
     _capture = [[YZFilterCapture alloc] initWithSize:CGSizeMake(640, 360) front:YES];
@@ -31,6 +35,17 @@
     [_capture startRunning];
 }
 
+- (IBAction)segmentAction:(UISegmentedControl *)sender {
+    if (sender.selectedSegmentIndex == 0) {
+        UIImage *image = [UIImage imageNamed:@"test3"];
+        [_capture setWatermark:image frame:CGRectMake(0, 0, 100, 71)];
+    } else if (sender.selectedSegmentIndex == 1) {
+        UIImage *image = [UIImage imageNamed:@"123"];
+        [_capture setWatermark:image frame:CGRectMake(190, 0, 200, 200)];
+    } else if (sender.selectedSegmentIndex == 2) {
+        [_capture clearWatermark];
+    }
+}
 
 - (IBAction)back:(UIButton *)sender {
     [self.navigationController popViewControllerAnimated:YES];
@@ -39,13 +54,12 @@
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
 //    _capture.size = CGSizeMake(480, 480);
     //_capture.player = self.player;
-    UIImage *image = [UIImage imageNamed:@"test3"];
-    [_capture setWatermark:image frame:CGRectMake(0, 0, 100, 71)];
+    
 }
 
 #pragma mark - YZFilterCaptureDelegate
 -(void)videoCapture:(YZFilterCapture *)videoCapture outputPixelBuffer:(CVPixelBufferRef)pixelBuffer {
-    //[self showPixelBuffer:pixelBuffer];
+    [self showPixelBuffer:pixelBuffer];
 }
 
 - (void)showPixelBuffer:(CVPixelBufferRef)pixel {

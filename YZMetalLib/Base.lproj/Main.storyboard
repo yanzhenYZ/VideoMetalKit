@@ -149,6 +149,28 @@
                                     <constraint firstAttribute="width" constant="180" id="ySr-yS-cgt"/>
                                 </constraints>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tsX-T3-Ji0">
+                                <rect key="frame" x="0.0" y="802" width="414" height="40"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="wZm-N7-8AY">
+                                        <rect key="frame" x="98" y="4.5" width="218" height="32"/>
+                                        <segments>
+                                            <segment title="水印一"/>
+                                            <segment title="水印二"/>
+                                            <segment title="清除水印"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="segmentAction:" destination="wMq-76-s1d" eventType="valueChanged" id="zoU-Y2-nZC"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="wZm-N7-8AY" firstAttribute="centerX" secondItem="tsX-T3-Ji0" secondAttribute="centerX" id="ZIo-wB-tDP"/>
+                                    <constraint firstAttribute="height" constant="40" id="ZLo-qM-lRU"/>
+                                    <constraint firstItem="wZm-N7-8AY" firstAttribute="centerY" secondItem="tsX-T3-Ji0" secondAttribute="centerY" id="cCz-nW-hob"/>
+                                </constraints>
+                            </view>
                             <switch hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="geB-31-f05">
                                 <rect key="frame" x="299.5" y="144.5" width="51" height="31"/>
                             </switch>
@@ -160,11 +182,14 @@
                             <constraint firstAttribute="bottom" secondItem="woZ-Rr-fd3" secondAttribute="bottom" id="BQG-R3-l7J"/>
                             <constraint firstItem="geB-31-f05" firstAttribute="centerY" secondItem="4NJ-Ur-dOB" secondAttribute="centerY" id="C7a-Iy-bcx"/>
                             <constraint firstItem="BxG-Ft-o1b" firstAttribute="leading" secondItem="jmH-Ed-5lB" secondAttribute="leading" id="PkG-K1-sKa"/>
+                            <constraint firstItem="tsX-T3-Ji0" firstAttribute="trailing" secondItem="jmH-Ed-5lB" secondAttribute="trailing" id="Z0j-zD-mny"/>
                             <constraint firstItem="jmH-Ed-5lB" firstAttribute="trailing" secondItem="woZ-Rr-fd3" secondAttribute="trailing" id="aIe-5L-DzO"/>
                             <constraint firstItem="BxG-Ft-o1b" firstAttribute="top" secondItem="jmH-Ed-5lB" secondAttribute="top" id="bqX-kg-t38"/>
                             <constraint firstItem="4NJ-Ur-dOB" firstAttribute="top" secondItem="44s-Qv-2XZ" secondAttribute="top" id="cKi-7V-hbl"/>
                             <constraint firstItem="geB-31-f05" firstAttribute="centerX" secondItem="4NJ-Ur-dOB" secondAttribute="centerX" id="cTi-HQ-cPW"/>
                             <constraint firstItem="woZ-Rr-fd3" firstAttribute="leading" secondItem="44s-Qv-2XZ" secondAttribute="leading" id="hFb-bm-iun"/>
+                            <constraint firstItem="tsX-T3-Ji0" firstAttribute="leading" secondItem="jmH-Ed-5lB" secondAttribute="leading" id="iIO-1j-jW5"/>
+                            <constraint firstItem="jmH-Ed-5lB" firstAttribute="bottom" secondItem="tsX-T3-Ji0" secondAttribute="bottom" constant="20" id="nD6-KH-O1U"/>
                             <constraint firstItem="jmH-Ed-5lB" firstAttribute="trailing" secondItem="4NJ-Ur-dOB" secondAttribute="trailing" id="tEQ-lu-HYf"/>
                             <constraint firstItem="4NJ-Ur-dOB" firstAttribute="leading" secondItem="BxG-Ft-o1b" secondAttribute="trailing" id="yf4-o0-XIR"/>
                         </constraints>
@@ -174,11 +199,12 @@
                     <connections>
                         <outlet property="player" destination="woZ-Rr-fd3" id="jbv-kJ-vgc"/>
                         <outlet property="smallPlayer" destination="4NJ-Ur-dOB" id="vx7-q7-FXt"/>
+                        <outlet property="waterMarkSegment" destination="wZm-N7-8AY" id="KqY-0o-dg8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P6T-q2-L7f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1668" y="3605"/>
+            <point key="canvasLocation" x="1666.6666666666667" y="3604.6875"/>
         </scene>
         <!--Beauty View Controller-->
         <scene sceneID="teY-48-zaM">

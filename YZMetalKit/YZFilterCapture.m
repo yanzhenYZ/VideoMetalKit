@@ -165,8 +165,12 @@
         [_beautyFilter removeFilter:_blendFilter];
         _blendFilter = nil;
     }
-    if (!image) { return; }
+    
     [_beautyFilter removeAllFilters];
+    if (!image) {
+        [_beautyFilter addFilter:_pixelBuffer];
+        return;
+    }
     
     _blendFilter = [[YZBlendFilter alloc] init];
     [_blendFilter setWatermark:image frame:frame];
