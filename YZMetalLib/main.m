@@ -7,7 +7,9 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
-
+/**
+ git push origin --delete xxx 删除xxx分之
+ */
 int main(int argc, char * argv[]) {
     NSString * appDelegateClassName;
     @autoreleasepool {

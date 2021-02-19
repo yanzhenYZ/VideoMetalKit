@@ -15,6 +15,9 @@
 
 /**
  2.1.3 camera --> Crop --> beauty --> water ? -->  PixelBuffer --> new MTKView
+ 
+ todo
+ 2.1.5 水印
  */
 
 @interface YZFilterCapture ()<YZVideoCameraOutputDelegate, YZNewPixelBufferDelegate>

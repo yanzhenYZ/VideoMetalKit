@@ -42,13 +42,6 @@
 }
 
 #pragma mark - YZFilterCaptureDelegate
-/** 640 x 480 15fps
- 1. Camera --> Crop & MTKView        10-11%
- 1. Camera --> Crop & MTKView & Show 16-17%
- 
- 
- 
- */
 -(void)videoCapture:(YZFilterCapture *)videoCapture outputPixelBuffer:(CVPixelBufferRef)pixelBuffer {
     //[self showPixelBuffer:pixelBuffer];
 }
