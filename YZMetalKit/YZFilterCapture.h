@@ -56,7 +56,7 @@ typedef NS_ENUM(NSInteger, YZFilterFillMode) {
 - (void)stopRunning;
 
 - (void)setWatermark:(UIImage *)image frame:(CGRect)frame;
-
+- (void)clearWatermark;
 @end
 
 

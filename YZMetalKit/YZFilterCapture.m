@@ -161,8 +161,28 @@
 }
 
 -(void)setWatermark:(UIImage *)image frame:(CGRect)frame {
+    if (_blendFilter) {
+        [_beautyFilter removeFilter:_blendFilter];
+        _blendFilter = nil;
+    }
+    if (!image) { return; }
+    [_beautyFilter removeAllFilters];
+    
+    _blendFilter = [[YZBlendFilter alloc] init];
     [_blendFilter setWatermark:image frame:frame];
     [_blendFilter processImage];
+    [_beautyFilter addFilter:_blendFilter];
+    [_blendFilter addFilter:_pixelBuffer];
+    
+}
+
+- (void)clearWatermark {
+    if (_blendFilter) {
+        [_beautyFilter removeFilter:_blendFilter];
+        _blendFilter = nil;
+        
+        [_beautyFilter addFilter:_pixelBuffer];
+    }
 }
 #pragma mark - YZVideoCameraOutputDelegate
 - (void)videoCamera:(YZVideoCamera *)camera dropFrames:(int)frams {

@@ -27,7 +27,6 @@
     _capture = [[YZFilterCapture alloc] initWithSize:CGSizeMake(640, 360) front:YES];
     _capture.fillMode = YZFilterFillModeScaleAspectFit;
     _capture.player = self.player;
-//    _videoCapture.fillMode = YZVideoFillModeScaleAspectFit;
     _capture.delegate = self;
     [_capture startRunning];
 }
@@ -38,7 +37,10 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    _capture.size = CGSizeMake(480, 480);
+//    _capture.size = CGSizeMake(480, 480);
+    //_capture.player = self.player;
+    UIImage *image = [UIImage imageNamed:@"test3"];
+    [_capture setWatermark:image frame:CGRectMake(0, 0, 100, 71)];
 }
 
 #pragma mark - YZFilterCaptureDelegate
