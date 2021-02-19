@@ -11,12 +11,6 @@
 #import "YZShaderTypes.h"
 #import <simd/simd.h>
 
-/**
- 缩放分辨率
-    001 424x240 && 840x480 分辨率问题
-    002 每次都缩放
- changeSize
- */
 //可以绑定到任何Metal Filter
 
 @interface YZNewCropFilter ()
@@ -73,7 +67,9 @@
 }
 
 -(void)changeSize:(CGSize)size {
-    
+    [YZMetalDevice semaphoreWaitForever];
+    self.size = size;
+    [YZMetalDevice semaphoreSignal];
 }
 
 #pragma mark - private

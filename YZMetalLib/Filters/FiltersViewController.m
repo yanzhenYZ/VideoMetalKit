@@ -24,7 +24,7 @@
     // Do any additional setup after loading the view.
     _context = [CIContext contextWithOptions:nil];
     //424x240 && 840x480 分辨率问题
-    _capture = [[YZFilterCapture alloc] initWithSize:CGSizeMake(840, 480) front:YES];
+    _capture = [[YZFilterCapture alloc] initWithSize:CGSizeMake(640, 360) front:YES];
     _capture.fillMode = YZFilterFillModeScaleAspectFit;
     _capture.player = self.player;
 //    _videoCapture.fillMode = YZVideoFillModeScaleAspectFit;
@@ -35,6 +35,10 @@
 
 - (IBAction)back:(UIButton *)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    _capture.size = CGSizeMake(480, 480);
 }
 
 #pragma mark - YZFilterCaptureDelegate
