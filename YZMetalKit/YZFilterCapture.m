@@ -24,7 +24,7 @@
  */
 
 
-@interface YZFilterCapture ()<YZVideoCameraOutputDelegate>
+@interface YZFilterCapture ()<YZVideoCameraOutputDelegate, YZNewPixelBufferDelegate>
 @property (nonatomic, strong) YZVideoCamera *camera;
 
 @property (nonatomic, strong) YZBrightness *beautyFilter;
@@ -57,10 +57,13 @@
         _camera.delegate = self;
         
         _cropFilter = [[YZNewCropFilter alloc] initWithSize:size];
-        [_camera addFilter:_cropFilter];
-        
         _beautyFilter = [[YZBrightness alloc] init];
+        _pixelBuffer = [[YZNewPixelBuffer alloc] init];
+        _pixelBuffer.delegate = self;
+        
+        [_camera addFilter:_cropFilter];
         [_cropFilter addFilter:_beautyFilter];
+        [_beautyFilter addFilter:_pixelBuffer];
         
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarDidChanged:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
@@ -176,6 +179,13 @@
 //- (void)videoCamera:(YZVideoCamera *)camera output:(CMSampleBufferRef)sampleBuffer {
 //
 //}
+
+#pragma mark - YZNewPixelBufferDelegate
+- (void)outputPixelBuffer:(CVPixelBufferRef)buffer {
+    if ([_delegate respondsToSelector:@selector(videoCapture:outputPixelBuffer:)]) {
+        [_delegate videoCapture:self outputPixelBuffer:buffer];
+    }
+}
 
 #pragma mark - YZNewPixelBufferDelegate || YZCropFilterDelegate
 //- (void)outputPixelBuffer:(CVPixelBufferRef)buffer {

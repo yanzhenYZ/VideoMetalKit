@@ -50,7 +50,7 @@
  
  */
 -(void)videoCapture:(YZFilterCapture *)videoCapture outputPixelBuffer:(CVPixelBufferRef)pixelBuffer {
-    [self showPixelBuffer:pixelBuffer];
+    //[self showPixelBuffer:pixelBuffer];
 }
 
 - (void)showPixelBuffer:(CVPixelBufferRef)pixel {
