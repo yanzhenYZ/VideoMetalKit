@@ -27,8 +27,9 @@
     _waterMarkSegment.selectedSegmentIndex = 2;
     
     _context = [CIContext contextWithOptions:nil];
-    //424x240 && 840x480 分辨率问题
-    _capture = [[YZFilterCapture alloc] initWithSize:CGSizeMake(640, 360) front:YES];
+    //1280x720
+    //840x480 7x4  180x7=1260
+    _capture = [[YZFilterCapture alloc] initWithSize:CGSizeMake(960, 720) front:YES];
     _capture.fillMode = YZFilterFillModeScaleAspectFit;
     _capture.player = self.player;
     _capture.delegate = self;
@@ -52,7 +53,7 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-//    _capture.size = CGSizeMake(480, 480);
+    _capture.size = CGSizeMake(960, 540);
     //_capture.player = self.player;
     
 }

@@ -222,8 +222,8 @@
     CGFloat minWH = MIN(size.width, size.height);
     if (maxWH <= 640 && minWH <= 480) {
         return AVCaptureSessionPreset640x480;
-    } else if (maxWH <= 960 && minWH <= 540) {
-        return AVCaptureSessionPresetiFrame960x540;
+//    } else if (maxWH <= 960 && minWH <= 540) {
+//        return AVCaptureSessionPresetiFrame960x540;
     } else if (maxWH <= 1280 && minWH <= 720) {
         return AVCaptureSessionPreset1280x720;
     }

@@ -63,7 +63,6 @@
     [commandBuffer commit];
     
     [super newTextureAvailable:outputTexture];
-    //NSLog(@"__new crop:%d:%d", outputTexture.width, outputTexture.height);
 }
 
 -(void)changeSize:(CGSize)size {
@@ -78,18 +77,25 @@
     if ([self scaleCropSize:size]) {
         return NO;
     }
-    [self calculateCropTextureCoordinates:size];
+    CGFloat width = size.width - self.size.width;
+    CGFloat x = width / 2 / size.width;
+    CGFloat w = 1 - 2 * x;
+    
+    CGFloat height = size.height - self.size.height;
+    CGFloat y = height / 2 / size.height;
+    CGFloat h = 1 - 2 * y;
+    _cropRegion = CGRectMake(x, y, w, h);
     return YES;
 }
 
-#if 1 //输出指定size
+#if 0 //输出指定size
 - (BOOL)scaleCropSize:(CGSize)size {
     if (CGSizeEqualToSize(size, _size)) {
         return YES;
     }
     if (size.width > size.height && self.size.width < self.size.height) {//横屏
         self.size = CGSizeMake(self.size.height, self.size.width);
-    } else if (size.width < size.height && self.size.height < self.size.width) {
+    } else if (size.width < size.height && self.size.height < self.size.width)
         self.size = CGSizeMake(self.size.height, self.size.width);
     }
     if (CGSizeEqualToSize(size, _size)) {
@@ -97,6 +103,29 @@
     }
     return NO;
 }
+
+//keep this
+/**                     //use this
+ 120x120  =  480x480
+ 160x120  =  640x480
+ 180x180  =  480x480
+ 240x180  =  640x480
+ 240x240  =  480x480
+ 320x240  =  640x480
+ 
+ 424x240  =  640x362
+ 
+ 360x360  =  480x480
+ 480x360  =  640x480
+ 640x360  =  640x360
+ 480x480  =  480x480
+ 640x480  =  640x480
+ 
+ 840x480  =  1260x720
+ 
+ 960x720  =  960x720
+ 1280x720 = 1280x720
+ */
 #else //输出scale size
 - (BOOL)scaleCropSize:(CGSize)size {
     if (CGSizeEqualToSize(size, _size)) {
@@ -117,8 +146,28 @@
     if (textureRatio == sizeRatio) {
         return YES;
     }
+#if 1 //use this
+    if (sizeRatio > (textureRatio * 1.1) || sizeRatio < (textureRatio * 0.9)) {
+        if (textureRatio > sizeRatio) {
+            CGFloat outputW = size.width * sizeRatio / textureRatio;
+            if (_size.height > size.height) {
+                _size = CGSizeMake(outputW / (_size.height / size.height), size.height);
+            } else {
+                _size = CGSizeMake(outputW, size.height);
+            }
+        } else {
+            CGFloat outoutH = size.height * textureRatio / sizeRatio;
+            if (_size.width > size.width) {
+                _size = CGSizeMake(size.width, outoutH / (_size.width / size.width));
+            } else {
+                _size = CGSizeMake(size.width, outoutH);
+            }
+        }
+        return NO;
+    }
+    return YES;
+#else
     //生成新的size最大缩放接近size
-    ////424x240 && 840x480 分辨率缩放需要/4???
     if (textureRatio > sizeRatio) {
         CGFloat outputW = size.width * sizeRatio / textureRatio;
         if (_size.height > size.height) {
@@ -135,19 +184,9 @@
         }
     }
     return NO;
+#endif
 }
 #endif
-
-- (void)calculateCropTextureCoordinates:(CGSize)size {
-    CGFloat width = size.width - self.size.width;
-    CGFloat x = width / 2 / size.width;
-    CGFloat w = 1 - 2 * x;
-    
-    CGFloat height = size.height - self.size.height;
-    CGFloat y = height / 2 / size.height;
-    CGFloat h = 1 - 2 * y;
-    _cropRegion = CGRectMake(x, y, w, h);
-}
 
 - (simd_float8)getTextureCoordinates {
     CGFloat minX = _cropRegion.origin.x;
