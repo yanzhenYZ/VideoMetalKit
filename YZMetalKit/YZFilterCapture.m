@@ -16,8 +16,7 @@
 /**
  2.1.3 camera --> Crop --> beauty --> water ? -->  PixelBuffer --> new MTKView
  
- todo
- 2.1.5 水印
+ //必定会有filter的话可以把CropFilter region送给必行的filter做
  */
 
 @interface YZFilterCapture ()<YZVideoCameraOutputDelegate, YZNewPixelBufferDelegate>

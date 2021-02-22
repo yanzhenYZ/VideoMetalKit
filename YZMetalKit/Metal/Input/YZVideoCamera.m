@@ -11,6 +11,7 @@
 #import "YZVideoCamera.h"
 #import "YZShaderTypes.h"
 #import "YZMetalOrientation.h"
+#import "YZCameraSize.h"
 
 @interface YZVideoCamera ()<AVCaptureVideoDataOutputSampleBufferDelegate>
 

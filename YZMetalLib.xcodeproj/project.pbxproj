@@ -35,6 +35,8 @@
 		9B6DC27525DE64CC002B77E8 /* YZNewCropFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6DC27325DE64CC002B77E8 /* YZNewCropFilter.m */; };
 		9B6DC27B25DF5801002B77E8 /* YZNewMTKView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B6DC27925DF5801002B77E8 /* YZNewMTKView.h */; };
 		9B6DC27C25DF5801002B77E8 /* YZNewMTKView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6DC27A25DF5801002B77E8 /* YZNewMTKView.m */; };
+		9B6DC2FD25E3BF30002B77E8 /* YZCameraSize.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B6DC2FB25E3BF30002B77E8 /* YZCameraSize.h */; };
+		9B6DC2FE25E3BF30002B77E8 /* YZCameraSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6DC2FC25E3BF30002B77E8 /* YZCameraSize.m */; };
 		9B77FBA325A949440028A004 /* YZMetalKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B77FBA125A949440028A004 /* YZMetalKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9B77FBA625A949440028A004 /* YZMetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B77FB9F25A949440028A004 /* YZMetalKit.framework */; };
 		9B77FBA725A949440028A004 /* YZMetalKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9B77FB9F25A949440028A004 /* YZMetalKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -130,6 +132,8 @@
 		9B6DC27325DE64CC002B77E8 /* YZNewCropFilter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZNewCropFilter.m; sourceTree = "<group>"; };
 		9B6DC27925DF5801002B77E8 /* YZNewMTKView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZNewMTKView.h; sourceTree = "<group>"; };
 		9B6DC27A25DF5801002B77E8 /* YZNewMTKView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZNewMTKView.m; sourceTree = "<group>"; };
+		9B6DC2FB25E3BF30002B77E8 /* YZCameraSize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZCameraSize.h; sourceTree = "<group>"; };
+		9B6DC2FC25E3BF30002B77E8 /* YZCameraSize.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZCameraSize.m; sourceTree = "<group>"; };
 		9B77FB9F25A949440028A004 /* YZMetalKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YZMetalKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B77FBA125A949440028A004 /* YZMetalKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZMetalKit.h; sourceTree = "<group>"; };
 		9B77FBA225A949440028A004 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -282,6 +286,8 @@
 				9B77FBB425A949700028A004 /* YZVideoCamera.m */,
 				9B135AC825BE64F8006F6205 /* YZImageInput.h */,
 				9B135AC925BE64F8006F6205 /* YZImageInput.m */,
+				9B6DC2FB25E3BF30002B77E8 /* YZCameraSize.h */,
+				9B6DC2FC25E3BF30002B77E8 /* YZCameraSize.m */,
 			);
 			path = Input;
 			sourceTree = "<group>";
@@ -381,6 +387,7 @@
 				9B6DC27425DE64CC002B77E8 /* YZNewCropFilter.h in Headers */,
 				9B77FBD525A949700028A004 /* YZBrightness.h in Headers */,
 				9B6DC27B25DF5801002B77E8 /* YZNewMTKView.h in Headers */,
+				9B6DC2FD25E3BF30002B77E8 /* YZCameraSize.h in Headers */,
 				9B6DC24725CC082D002B77E8 /* YZNOBeautyCapture.h in Headers */,
 				9B135B0B25BFC7B4006F6205 /* YZBlendFilter.h in Headers */,
 				9B135AD425BE73E1006F6205 /* YZImage.h in Headers */,
@@ -507,6 +514,7 @@
 				9B77FBE825A94B9C0028A004 /* YZVideoCapture.m in Sources */,
 				9B77FBCC25A949700028A004 /* YZVideoCamera.m in Sources */,
 				9B135AD525BE73E1006F6205 /* YZImage.m in Sources */,
+				9B6DC2FE25E3BF30002B77E8 /* YZCameraSize.m in Sources */,
 				9B6DC26325DE50A5002B77E8 /* YZFilterCapture.m in Sources */,
 				9B77FBCF25A949700028A004 /* YZNewPixelBuffer.m in Sources */,
 				9B6DC27525DE64CC002B77E8 /* YZNewCropFilter.m in Sources */,
