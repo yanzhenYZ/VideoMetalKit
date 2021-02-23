@@ -288,4 +288,56 @@ typedef NS_ENUM(NSInteger, YZRotation) {
     }
     return YZRotationNoRotation;
 }
+
+#pragma mark -
+- (simd_float8)getNewTextureCoordinates:(AVCaptureDevicePosition)position {
+    YZRotation rotation = [self getRotation];
+    if (position == AVCaptureDevicePositionBack || !_mirror) {
+        return [self getNewTextureCoordinatesWithRotation:rotation];
+    }
+    rotation = [self getMirrorRotation:rotation];
+    return [self getNewTextureCoordinatesWithRotation:rotation];
+}
+
+/**
+ static const simd_float8 YZNoRotation = {0, 0, 1, 0, 0, 1, 1, 1};
+ static const simd_float8 YZRotateCounterclockwise = {0, 1, 0, 0, 1, 1, 1, 0};
+ static const simd_float8 YZRotateClockwise = {1, 0, 1, 1, 0, 0, 0, 1};
+ static const simd_float8 YZRotate180 = {1, 1, 0, 1, 1, 0, 0, 0};
+ static const simd_float8 YZFlipHorizontally = {1, 0, 0, 0, 1, 1, 0, 1};
+ static const simd_float8 YZFlipVertically = {0, 1, 1, 1, 0, 0, 1, 0};
+ static const simd_float8 YZRotateClockwiseAndFlipVertically = {0, 0, 0, 1, 1, 0, 1, 1};
+ static const simd_float8 YZRotateClockwiseAndFlipHorizontally = {1, 1, 1, 0, 0, 1, 0, 0};
+ */
+- (simd_float8)getNewTextureCoordinatesWithRotation:(YZRotation)rotation {
+    switch (rotation) {
+        case YZRotationNoRotation:
+            return YZNoRotation;
+            break;
+        case YZRotationRotateCounterclockwise:
+            return YZRotateCounterclockwise;
+            break;
+        case YZRotationRotateClockwise:
+            return YZRotateClockwise;
+            break;
+        case YZRotationRotate180:
+            return YZRotate180;
+            break;
+        case YZRotationFlipHorizontally:
+            return YZFlipHorizontally;
+            break;
+        case YZRotationFlipVertically:
+            return YZFlipVertically;
+            break;
+        case YZRotationRotateClockwiseAndFlipVertically:
+            return YZRotateClockwiseAndFlipVertically;
+            break;
+        case YZRotationRotateClockwiseAndFlipHorizontally:
+            return YZRotateClockwiseAndFlipHorizontally;
+            break;
+        default:
+            break;
+    }
+    return YZRotationNoRotation;
+}
 @end
