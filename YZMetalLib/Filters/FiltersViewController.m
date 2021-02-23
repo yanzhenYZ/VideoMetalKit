@@ -29,11 +29,12 @@
     _context = [CIContext contextWithOptions:nil];
     //1280x720
     //840x480 7x4  180x7=1260
-    _capture = [[YZFilterCapture alloc] initWithSize:CGSizeMake(360, 640) front:YES];
+    _capture = [[YZFilterCapture alloc] initWithSize:CGSizeMake(360, 640) front:NO];
     _capture.fillMode = YZFilterFillModeScaleAspectFit;
     _capture.player = self.player;
     _capture.delegate = self;
     _capture.scale = YES;
+    _capture.videoMirrored = NO;
     [_capture startRunning];
 }
 
@@ -61,7 +62,7 @@
 
 #pragma mark - YZFilterCaptureDelegate
 -(void)videoCapture:(YZFilterCapture *)videoCapture outputPixelBuffer:(CVPixelBufferRef)pixelBuffer {
-    [self showPixelBuffer:pixelBuffer];
+//    [self showPixelBuffer:pixelBuffer];
 }
 
 - (void)showPixelBuffer:(CVPixelBufferRef)pixel {

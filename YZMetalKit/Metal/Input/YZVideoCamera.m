@@ -59,7 +59,7 @@
         _orientation = [[YZMetalOrientation alloc] init];
         _cameraQueue = dispatch_queue_create("com.yanzhen.video.camera.queue", 0);
         _cameraRenderQueue = dispatch_queue_create("com.yanzhen.video.camera.render.queue", 0);
-        _frameRate = 15;
+        _frameRate = 10;
         _userBGRA = YES;
         _preset = preset;
         [self _configVideoSession];
@@ -248,7 +248,7 @@
     if (_cameraSize) {
         size = [_cameraSize getTextureSizeWithBufferSize:size];
     }
-    NSLog(@"Size__:%f:%f",size.width, size.height);
+    //NSLog(@"Size__:%f:%f",size.width, size.height);
     //output texture
     MTLTextureDescriptor *textureDesc = [MTLTextureDescriptor texture2DDescriptorWithPixelFormat:MTLPixelFormatBGRA8Unorm width:size.width height:size.height mipmapped:NO];
     textureDesc.usage = MTLTextureUsageShaderRead | MTLTextureUsageShaderWrite | MTLTextureUsageRenderTarget;
@@ -294,6 +294,66 @@
         return textureCoordinates;
     }
     return [_cameraSize getTextureCoordinates:textureCoordinates];
+}
+
+
+- (void)processBGRAVideoSampleBuffer1:(CMSampleBufferRef)sampleBuffer {
+    CVPixelBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+    size_t width = CVPixelBufferGetWidth(pixelBuffer);
+    size_t height = CVPixelBufferGetHeight(pixelBuffer);
+    CVMetalTextureRef textureRef = NULL;
+    id<MTLTexture> texture = NULL;
+    CVReturn status = CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault, _textureCache, pixelBuffer, nil, MTLPixelFormatBGRA8Unorm, width, height, 0, &textureRef);
+    if (kCVReturnSuccess != status) {
+        return;
+    }
+    texture = CVMetalTextureGetTexture(textureRef);
+    CFRelease(textureRef);
+    textureRef = NULL;
+    
+    NSUInteger outputW = width;
+    NSUInteger outputH = height;
+    if ([_orientation switchWithHeight]) {
+        outputW = height;
+        outputH = width;
+    }
+    //NSLog(@"Size__:%f:%f",size.width, size.height);
+    //output texture
+    MTLTextureDescriptor *textureDesc = [MTLTextureDescriptor texture2DDescriptorWithPixelFormat:MTLPixelFormatBGRA8Unorm width:outputW height:outputH mipmapped:NO];
+    textureDesc.usage = MTLTextureUsageShaderRead | MTLTextureUsageShaderWrite | MTLTextureUsageRenderTarget;
+    id<MTLTexture> outputTexture = [YZMetalDevice.defaultDevice.device newTextureWithDescriptor:textureDesc];
+    
+    //[self converWH:texture outputTexture:outputTexture];
+    MTLRenderPassDescriptor *desc = [YZMetalDevice newRenderPassDescriptor:outputTexture];
+    id<MTLCommandBuffer> commandBuffer = [YZMetalDevice.defaultDevice commandBuffer];
+    id<MTLRenderCommandEncoder> encoder = [commandBuffer renderCommandEncoderWithDescriptor:desc];
+    if (!encoder) {
+        NSLog(@"YZVideoCamera render endcoder Fail");
+        return;
+    }
+    
+    //表示对顺时针顺序的三角形进行剔除。
+    [encoder setFrontFacingWinding:MTLWindingCounterClockwise];
+    [encoder setRenderPipelineState:self.pipelineState];
+    simd_float8 vertices = [YZMetalOrientation defaultVertices];
+    [encoder setVertexBytes:&vertices length:sizeof(simd_float8) atIndex:YZVertexIndexPosition];
+    
+    simd_float8 textureCoordinates = [_orientation getTextureCoordinates:_position];
+    //simd_float8 textureCoordinates = [self getCameraSize:CGSizeMake(outputW, outputH)];
+    /**
+     https://developer.apple.com/documentation/metal/mtlrendercommandencoder/1515846-setvertexbytes
+     Use this method for single-use data smaller than 4 KB. Create a MTLBuffer object if your data exceeds 4 KB in length or persists for multiple uses.
+     */
+    [encoder setVertexBytes:&textureCoordinates length:sizeof(simd_float8) atIndex:YZVertexIndexTextureCoordinate];
+    [encoder setFragmentTexture:texture atIndex:YZFragmentTextureIndexNormal];
+    
+    [encoder drawPrimitives:MTLPrimitiveTypeTriangleStrip vertexStart:0 vertexCount:4];
+    [encoder endEncoding];
+    
+    [commandBuffer commit];
+    [self.allFilters enumerateObjectsUsingBlock:^(id<YZFilterProtocol>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj newTextureAvailable:outputTexture];
+    }];
 }
 
 - (void)processYUVVideoSampleBuffer:(CMSampleBufferRef)sampleBuffer {

@@ -43,9 +43,23 @@
 }
 
 - (simd_float8)getTextureCoordinates:(simd_float8)textureCoordinates {
+    if (CGRectEqualToRect(CGRectMake(0, 0, 1, 1), _cropRegion)) {
+        return textureCoordinates;
+    }
+    return [self getTextureCoordinates];
+    //NSLog(@"_______%@", textureCoordinates[0]);
     return textureCoordinates;
 }
 
+
+- (simd_float8)getTextureCoordinates {
+    CGFloat minX = _cropRegion.origin.x;
+    CGFloat minY = _cropRegion.origin.y;
+    CGFloat maxX = CGRectGetMaxX(_cropRegion);
+    CGFloat maxY = CGRectGetMaxY(_cropRegion);
+    simd_float8 textureCoordinates = {minX, minY, maxX, minY, minX, maxY, maxX, maxY};
+    return textureCoordinates;
+}
 #pragma mark - private
 - (CGSize)getOutputSize:(CGSize)size {
     if (CGSizeEqualToSize(size, _size)) {
