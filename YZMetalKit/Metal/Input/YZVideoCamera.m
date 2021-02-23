@@ -22,6 +22,7 @@
 @property (nonatomic, assign) AVCaptureDevicePosition position;
 @property (nonatomic, assign) CVMetalTextureCacheRef textureCache;
 @property (nonatomic, strong) YZMetalOrientation *orientation;
+@property (nonatomic, strong) YZCameraSize *cameraSize;
 @property (nonatomic, assign) BOOL userBGRA;
 @property (nonatomic, assign) BOOL fullYUVRange;
 @property (nonatomic, assign) BOOL pause;
@@ -59,7 +60,7 @@
         _cameraQueue = dispatch_queue_create("com.yanzhen.video.camera.queue", 0);
         _cameraRenderQueue = dispatch_queue_create("com.yanzhen.video.camera.render.queue", 0);
         _frameRate = 15;
-        _userBGRA = NO;
+        _userBGRA = YES;
         _preset = preset;
         [self _configVideoSession];
         [self _configMetal];
@@ -143,6 +144,18 @@
     }
     [_orientation switchCamera];
     [YZMetalDevice semaphoreSignal];
+}
+
+- (void)scale:(BOOL)scale size:(CGSize)size {
+    if (scale) {
+        _cameraSize = [[YZCameraSize alloc] initWithSize:size];
+    } else {
+        _cameraSize = nil;
+    }
+}
+
+- (void)changeScaleSize:(CGSize)size {
+    [_cameraSize changeSize:size];
 }
 
 - (void)setFrameRate:(int32_t)frameRate {

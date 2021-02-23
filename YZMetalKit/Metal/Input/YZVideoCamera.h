@@ -43,5 +43,8 @@
 - (void)stopRunning;
 
 - (void)switchCamera;
+
+- (void)scale:(BOOL)scale size:(CGSize)size;
+- (void)changeScaleSize:(CGSize)size;
 @end
 

@@ -6,8 +6,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreGraphics/CGGeometry.h>
 
 @interface YZCameraSize : NSObject
+
+-(instancetype)initWithSize:(CGSize)size;
+- (void)changeSize:(CGSize)size;
 
 @end
 

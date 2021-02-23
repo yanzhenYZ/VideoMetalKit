@@ -33,6 +33,7 @@
     _capture.fillMode = YZFilterFillModeScaleAspectFit;
     _capture.player = self.player;
     _capture.delegate = self;
+    _capture.scale = YES;
     [_capture startRunning];
 }
 

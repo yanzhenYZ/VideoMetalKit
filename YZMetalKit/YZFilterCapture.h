@@ -31,6 +31,7 @@ typedef NS_ENUM(NSInteger, YZFilterFillMode) {
 /** video player fillMode*/
 @property (nonatomic) YZFilterFillMode fillMode;
 
+@property (nonatomic, assign) BOOL scale;
 /** output size */
 @property (nonatomic, assign) CGSize size;
 /** YES: AVCaptureDevicePositionFront, NO: AVCaptureDevicePositionBack */

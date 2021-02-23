@@ -100,9 +100,19 @@
         _size = size;
         AVCaptureSessionPreset preset = [self getSessionPreset:size];
         _camera.preset = preset;
-        [_cropFilter changeSize:size];
+        //[_cropFilter changeSize:size];
+        [_camera changeScaleSize:size];
     }
 }
+
+- (void)setScale:(BOOL)scale {
+    if (scale == _scale) {
+        return;
+    }
+    _scale = scale;
+    [_camera scale:scale size:_size];
+}
+
 
 - (void)setFront:(BOOL)front {
     if (front != _front) {
