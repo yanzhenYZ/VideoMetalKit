@@ -290,50 +290,63 @@ typedef NS_ENUM(NSInteger, YZRotation) {
 }
 
 #pragma mark -
-- (simd_float8)getNewTextureCoordinates:(AVCaptureDevicePosition)position {
+- (simd_float8)getNewTextureCoordinates:(AVCaptureDevicePosition)position region:(CGRect)region {
     YZRotation rotation = [self getRotation];
     if (position == AVCaptureDevicePositionBack || !_mirror) {
-        return [self getNewTextureCoordinatesWithRotation:rotation];
+        return [self getNewTextureCoordinatesWithRotation:rotation region:region];
     }
     rotation = [self getMirrorRotation:rotation];
-    return [self getNewTextureCoordinatesWithRotation:rotation];
+    return [self getNewTextureCoordinatesWithRotation:rotation region:region];
 }
 
-/**
- static const simd_float8 YZNoRotation = {0, 0, 1, 0, 0, 1, 1, 1};
- static const simd_float8 YZRotateCounterclockwise = {0, 1, 0, 0, 1, 1, 1, 0};
- static const simd_float8 YZRotateClockwise = {1, 0, 1, 1, 0, 0, 0, 1};
- static const simd_float8 YZRotate180 = {1, 1, 0, 1, 1, 0, 0, 0};
- static const simd_float8 YZFlipHorizontally = {1, 0, 0, 0, 1, 1, 0, 1};
- static const simd_float8 YZFlipVertically = {0, 1, 1, 1, 0, 0, 1, 0};
- static const simd_float8 YZRotateClockwiseAndFlipVertically = {0, 0, 0, 1, 1, 0, 1, 1};
- static const simd_float8 YZRotateClockwiseAndFlipHorizontally = {1, 1, 1, 0, 0, 1, 0, 0};
- */
-- (simd_float8)getNewTextureCoordinatesWithRotation:(YZRotation)rotation {
+- (simd_float8)getNewTextureCoordinatesWithRotation:(YZRotation)rotation region:(CGRect)region {
+//    CGRect region = CGRectMake(0, 0, 1, 1);
+    CGFloat minX = region.origin.x;
+    CGFloat minY = region.origin.y;
+    CGFloat maxX = CGRectGetMaxX(region);
+    CGFloat maxY = CGRectGetMaxY(region);
+    //(0.125,0,0.75,1)   {0.125, 0, 0.875, 0, 0.125, 1, 0.875, 1};
+    //simd_float8 textureCoordinates = {minX, minY, maxX, minY, minX, maxY, maxX, maxY};
     switch (rotation) {
-        case YZRotationNoRotation:
-            return YZNoRotation;
+        case YZRotationNoRotation: {//0,1,2,3
+            simd_float8 textureCoordinates = {minX, minY, maxX, minY, minX, maxY, maxX, maxY};
+            return textureCoordinates;
+            }
             break;
-        case YZRotationRotateCounterclockwise:
-            return YZRotateCounterclockwise;
+        case YZRotationRotateCounterclockwise: {//2,0,3,1
+            simd_float8 textureCoordinates = {minX, maxY, minX, minY, maxX, maxY, maxX, minY};
+            return textureCoordinates;
+            }
             break;
-        case YZRotationRotateClockwise:
-            return YZRotateClockwise;
+        case YZRotationRotateClockwise: {//1,3,0,2
+            simd_float8 textureCoordinates = {maxX, minY, maxX, maxY, minX, minY, minX, maxY};
+            return textureCoordinates;
+            }
             break;
-        case YZRotationRotate180:
-            return YZRotate180;
+        case YZRotationRotate180: {//3,2,1,0
+            simd_float8 textureCoordinates = {maxX, maxY, minX, maxY, maxX, minY, minX, minY};
+            return textureCoordinates;
+            }
             break;
-        case YZRotationFlipHorizontally:
-            return YZFlipHorizontally;
+        case YZRotationFlipHorizontally: {//1,0,3,2
+            simd_float8 textureCoordinates = {maxX, minY, minX, minY, maxX, maxY, minX, maxY};
+            return textureCoordinates;
+            }
             break;
-        case YZRotationFlipVertically:
-            return YZFlipVertically;
+        case YZRotationFlipVertically: {//2,3,0,1
+            simd_float8 textureCoordinates = {minX, maxY, maxX, maxY, minX, minY, maxX, minY};
+            return textureCoordinates;
+            }
             break;
-        case YZRotationRotateClockwiseAndFlipVertically:
-            return YZRotateClockwiseAndFlipVertically;
+        case YZRotationRotateClockwiseAndFlipVertically: {//0,2,1,3
+            simd_float8 textureCoordinates = {minX, minY, minX, maxY, maxX, minY, maxX, maxY};
+            return textureCoordinates;
+            }
             break;
-        case YZRotationRotateClockwiseAndFlipHorizontally:
-            return YZRotateClockwiseAndFlipHorizontally;
+        case YZRotationRotateClockwiseAndFlipHorizontally: {//3,1,2,0
+            simd_float8 textureCoordinates = {maxX, maxY, maxX, minY, minX, maxY, minX, minY};
+            return textureCoordinates;
+            }
             break;
         default:
             break;

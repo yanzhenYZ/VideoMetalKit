@@ -51,7 +51,11 @@
     return textureCoordinates;
 }
 
+- (CGRect)getCropRegion {
+    return _cropRegion;
+}
 
+#pragma mark - private
 - (simd_float8)getTextureCoordinates {
     CGFloat minX = _cropRegion.origin.x;
     CGFloat minY = _cropRegion.origin.y;
@@ -60,7 +64,7 @@
     simd_float8 textureCoordinates = {minX, minY, maxX, minY, minX, maxY, maxX, maxY};
     return textureCoordinates;
 }
-#pragma mark - private
+
 - (CGSize)getOutputSize:(CGSize)size {
     if (CGSizeEqualToSize(size, _size)) {
         return size;

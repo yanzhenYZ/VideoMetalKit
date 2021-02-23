@@ -15,6 +15,7 @@
 - (void)changeSize:(CGSize)size;
 
 - (CGSize)getTextureSizeWithBufferSize:(CGSize)size;
-- (simd_float8)getTextureCoordinates:(simd_float8)textureCoordinates;
+- (CGRect)getCropRegion;
+//- (simd_float8)getTextureCoordinates:(simd_float8)textureCoordinates;
 @end
 

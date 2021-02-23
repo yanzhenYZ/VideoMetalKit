@@ -289,11 +289,12 @@
 
 
 - (simd_float8)getCameraSize{
-    simd_float8 textureCoordinates = [_orientation getNewTextureCoordinates:_position];
-    if (!_cameraSize) {
-        return textureCoordinates;
+    CGRect region = CGRectMake(0, 0, 1, 1);
+    if (_cameraSize) {
+        region = [_cameraSize getCropRegion];
     }
-    return [_cameraSize getTextureCoordinates:textureCoordinates];
+    simd_float8 textureCoordinates = [_orientation getNewTextureCoordinates:_position region:region];
+    return textureCoordinates;
 }
 
 
@@ -336,7 +337,7 @@
     if (_cameraSize) {
         size = [_cameraSize getTextureSizeWithBufferSize:size];
     }
-    MTLTextureDescriptor *desc = [MTLTextureDescriptor texture2DDescriptorWithPixelFormat:MTLPixelFormatBGRA8Unorm width:outputW height:outputH mipmapped:NO];
+    MTLTextureDescriptor *desc = [MTLTextureDescriptor texture2DDescriptorWithPixelFormat:MTLPixelFormatBGRA8Unorm width:size.width height:size.height mipmapped:NO];
     desc.usage = MTLTextureUsageShaderRead | MTLTextureUsageShaderWrite | MTLTextureUsageRenderTarget;
     id<MTLTexture> outputTexture = [YZMetalDevice.defaultDevice.device newTextureWithDescriptor:desc];
     CFTypeRef attachment = CVBufferGetAttachment(pixelBuffer, kCVImageBufferYCbCrMatrixKey, NULL);

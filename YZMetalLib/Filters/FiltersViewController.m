@@ -29,12 +29,12 @@
     _context = [CIContext contextWithOptions:nil];
     //1280x720
     //840x480 7x4  180x7=1260
-    _capture = [[YZFilterCapture alloc] initWithSize:CGSizeMake(360, 640) front:NO];
+    _capture = [[YZFilterCapture alloc] initWithSize:CGSizeMake(360, 640) front:YES];
     _capture.fillMode = YZFilterFillModeScaleAspectFit;
     _capture.player = self.player;
     _capture.delegate = self;
     _capture.scale = YES;
-    _capture.videoMirrored = NO;
+//    _capture.videoMirrored = NO;
     [_capture startRunning];
 }
 
@@ -55,7 +55,7 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    _capture.size = CGSizeMake(960, 540);
+//    _capture.size = CGSizeMake(960, 540);
     //_capture.player = self.player;
     
 }
