@@ -7,11 +7,14 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreGraphics/CGGeometry.h>
+#import <simd/simd.h>
 
 @interface YZCameraSize : NSObject
 
--(instancetype)initWithSize:(CGSize)size;
+- (instancetype)initWithSize:(CGSize)size;
 - (void)changeSize:(CGSize)size;
 
+- (CGSize)getTextureSizeWithBufferSize:(CGSize)size;
+- (simd_float8)getTextureCoordinates:(simd_float8)textureCoordinates;
 @end
 

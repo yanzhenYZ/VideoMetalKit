@@ -29,7 +29,7 @@
     _context = [CIContext contextWithOptions:nil];
     //1280x720
     //840x480 7x4  180x7=1260
-    _capture = [[YZFilterCapture alloc] initWithSize:CGSizeMake(960, 720) front:YES];
+    _capture = [[YZFilterCapture alloc] initWithSize:CGSizeMake(360, 640) front:YES];
     _capture.fillMode = YZFilterFillModeScaleAspectFit;
     _capture.player = self.player;
     _capture.delegate = self;

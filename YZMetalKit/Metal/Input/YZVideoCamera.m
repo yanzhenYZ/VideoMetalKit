@@ -147,15 +147,19 @@
 }
 
 - (void)scale:(BOOL)scale size:(CGSize)size {
+    [YZMetalDevice semaphoreWaitForever];
     if (scale) {
         _cameraSize = [[YZCameraSize alloc] initWithSize:size];
     } else {
         _cameraSize = nil;
     }
+    [YZMetalDevice semaphoreSignal];
 }
 
 - (void)changeScaleSize:(CGSize)size {
+    [YZMetalDevice semaphoreWaitForever];
     [_cameraSize changeSize:size];
+    [YZMetalDevice semaphoreSignal];
 }
 
 - (void)setFrameRate:(int32_t)frameRate {
@@ -240,9 +244,13 @@
         outputW = height;
         outputH = width;
     }
-    
+    CGSize size = CGSizeMake(outputW, outputH);
+    if (_cameraSize) {
+        size = [_cameraSize getTextureSizeWithBufferSize:size];
+    }
+    NSLog(@"Size__:%f:%f",size.width, size.height);
     //output texture
-    MTLTextureDescriptor *textureDesc = [MTLTextureDescriptor texture2DDescriptorWithPixelFormat:MTLPixelFormatBGRA8Unorm width:outputW height:outputH mipmapped:NO];
+    MTLTextureDescriptor *textureDesc = [MTLTextureDescriptor texture2DDescriptorWithPixelFormat:MTLPixelFormatBGRA8Unorm width:size.width height:size.height mipmapped:NO];
     textureDesc.usage = MTLTextureUsageShaderRead | MTLTextureUsageShaderWrite | MTLTextureUsageRenderTarget;
     id<MTLTexture> outputTexture = [YZMetalDevice.defaultDevice.device newTextureWithDescriptor:textureDesc];
     
@@ -261,7 +269,8 @@
     simd_float8 vertices = [YZMetalOrientation defaultVertices];
     [encoder setVertexBytes:&vertices length:sizeof(simd_float8) atIndex:YZVertexIndexPosition];
     
-    simd_float8 textureCoordinates = [_orientation getTextureCoordinates:_position];
+    //simd_float8 textureCoordinates = [_orientation getTextureCoordinates:_position];
+    simd_float8 textureCoordinates = [self getCameraSize:CGSizeMake(outputW, outputH)];
     /**
      https://developer.apple.com/documentation/metal/mtlrendercommandencoder/1515846-setvertexbytes
      Use this method for single-use data smaller than 4 KB. Create a MTLBuffer object if your data exceeds 4 KB in length or persists for multiple uses.
@@ -278,6 +287,14 @@
     }];
 }
 
+
+- (simd_float8)getCameraSize:(CGSize)size {
+    simd_float8 textureCoordinates = [_orientation getTextureCoordinates:_position];
+    if (!_cameraSize) {
+        return textureCoordinates;
+    }
+    return [_cameraSize getTextureCoordinates:textureCoordinates];
+}
 
 - (void)processYUVVideoSampleBuffer:(CMSampleBufferRef)sampleBuffer {
     CVPixelBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
