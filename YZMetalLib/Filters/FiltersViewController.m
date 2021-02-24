@@ -34,7 +34,7 @@
     _capture.player = self.player;
     _capture.delegate = self;
     _capture.scale = YES;
-//    _capture.videoMirrored = NO;
+    _capture.videoMirrored = NO;
     [_capture startRunning];
 }
 
