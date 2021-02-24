@@ -9,6 +9,7 @@
 #import "YZMetalDevice.h"
 #import "YZMetalOrientation.h"
 #import "YZShaderTypes.h"
+#import "YZMetalLayer.h"
 
 @interface YZNewMTKView ()<MTKViewDelegate>
 @property (nonatomic, strong) id<MTLRenderPipelineState> pipelineState;
@@ -22,6 +23,10 @@
 @end
 
 @implementation YZNewMTKView
+
++(Class)layerClass {
+    return [YZMetalLayer class];
+}
 
 - (void)dealloc
 {
