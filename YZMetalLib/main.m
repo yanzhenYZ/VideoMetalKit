@@ -9,6 +9,10 @@
 #import "AppDelegate.h"
 /**
  git push origin --delete xxx 删除xxx分之
+ 1. 输入3个平面 y,u,v数据做渲染PixelBuffer
+ 2. 输入裸数据BGRA, YUV做渲染
+ 3. 支持裁剪等
+ 
  */
 int main(int argc, char * argv[]) {
     NSString * appDelegateClassName;
