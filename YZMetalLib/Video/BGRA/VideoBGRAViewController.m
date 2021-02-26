@@ -7,9 +7,10 @@
 
 #import "VideoBGRAViewController.h"
 #import <YZMetalKit/YZExeternalVideo.h>
+#import <YZMetalKit/YZVideoData.h>
 #import "VideoBGRACapture.h"
 
-@interface VideoBGRAViewController ()<VideoBGRACaptureDelegate>
+@interface VideoBGRAViewController ()<VideoBGRACaptureDelegate, YZExeternalVideoDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *player;
 @property (weak, nonatomic) IBOutlet UIImageView *showView;
 
@@ -27,6 +28,10 @@
     
     _context = [CIContext contextWithOptions:nil];
     
+    _externalVideo = [[YZExeternalVideo alloc] init];
+    _externalVideo.delegate = self;
+    _externalVideo.player = self.showView;
+    
     _capture = [[VideoBGRACapture alloc] initWithPlayer:_player];
     _capture.delegate = self;
     [_capture startRunning];
@@ -37,6 +42,19 @@
     [_capture stopRunning];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+#pragma mark - YZExeternalVideoDelegate
+- (void)video:(YZExeternalVideo *)video pixelBuffer:(CVPixelBufferRef)pixelBuffer {
+    //[self showPixelBuffer:pixelBuffer];
+}
+
+#pragma mark - VideoBGRACaptureDelegate
+-(void)capture:(VideoBGRACapture *)capture pixelBuffer:(CVPixelBufferRef)pixelBuffer {
+    //[self showPixelBuffer:pixelBuffer];
+    YZVideoData *data = [[YZVideoData alloc] init];
+    data.pixelBuffer = pixelBuffer;
+    [_externalVideo inputVideo:data];
+}
+
 
 - (void)showPixelBuffer:(CVPixelBufferRef)pixel {
     CVPixelBufferRetain(pixel);
@@ -50,10 +68,5 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         self.showView.image = image;
     });
-}
-
-#pragma mark - VideoBGRACaptureDelegate
--(void)capture:(VideoBGRACapture *)capture pixelBuffer:(CVPixelBufferRef)pixelBuffer {
-    [self showPixelBuffer:pixelBuffer];
 }
 @end

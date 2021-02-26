@@ -132,8 +132,8 @@
     [_session commitConfiguration];
     
     [camera lockForConfiguration:nil];
-    camera.activeVideoMinFrameDuration = CMTimeMake(1, 15);
-    camera.activeVideoMaxFrameDuration = CMTimeMake(1, 15 + 2);
+    camera.activeVideoMinFrameDuration = CMTimeMake(1, 10);
+    camera.activeVideoMaxFrameDuration = CMTimeMake(1, 10);
     [camera unlockForConfiguration];
 }
 
