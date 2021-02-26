@@ -30,7 +30,7 @@
     
     _externalVideo = [[YZExeternalVideo alloc] init];
     _externalVideo.delegate = self;
-    _externalVideo.player = self.showView;
+//    _externalVideo.player = self.showView;
     
     _capture = [[VideoBGRACapture alloc] initWithPlayer:_player];
     _capture.delegate = self;
@@ -44,7 +44,7 @@
 }
 #pragma mark - YZExeternalVideoDelegate
 - (void)video:(YZExeternalVideo *)video pixelBuffer:(CVPixelBufferRef)pixelBuffer {
-    //[self showPixelBuffer:pixelBuffer];
+    [self showPixelBuffer:pixelBuffer];
 }
 
 #pragma mark - VideoBGRACaptureDelegate
