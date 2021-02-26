@@ -77,6 +77,8 @@
 		9B9C6ABC25E8DFE8008FC649 /* YZEVideoPixelBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C6ABA25E8DFE8008FC649 /* YZEVideoPixelBuffer.m */; };
 		9B9C6AC025E8E018008FC649 /* YZEVideoView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B9C6ABE25E8E018008FC649 /* YZEVideoView.h */; };
 		9B9C6AC125E8E018008FC649 /* YZEVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C6ABF25E8E018008FC649 /* YZEVideoView.m */; };
+		9B9C6AC925E8F736008FC649 /* VideoRangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C6AC825E8F736008FC649 /* VideoRangeViewController.m */; };
+		9B9C6ACE25E8F74E008FC649 /* VideoRangeCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C6ACD25E8F74E008FC649 /* VideoRangeCapture.m */; };
 		9BB00042257FB7F400207AF3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB00041257FB7F400207AF3 /* AppDelegate.m */; };
 		9BB0004B257FB7F400207AF3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BB00049257FB7F400207AF3 /* Main.storyboard */; };
 		9BB0004D257FB7F600207AF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BB0004C257FB7F600207AF3 /* Assets.xcassets */; };
@@ -192,6 +194,10 @@
 		9B9C6ABA25E8DFE8008FC649 /* YZEVideoPixelBuffer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZEVideoPixelBuffer.m; sourceTree = "<group>"; };
 		9B9C6ABE25E8E018008FC649 /* YZEVideoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZEVideoView.h; sourceTree = "<group>"; };
 		9B9C6ABF25E8E018008FC649 /* YZEVideoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZEVideoView.m; sourceTree = "<group>"; };
+		9B9C6AC725E8F736008FC649 /* VideoRangeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoRangeViewController.h; sourceTree = "<group>"; };
+		9B9C6AC825E8F736008FC649 /* VideoRangeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoRangeViewController.m; sourceTree = "<group>"; };
+		9B9C6ACC25E8F74E008FC649 /* VideoRangeCapture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoRangeCapture.h; sourceTree = "<group>"; };
+		9B9C6ACD25E8F74E008FC649 /* VideoRangeCapture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoRangeCapture.m; sourceTree = "<group>"; };
 		9BB0003D257FB7F400207AF3 /* YZMetalLib.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YZMetalLib.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BB00040257FB7F400207AF3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9BB00041257FB7F400207AF3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -370,6 +376,7 @@
 		9B9C6A7425E8CE84008FC649 /* Video */ = {
 			isa = PBXGroup;
 			children = (
+				9B9C6AC625E8F71B008FC649 /* Range */,
 				9B9C6A8E25E8D4D3008FC649 /* BGRA */,
 				9B9C6A7725E8CF0F008FC649 /* VideoAllViewController.h */,
 				9B9C6A7825E8CF0F008FC649 /* VideoAllViewController.m */,
@@ -405,6 +412,17 @@
 				9B9C6A9625E8D5C9008FC649 /* VideoBGRACapture.m */,
 			);
 			path = BGRA;
+			sourceTree = "<group>";
+		};
+		9B9C6AC625E8F71B008FC649 /* Range */ = {
+			isa = PBXGroup;
+			children = (
+				9B9C6AC725E8F736008FC649 /* VideoRangeViewController.h */,
+				9B9C6AC825E8F736008FC649 /* VideoRangeViewController.m */,
+				9B9C6ACC25E8F74E008FC649 /* VideoRangeCapture.h */,
+				9B9C6ACD25E8F74E008FC649 /* VideoRangeCapture.m */,
+			);
+			path = Range;
 			sourceTree = "<group>";
 		};
 		9BB00034257FB7F400207AF3 = {
@@ -624,6 +642,8 @@
 				9B9C6A9725E8D5C9008FC649 /* VideoBGRACapture.m in Sources */,
 				9B6DC25425CC0C4D002B77E8 /* YZTestBeautyManager.m in Sources */,
 				9BB00042257FB7F400207AF3 /* AppDelegate.m in Sources */,
+				9B9C6AC925E8F736008FC649 /* VideoRangeViewController.m in Sources */,
+				9B9C6ACE25E8F74E008FC649 /* VideoRangeCapture.m in Sources */,
 				9B135AE825BECCAC006F6205 /* OutputViewController.m in Sources */,
 				9BB00053257FB7F600207AF3 /* main.m in Sources */,
 				9B9C6A7D25E8CFD8008FC649 /* VideoMainViewController.m in Sources */,
@@ -693,7 +713,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = mh_dylib;
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 2.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = yanzhen.YZMetalKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -723,7 +743,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = mh_dylib;
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 2.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = yanzhen.YZMetalKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;

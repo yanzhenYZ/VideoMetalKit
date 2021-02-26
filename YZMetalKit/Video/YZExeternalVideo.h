@@ -28,7 +28,7 @@ typedef NS_ENUM(NSInteger, YZExeternalVideoFillMode) {
 @end
 
 @protocol YZExeternalVideoDelegate <NSObject>
-
+/** 输入CVPixelBufferRef， 不做裁剪，不做旋转，直接输出对应CVPixelBufferRef */
 - (void)video:(YZExeternalVideo *)video pixelBuffer:(CVPixelBufferRef)pixelBuffer;
 
 @end
