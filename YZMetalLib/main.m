@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 /**
  git push origin --delete xxx 删除xxx分之
+ todo
+ 1. 带有方向的图片做水印
  */
 int main(int argc, char * argv[]) {
     NSString * appDelegateClassName;

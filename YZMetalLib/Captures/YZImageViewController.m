@@ -42,7 +42,7 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info {
     UIImage *image = info[UIImagePickerControllerOriginalImage];
-//    NSLog(@"cc:%@:%d", image, image.imageOrientation);
+    NSLog(@"cc:%@:__Orientation___%d", image, image.imageOrientation);
 //    [_videoCapture setWatermark:image frame:CGRectMake(0, 0, image.size.width / 10, image.size.height / 10)];
     
     _image = [[YZImage alloc] initWithImage:image];
