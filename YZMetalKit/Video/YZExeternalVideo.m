@@ -17,12 +17,16 @@
 @property (nonatomic, strong) YZEVideoView *videoView;
 @end
 
+/**
+ cropFilter --> PixelBuffer --> MTKView
+ */
+
 @implementation YZExeternalVideo
 
 - (YZEVideoView *)videoView {
     if (!_videoView) {
         _videoView = [[YZEVideoView alloc] initWithFrame:CGRectZero];
-        //_mtkView.fillMode = (YZNewMTKViewFillMode)_fillMode;
+        _videoView.fillMode = (YZEVideoViewFillMode)_fillMode;
         _videoView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     }
     return _videoView;
@@ -57,10 +61,10 @@
             [self.videoView removeFromSuperview];
             self.videoView.frame = player.bounds;
             [player addSubview:self.videoView];
-            self.cropFilter.videoView = self.videoView;
+            self.pixelBuffer.videoView = self.videoView;
         } else {
             [self.videoView removeFromSuperview];
-            self.cropFilter.videoView = nil;
+            self.pixelBuffer.videoView = nil;
         }
     }];
 }

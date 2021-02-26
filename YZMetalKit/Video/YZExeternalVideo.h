@@ -8,11 +8,18 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, YZExeternalVideoFillMode) {
+    YZExeternalVideoFillModeScaleToFill,       // Same as UIViewContentModeScaleToFill
+    YZExeternalVideoFillModeScaleAspectFit,    // Same as UIViewContentModeScaleAspectFit
+    YZExeternalVideoFillModeScaleAspectFill,   // Same as UIViewContentModeScaleAspectFill
+};
+
 @class YZVideoData;
 @protocol YZExeternalVideoDelegate;
 @interface YZExeternalVideo : NSObject
 
 @property (nonatomic, weak) id<YZExeternalVideoDelegate> delegate;
+@property (nonatomic) YZExeternalVideoFillMode fillMode;
 
 @property (nonatomic, weak) UIView *player;
 
