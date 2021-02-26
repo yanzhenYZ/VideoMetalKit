@@ -39,7 +39,7 @@
 {
     self = [super init];
     if (self) {
-//        _renderFirst = YES;
+        _renderFirst = YES;
         CVMetalTextureCacheCreate(NULL, NULL, YZMetalDevice.defaultDevice.device, NULL, &_textureCache);
         _pipelineState = [YZMetalDevice.defaultDevice newRenderPipeline:@"YZInputVertex" fragment:@"YZFragment"];
     }

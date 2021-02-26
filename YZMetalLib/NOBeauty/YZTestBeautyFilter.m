@@ -90,7 +90,6 @@
     [encoder endEncoding];
     
     [commandBuffer commit];
-    //todo -- 
     [commandBuffer waitUntilCompleted];
     
     

@@ -80,15 +80,10 @@
     }
     
     _dataOutput = [[AVCaptureVideoDataOutput alloc] init];
-    _dataOutput.alwaysDiscardsLateVideoFrames = YES;//kCVPixelFormatType_420YpCbCr8BiPlanarFullRange
-#if 1//BGRA__TEST
+    _dataOutput.alwaysDiscardsLateVideoFrames = YES;
     _dataOutput.videoSettings = [NSDictionary dictionaryWithObject:[NSNumber numberWithUnsignedInt:kCVPixelFormatType_32BGRA] forKey:(NSString *)kCVPixelBufferPixelFormatTypeKey];
-#else
-    _dataOutput.videoSettings = [NSDictionary dictionaryWithObject:[NSNumber numberWithUnsignedInt:kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange] forKey:(NSString *)kCVPixelBufferPixelFormatTypeKey];
-#endif
     _dataOutputQueue = dispatch_queue_create("TTT.video.queue", 0);
     [self.dataOutput setSampleBufferDelegate:self queue:self.dataOutputQueue];
-    //
     if ([self.session canAddInput:self.deviceInput]) {
         [self.session addInput:self.deviceInput];
     }

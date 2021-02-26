@@ -11,7 +11,10 @@
 /**
  git push origin --delete xxx 删除xxx分之
  
+ //do
  2.2.1 VideoRange FullRange渲染
+ 
+ 
  2.2.2 VideoRange FullRange带有旋转角度渲染
  
  2.2.3 输入3个平面 y,u,v数据做渲染PixelBuffer渲染 研究

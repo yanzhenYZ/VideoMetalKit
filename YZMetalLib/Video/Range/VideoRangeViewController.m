@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *player;
 @property (weak, nonatomic) IBOutlet UIImageView *showView;
 
+@property (weak, nonatomic) IBOutlet UIImageView *outputView;
 @property (nonatomic, strong) VideoRangeCapture *capture;
 @property (nonatomic, strong) YZExeternalVideo *externalVideo;
 
@@ -30,7 +31,7 @@
     
     _externalVideo = [[YZExeternalVideo alloc] init];
     _externalVideo.delegate = self;
-//    _externalVideo.player = self.showView;
+    _externalVideo.player = self.showView;
     
     _capture = [[VideoRangeCapture alloc] initWithPlayer:_player];
     _capture.delegate = self;
@@ -71,7 +72,7 @@
     CGImageRelease(videoImageRef);
     CVPixelBufferRelease(pixel);
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.showView.image = image;
+        self.outputView.image = image;
     });
 }
 

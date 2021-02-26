@@ -63,6 +63,26 @@
 }
 
 - (void)showPixelBuffer:(CVPixelBufferRef)pixelBuffer {
+    OSType type = CVPixelBufferGetPixelFormatType(pixelBuffer);
+    if (type == kCVPixelFormatType_32BGRA) {
+        [self showBGRAPixelBuffer:pixelBuffer];
+    } else if (type == kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange) {
+        [self showYUVPixelBuffer:pixelBuffer];
+    }
+}
+
+- (void)newTextureAvailable:(id<MTLTexture>)texture {
+    self.texture = texture;
+    self.drawableSize = CGSizeMake(texture.width, texture.height);
+    [self draw];
+}
+#pragma mark - helper
+
+- (void)showYUVPixelBuffer:(CVPixelBufferRef)pixelBuffer {
+#warning mark - todo
+}
+
+- (void)showBGRAPixelBuffer:(CVPixelBufferRef)pixelBuffer {
     int width = (int)CVPixelBufferGetWidth(pixelBuffer);
     int height = (int)CVPixelBufferGetHeight(pixelBuffer);
     CVMetalTextureRef tmpTexture = NULL;
@@ -77,13 +97,6 @@
     CFRelease(tmpTexture);
     [self draw];
 }
-
-- (void)newTextureAvailable:(id<MTLTexture>)texture {
-    self.texture = texture;
-    self.drawableSize = CGSizeMake(texture.width, texture.height);
-    [self draw];
-}
-
 #pragma mark - MTKViewDelegate
 - (void)drawInMTKView:(MTKView *)view {
     if (!view.currentDrawable || !_texture) { return; }

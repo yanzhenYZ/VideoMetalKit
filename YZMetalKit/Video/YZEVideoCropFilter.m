@@ -58,7 +58,13 @@
     OSType type = CVPixelBufferGetPixelFormatType(pixelBuffer);
     if (type == kCVPixelFormatType_32BGRA) {
         [self rotation32BGRA:pixelBuffer rotation:rotation];
+    } else if (type == kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange) {
+        [self rotationPixelBuffer:pixelBuffer rotation:rotation];
     }
+}
+
+- (void)rotationYUV:(CVPixelBufferRef)pixelBuffer rotation:(int)rotation {
+#warning mark - todo
 }
 
 - (void)rotation32BGRA:(CVPixelBufferRef)pixelBuffer rotation:(int)rotation {
