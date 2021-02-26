@@ -8,12 +8,13 @@
 #import <Foundation/Foundation.h>
 #import <CoreVideo/CoreVideo.h>
 
+@class YZVideoData;
 @class YZEVideoPixelBuffer;
 @interface YZEVideoCropFilter : NSObject
 
 @property (nonatomic, strong) YZEVideoPixelBuffer *pixelBuffer;
 
-- (void)inputPixelBuffer:(CVPixelBufferRef)pixelBuffer;
+- (void)inputVideo:(YZVideoData *)videoData;
 @end
 
 

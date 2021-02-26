@@ -84,6 +84,23 @@ typedef NS_ENUM(NSInteger, YZRotation) {
     return [self getTextureCoordinates:AVCaptureDevicePositionFront];
 }
 
++ (simd_float8)getRotationTextureCoordinates:(int)rotation {
+    switch (rotation) {
+        case 90:
+            return YZRotateCounterclockwise;
+            break;
+        case 180:
+            return YZRotate180;
+            break;
+        case 270:
+            return YZRotateClockwise;
+            break;
+        default:
+            return YZNoRotation;
+            break;
+    }
+}
+
 - (simd_float8)getTextureCoordinates:(AVCaptureDevicePosition)position {
     YZRotation rotation = [self getRotation];
     if (position == AVCaptureDevicePositionBack || !_mirror) {

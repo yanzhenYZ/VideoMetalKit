@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreVideo/CVPixelBuffer.h>
+#import <Metal/Metal.h>
 
 @class YZEVideoView;
 @protocol YZEVideoPixelBufferDelegate;
@@ -15,6 +16,7 @@
 
 @property (nonatomic, strong) YZEVideoView *videoView;
 
+- (void)newTextureAvailable:(id<MTLTexture>)texture;
 - (void)inputPixelBuffer:(CVPixelBufferRef)pixelBuffer;
 @end
 

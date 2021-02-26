@@ -63,7 +63,6 @@
 }
 
 - (void)showPixelBuffer:(CVPixelBufferRef)pixelBuffer {
-//    return;
     int width = (int)CVPixelBufferGetWidth(pixelBuffer);
     int height = (int)CVPixelBufferGetHeight(pixelBuffer);
     CVMetalTextureRef tmpTexture = NULL;
@@ -76,6 +75,12 @@
     self.drawableSize = CGSizeMake(width, height);
     self.texture = CVMetalTextureGetTexture(tmpTexture);
     CFRelease(tmpTexture);
+    [self draw];
+}
+
+- (void)newTextureAvailable:(id<MTLTexture>)texture {
+    self.texture = texture;
+    self.drawableSize = CGSizeMake(texture.width, texture.height);
     [self draw];
 }
 

@@ -57,29 +57,6 @@
 }
 
 #pragma mark - helper
-- (int)getOutputRotation {
-    int ratation = 90;
-    UIInterfaceOrientation orientation = UIApplication.sharedApplication.statusBarOrientation;
-    switch (orientation) {
-        case UIInterfaceOrientationPortrait:
-            return 90;
-            break;
-        case UIInterfaceOrientationPortraitUpsideDown:
-            return 270;
-            break;
-        case UIInterfaceOrientationLandscapeLeft:
-            return 0;
-            break;
-        case UIInterfaceOrientationLandscapeRight:
-            return 180;
-            break;
-        default:
-            break;
-    }
-    return ratation;
-    
-}
-
 - (void)configSession {
     _session = [[AVCaptureSession alloc] init];
     __block AVCaptureDevice *camera = nil;
@@ -125,11 +102,13 @@
     [_player.layer addSublayer:previewLayer];
     
     self.session.sessionPreset = AVCaptureSessionPreset640x480;
-#pragma mark - ROTATION__TEST
+#pragma mark - ROTATION__TEST && RRR11
+#if 0
     [_session beginConfiguration];
     _connect = [self.dataOutput connectionWithMediaType:AVMediaTypeVideo];
     [_connect setVideoOrientation:AVCaptureVideoOrientationPortrait];
     [_session commitConfiguration];
+#endif
     
     [camera lockForConfiguration:nil];
     camera.activeVideoMinFrameDuration = CMTimeMake(1, 10);

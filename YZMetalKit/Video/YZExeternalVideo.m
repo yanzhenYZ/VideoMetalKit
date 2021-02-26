@@ -36,6 +36,7 @@
 {
     self = [super init];
     if (self) {
+        _fillMode = YZExeternalVideoFillModeScaleAspectFit;
         _cropFilter = [[YZEVideoCropFilter alloc] init];
         _pixelBuffer = [[YZEVideoPixelBuffer alloc] init];
         _pixelBuffer.delegate = self;
@@ -46,11 +47,7 @@
 }
 
 - (void)inputVideo:(YZVideoData *)videoData {
-    if (videoData.pixelBuffer) {
-        [_cropFilter inputPixelBuffer:videoData.pixelBuffer];
-    } else {
-        
-    }
+    [_cropFilter inputVideo:videoData];
 }
 
 - (void)setPlayer:(UIView *)player {

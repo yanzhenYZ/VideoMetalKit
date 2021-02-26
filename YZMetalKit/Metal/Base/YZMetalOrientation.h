@@ -31,7 +31,7 @@ typedef NS_ENUM(NSInteger, YZOrientation) {
 
 + (simd_float8)defaultVertices;
 + (simd_float8)defaultTextureCoordinates;
-
++ (simd_float8)getRotationTextureCoordinates:(int)rotation;
 
 - (simd_float8)getTextureCoordinates;
 - (simd_float8)getTextureCoordinates:(AVCaptureDevicePosition)position;

@@ -17,4 +17,7 @@
     [_videoView showPixelBuffer:pixelBuffer];
 }
 
+- (void)newTextureAvailable:(id<MTLTexture>)texture {
+    [_videoView newTextureAvailable:texture];
+}
 @end

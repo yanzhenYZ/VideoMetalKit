@@ -16,6 +16,7 @@ typedef NS_ENUM(NSInteger, YZEVideoViewFillMode) {
 @interface YZEVideoView : MTKView
 @property (nonatomic) YZEVideoViewFillMode fillMode;
 
+- (void)newTextureAvailable:(id<MTLTexture>)texture;
 - (void)showPixelBuffer:(CVPixelBufferRef)pixelBuffer;
 
 @end

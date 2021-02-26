@@ -52,6 +52,10 @@
     //[self showPixelBuffer:pixelBuffer];
     YZVideoData *data = [[YZVideoData alloc] init];
     data.pixelBuffer = pixelBuffer;
+#pragma mark - ROTATION__TEST && RRR11
+#if 1//不设置AVCaptureConnection视频方向需要设置
+    data.rotation = [self getOutputRotation];
+#endif
     [_externalVideo inputVideo:data];
 }
 
@@ -68,5 +72,28 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         self.showView.image = image;
     });
+}
+
+- (int)getOutputRotation {//test code
+    int ratation = 0;
+    UIInterfaceOrientation orientation = UIApplication.sharedApplication.statusBarOrientation;
+    switch (orientation) {
+        case UIInterfaceOrientationPortrait:
+            return 90;
+            break;
+        case UIInterfaceOrientationPortraitUpsideDown:
+            return 270;
+            break;
+        case UIInterfaceOrientationLandscapeLeft:
+            return 0;
+            break;
+        case UIInterfaceOrientationLandscapeRight:
+            return 180;
+            break;
+        default:
+            break;
+    }
+    return ratation;
+    
 }
 @end
