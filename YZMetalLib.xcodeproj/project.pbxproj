@@ -62,6 +62,15 @@
 		9B77FBE325A94A9F0028A004 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B77FBE225A94A9F0028A004 /* SecondViewController.m */; };
 		9B77FBE725A94B9C0028A004 /* YZVideoCapture.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B77FBE525A94B9C0028A004 /* YZVideoCapture.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9B77FBE825A94B9C0028A004 /* YZVideoCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B77FBE625A94B9C0028A004 /* YZVideoCapture.m */; };
+		9B9C6A7925E8CF0F008FC649 /* VideoAllViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C6A7825E8CF0F008FC649 /* VideoAllViewController.m */; };
+		9B9C6A7D25E8CFD8008FC649 /* VideoMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C6A7C25E8CFD8008FC649 /* VideoMainViewController.m */; };
+		9B9C6A8625E8D028008FC649 /* Video.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B9C6A8425E8D028008FC649 /* Video.storyboard */; };
+		9B9C6A8A25E8D097008FC649 /* YZExeternalVideo.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B9C6A8825E8D097008FC649 /* YZExeternalVideo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9B9C6A8B25E8D097008FC649 /* YZExeternalVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C6A8925E8D097008FC649 /* YZExeternalVideo.m */; };
+		9B9C6A9125E8D4EC008FC649 /* VideoBGRAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C6A9025E8D4EC008FC649 /* VideoBGRAViewController.m */; };
+		9B9C6A9725E8D5C9008FC649 /* VideoBGRACapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C6A9625E8D5C9008FC649 /* VideoBGRACapture.m */; };
+		9B9C6AAF25E8DB1A008FC649 /* YZVideoData.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B9C6AAD25E8DB1A008FC649 /* YZVideoData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9B9C6AB025E8DB1A008FC649 /* YZVideoData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C6AAE25E8DB1A008FC649 /* YZVideoData.m */; };
 		9BB00042257FB7F400207AF3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB00041257FB7F400207AF3 /* AppDelegate.m */; };
 		9BB0004B257FB7F400207AF3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BB00049257FB7F400207AF3 /* Main.storyboard */; };
 		9BB0004D257FB7F600207AF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BB0004C257FB7F600207AF3 /* Assets.xcassets */; };
@@ -158,6 +167,19 @@
 		9B77FBE225A94A9F0028A004 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		9B77FBE525A94B9C0028A004 /* YZVideoCapture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZVideoCapture.h; sourceTree = "<group>"; };
 		9B77FBE625A94B9C0028A004 /* YZVideoCapture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZVideoCapture.m; sourceTree = "<group>"; };
+		9B9C6A7725E8CF0F008FC649 /* VideoAllViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoAllViewController.h; sourceTree = "<group>"; };
+		9B9C6A7825E8CF0F008FC649 /* VideoAllViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoAllViewController.m; sourceTree = "<group>"; };
+		9B9C6A7B25E8CFD8008FC649 /* VideoMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoMainViewController.h; sourceTree = "<group>"; };
+		9B9C6A7C25E8CFD8008FC649 /* VideoMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoMainViewController.m; sourceTree = "<group>"; };
+		9B9C6A8525E8D028008FC649 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Video.storyboard; sourceTree = "<group>"; };
+		9B9C6A8825E8D097008FC649 /* YZExeternalVideo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZExeternalVideo.h; sourceTree = "<group>"; };
+		9B9C6A8925E8D097008FC649 /* YZExeternalVideo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZExeternalVideo.m; sourceTree = "<group>"; };
+		9B9C6A8F25E8D4EC008FC649 /* VideoBGRAViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoBGRAViewController.h; sourceTree = "<group>"; };
+		9B9C6A9025E8D4EC008FC649 /* VideoBGRAViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoBGRAViewController.m; sourceTree = "<group>"; };
+		9B9C6A9525E8D5C9008FC649 /* VideoBGRACapture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoBGRACapture.h; sourceTree = "<group>"; };
+		9B9C6A9625E8D5C9008FC649 /* VideoBGRACapture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoBGRACapture.m; sourceTree = "<group>"; };
+		9B9C6AAD25E8DB1A008FC649 /* YZVideoData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZVideoData.h; sourceTree = "<group>"; };
+		9B9C6AAE25E8DB1A008FC649 /* YZVideoData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZVideoData.m; sourceTree = "<group>"; };
 		9BB0003D257FB7F400207AF3 /* YZMetalLib.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YZMetalLib.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BB00040257FB7F400207AF3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9BB00041257FB7F400207AF3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -234,6 +256,7 @@
 		9B77FBA025A949440028A004 /* YZMetalKit */ = {
 			isa = PBXGroup;
 			children = (
+				9B9C6A7525E8CE99008FC649 /* Video */,
 				9B77FBA125A949440028A004 /* YZMetalKit.h */,
 				9B6DC26025DE50A5002B77E8 /* YZFilterCapture.h */,
 				9B6DC26125DE50A5002B77E8 /* YZFilterCapture.m */,
@@ -332,6 +355,40 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		9B9C6A7425E8CE84008FC649 /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				9B9C6A8E25E8D4D3008FC649 /* BGRA */,
+				9B9C6A7725E8CF0F008FC649 /* VideoAllViewController.h */,
+				9B9C6A7825E8CF0F008FC649 /* VideoAllViewController.m */,
+				9B9C6A7B25E8CFD8008FC649 /* VideoMainViewController.h */,
+				9B9C6A7C25E8CFD8008FC649 /* VideoMainViewController.m */,
+			);
+			path = Video;
+			sourceTree = "<group>";
+		};
+		9B9C6A7525E8CE99008FC649 /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				9B9C6A8825E8D097008FC649 /* YZExeternalVideo.h */,
+				9B9C6A8925E8D097008FC649 /* YZExeternalVideo.m */,
+				9B9C6AAD25E8DB1A008FC649 /* YZVideoData.h */,
+				9B9C6AAE25E8DB1A008FC649 /* YZVideoData.m */,
+			);
+			path = Video;
+			sourceTree = "<group>";
+		};
+		9B9C6A8E25E8D4D3008FC649 /* BGRA */ = {
+			isa = PBXGroup;
+			children = (
+				9B9C6A8F25E8D4EC008FC649 /* VideoBGRAViewController.h */,
+				9B9C6A9025E8D4EC008FC649 /* VideoBGRAViewController.m */,
+				9B9C6A9525E8D5C9008FC649 /* VideoBGRACapture.h */,
+				9B9C6A9625E8D5C9008FC649 /* VideoBGRACapture.m */,
+			);
+			path = BGRA;
+			sourceTree = "<group>";
+		};
 		9BB00034257FB7F400207AF3 = {
 			isa = PBXGroup;
 			children = (
@@ -355,10 +412,12 @@
 			children = (
 				9BB00040257FB7F400207AF3 /* AppDelegate.h */,
 				9BB00041257FB7F400207AF3 /* AppDelegate.m */,
+				9B9C6A7425E8CE84008FC649 /* Video */,
 				9B6DC26725DE50FA002B77E8 /* Filters */,
 				9B6DC26E25DE51E4002B77E8 /* Captures */,
 				9B6DC24C25CC0879002B77E8 /* NOBeauty */,
 				9BB00049257FB7F400207AF3 /* Main.storyboard */,
+				9B9C6A8425E8D028008FC649 /* Video.storyboard */,
 				9BB0004C257FB7F600207AF3 /* Assets.xcassets */,
 				9BB0004E257FB7F600207AF3 /* LaunchScreen.storyboard */,
 				9BB00051257FB7F600207AF3 /* Info.plist */,
@@ -374,12 +433,14 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B9C6A8A25E8D097008FC649 /* YZExeternalVideo.h in Headers */,
 				9B6DC26225DE50A5002B77E8 /* YZFilterCapture.h in Headers */,
 				9B77FBE725A94B9C0028A004 /* YZVideoCapture.h in Headers */,
 				9B135AE025BECC2A006F6205 /* YZOutputCapture.h in Headers */,
 				9B6DC23425CBE266002B77E8 /* YZCropFilter.h in Headers */,
 				9B6DC27425DE64CC002B77E8 /* YZNewCropFilter.h in Headers */,
 				9B77FBD525A949700028A004 /* YZBrightness.h in Headers */,
+				9B9C6AAF25E8DB1A008FC649 /* YZVideoData.h in Headers */,
 				9B6DC27B25DF5801002B77E8 /* YZNewMTKView.h in Headers */,
 				9B6DC24725CC082D002B77E8 /* YZNOBeautyCapture.h in Headers */,
 				9B135B0B25BFC7B4006F6205 /* YZBlendFilter.h in Headers */,
@@ -488,6 +549,7 @@
 			files = (
 				9BB00050257FB7F600207AF3 /* LaunchScreen.storyboard in Resources */,
 				9BB0004D257FB7F600207AF3 /* Assets.xcassets in Resources */,
+				9B9C6A8625E8D028008FC649 /* Video.storyboard in Resources */,
 				9BB0004B257FB7F400207AF3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -514,6 +576,8 @@
 				9B77FBC925A949700028A004 /* YZVertexFragment.metal in Sources */,
 				9B77FBDA25A949700028A004 /* YZMetalFilter.m in Sources */,
 				9B77FBCE25A949700028A004 /* YZMetalOutput.m in Sources */,
+				9B9C6AB025E8DB1A008FC649 /* YZVideoData.m in Sources */,
+				9B9C6A8B25E8D097008FC649 /* YZExeternalVideo.m in Sources */,
 				9B77FBD425A949700028A004 /* YZBrightness.m in Sources */,
 				9B77FBC825A949700028A004 /* YZYUVToRGBConversion.metal in Sources */,
 				9B77FBD025A949700028A004 /* YZMTKView.m in Sources */,
@@ -529,12 +593,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B9C6A7925E8CF0F008FC649 /* VideoAllViewController.m in Sources */,
 				9B77FBE325A94A9F0028A004 /* SecondViewController.m in Sources */,
 				9BE85D5925B2E187005C7D82 /* ThirdViewController.m in Sources */,
+				9B9C6A9125E8D4EC008FC649 /* VideoBGRAViewController.m in Sources */,
+				9B9C6A9725E8D5C9008FC649 /* VideoBGRACapture.m in Sources */,
 				9B6DC25425CC0C4D002B77E8 /* YZTestBeautyManager.m in Sources */,
 				9BB00042257FB7F400207AF3 /* AppDelegate.m in Sources */,
 				9B135AE825BECCAC006F6205 /* OutputViewController.m in Sources */,
 				9BB00053257FB7F600207AF3 /* main.m in Sources */,
+				9B9C6A7D25E8CFD8008FC649 /* VideoMainViewController.m in Sources */,
 				9B6DC26B25DE51AB002B77E8 /* FiltersViewController.m in Sources */,
 				9B6DC25825CC0C71002B77E8 /* YZTestBeautyFilter.m in Sources */,
 				9BE85D5325B2D7C6005C7D82 /* FirstViewController.m in Sources */,
@@ -555,6 +623,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		9B9C6A8425E8D028008FC649 /* Video.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9B9C6A8525E8D028008FC649 /* Base */,
+			);
+			name = Video.storyboard;
+			sourceTree = "<group>";
+		};
 		9BB00049257FB7F400207AF3 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

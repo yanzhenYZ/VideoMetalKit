@@ -14,3 +14,7 @@
 
 //use
 #import "YZFilterCapture.h"
+
+//video
+#import "YZExeternalVideo.h"
+#import "YZVideoData.h"
