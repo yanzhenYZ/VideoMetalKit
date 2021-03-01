@@ -9,11 +9,13 @@
 #import "YZMetalOrientation.h"
 #import "YZEVideoView.h"
 #import "YZMetalDevice.h"
+#import "YZEYUVBuffer.h"
 
 @interface YZEVideoPixelBuffer ()
 @property (nonatomic, strong) id<MTLRenderPipelineState> pipelineState;
 @property (nonatomic, assign) CVMetalTextureCacheRef textureCache;
 @property (nonatomic, strong) id<MTLTexture> texture;
+@property (nonatomic, strong) YZEYUVBuffer *yuvBuffer;
 @property (nonatomic) CGSize size;
 @end
 
@@ -35,6 +37,13 @@
     }
 }
 
+- (YZEYUVBuffer *)yuvBuffer {
+    if (!_yuvBuffer) {
+        _yuvBuffer = [[YZEYUVBuffer alloc] init];
+    }
+    return _yuvBuffer;
+}
+
 - (instancetype)init
 {
     self = [super init];
@@ -46,11 +55,21 @@
     return self;
 }
 
-- (void)inputPixelBuffer:(CVPixelBufferRef)pixelBuffer {
+- (void)inputBGRAPixelBuffer:(CVPixelBufferRef)pixelBuffer {
     if ([_delegate respondsToSelector:@selector(buffer:pixelBuffer:)]) {
         [_delegate buffer:self pixelBuffer:pixelBuffer];
     }
     [_videoView showPixelBuffer:pixelBuffer];
+}
+
+- (void)inputYUVPixelBuffer:(CVPixelBufferRef)pixelBuffer {
+//    if ([_delegate respondsToSelector:@selector(buffer:pixelBuffer:)]) {
+//        [_delegate buffer:self pixelBuffer:pixelBuffer];
+//    }
+    
+    id<MTLTexture> texture = [self.yuvBuffer inputYUVPixelBuffer:pixelBuffer];
+    [_videoView newTextureAvailable:texture];
+    [self newTextureAvailable:texture];
 }
 
 - (void)newTextureAvailable:(id<MTLTexture>)texture {
@@ -89,7 +108,7 @@
             [_delegate buffer:self pixelBuffer:_pixelBuffer];
         }
     } else {
-        [self inputPixelBuffer:_pixelBuffer];
+        [self inputBGRAPixelBuffer:_pixelBuffer];
     }
 }
 

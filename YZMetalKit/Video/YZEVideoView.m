@@ -22,6 +22,7 @@
 @end
 
 @implementation YZEVideoView
+
 - (void)dealloc
 {
     if (_textureCache) {
@@ -67,7 +68,7 @@
     if (type == kCVPixelFormatType_32BGRA) {
         [self showBGRAPixelBuffer:pixelBuffer];
     } else if (type == kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange) {
-        [self showYUVPixelBuffer:pixelBuffer];
+        //[self showYUVPixelBuffer:pixelBuffer fullYUV:NO];
     }
 }
 
@@ -77,10 +78,6 @@
     [self draw];
 }
 #pragma mark - helper
-
-- (void)showYUVPixelBuffer:(CVPixelBufferRef)pixelBuffer {
-#warning mark - todo
-}
 
 - (void)showBGRAPixelBuffer:(CVPixelBufferRef)pixelBuffer {
     int width = (int)CVPixelBufferGetWidth(pixelBuffer);

@@ -14,6 +14,7 @@
 @interface YZEVideoCropFilter ()
 @property (nonatomic, assign) CVMetalTextureCacheRef textureCache;
 @property (nonatomic, strong) id<MTLRenderPipelineState> pipelineState;
+//@property (nonatomic, strong) YZEYUVBuffer *yuvBuffer;
 @end
 
 @implementation YZEVideoCropFilter
@@ -47,21 +48,22 @@
 #pragma mark - helper
 //pixelBuffer
 - (void)inputPixelBuffer:(YZVideoData *)videoData {
-    if (videoData.rotation == 0) {
-        [_pixelBuffer inputPixelBuffer:videoData.pixelBuffer];
-    } else {
-        [self rotationPixelBuffer:videoData.pixelBuffer rotation:videoData.rotation];
+    OSType type = CVPixelBufferGetPixelFormatType(videoData.pixelBuffer);
+    if (type == kCVPixelFormatType_32BGRA) {
+        if (videoData.rotation == 0) {
+            [_pixelBuffer inputBGRAPixelBuffer:videoData.pixelBuffer];
+        } else {
+            [self rotation32BGRA:videoData.pixelBuffer rotation:videoData.rotation];
+        }
+    } else if (type == kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange) {
+        if (videoData.rotation == 0) {
+            [_pixelBuffer inputYUVPixelBuffer:videoData.pixelBuffer];
+        } else {
+            [self rotationYUV:videoData.pixelBuffer rotation:videoData.rotation];
+        }
     }
 }
 
-- (void)rotationPixelBuffer:(CVPixelBufferRef)pixelBuffer rotation:(int)rotation {
-    OSType type = CVPixelBufferGetPixelFormatType(pixelBuffer);
-    if (type == kCVPixelFormatType_32BGRA) {
-        [self rotation32BGRA:pixelBuffer rotation:rotation];
-    } else if (type == kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange) {
-        [self rotationPixelBuffer:pixelBuffer rotation:rotation];
-    }
-}
 
 - (void)rotationYUV:(CVPixelBufferRef)pixelBuffer rotation:(int)rotation {
 #warning mark - todo

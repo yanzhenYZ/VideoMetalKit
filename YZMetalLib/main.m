@@ -11,9 +11,8 @@
 /**
  git push origin --delete xxx 删除xxx分之
  
- //do
  2.2.1 VideoRange FullRange渲染
- 
+  todo yuv直接渲染
  
  2.2.2 VideoRange FullRange带有旋转角度渲染
  

@@ -18,7 +18,8 @@
 @property (nonatomic, assign) BOOL renderFirst;//先渲染，后输出
 
 - (void)newTextureAvailable:(id<MTLTexture>)texture;
-- (void)inputPixelBuffer:(CVPixelBufferRef)pixelBuffer;
+- (void)inputBGRAPixelBuffer:(CVPixelBufferRef)pixelBuffer;
+- (void)inputYUVPixelBuffer:(CVPixelBufferRef)pixelBuffer;
 @end
 
 @protocol YZEVideoPixelBufferDelegate <NSObject>
