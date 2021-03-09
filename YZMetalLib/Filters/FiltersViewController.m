@@ -20,7 +20,10 @@
 @property (nonatomic, assign) BOOL cap;
 @end
 
-@implementation FiltersViewController
+@implementation FiltersViewController {
+    int8_t *_imageBuffer;
+    NSUInteger _jpgLen;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -34,7 +37,7 @@
     _capture.player = self.player;
     _capture.delegate = self;
     [_capture startRunning];
-    [NSTimer scheduledTimerWithTimeInterval:5 repeats:YES block:^(NSTimer * _Nonnull timer) {
+    [NSTimer scheduledTimerWithTimeInterval:10 repeats:YES block:^(NSTimer * _Nonnull timer) {
         self.cap = YES;
     }];
     
@@ -56,9 +59,11 @@
     }
 }
 
-/**todo
- 1. context直接转data
- 2. 跨线程送出数据
+/**
+ 1. 线程送出jpg数据
+ 
+ //todo - test
+ 2. context直接转data
  */
 - (void)showPixelBuffer:(CVPixelBufferRef)pixel {
     CVPixelBufferRetain(pixel);
@@ -72,12 +77,37 @@
     //UIImage *jpgImage = [UIImage imageWithData:data];
     CGImageRelease(videoImageRef);
     CVPixelBufferRelease(pixel);
+    [self reportJPGData:data];
     
 //    dispatch_async(dispatch_get_main_queue(), ^{
 //        self.smallPlayer.image = jpgImage;
 //    });
 }
 
+- (void)reportJPGData:(NSData *)data {
+    if (_jpgLen < data.length) {
+        if (_imageBuffer) {
+            free(_imageBuffer);
+        }
+        _jpgLen = data.length;
+        _imageBuffer = malloc(_jpgLen);
+    }
+    memcpy(_imageBuffer, data.bytes, data.length);
+//    [self testDisPlayImage:data.length];
+}
+
+- (void)testDisPlayImage:(NSUInteger)len {
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSData *data = [[NSData alloc] initWithBytes:_imageBuffer length:len];
+        UIImage *jpgImage = [UIImage imageWithData:data];
+        self.smallPlayer.image = jpgImage;
+    });
+}
+
+
+
+//keep
 - (void)showPixelBuffer_keep:(CVPixelBufferRef)pixel {
     CVPixelBufferRetain(pixel);
     CIImage *ciImage = [CIImage imageWithCVImageBuffer:pixel];
