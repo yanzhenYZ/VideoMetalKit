@@ -10,9 +10,6 @@
 const char* YZBeautyString =
 "using namespace metal;\n"
 
-"constant half3x3 saturateMatrix = half3x3(half3(1.1102,-0.0598,-0.061),half3(-0.0774,1.0826,-0.1186),half3(-0.0228,-0.0228,1.1772));\n"
-"constant half3 W = half3(0.299, 0.587, 0.114);\n"
-
 "struct YZBrightnessVertexIO\n"
 "{\n"
 "    float4 position [[position]];\n"
@@ -102,6 +99,7 @@ const char* YZBeautyString =
 "    g = g / 62.0;\n"
 "    half highPass = centralColor.g - g + 0.5;\n"
 "    highPass = hardLight(highPass);\n"
+"    half3 W = half3(0.299, 0.587, 0.114);\n"
 "    half lumance = dot(centralColor, W);\n"
 "    half beauty = uniform.beautyLevel;\n"
 "    half tone = 0.5;\n"
@@ -121,6 +119,7 @@ const char* YZBeautyString =
 "    half4 color = half4(mix(centralColor, lvse, alpha), 1.0);\n"
 "    color.rgb = mix(color.rgb, bianliang, alpha);\n"
 "    color.rgb = mix(color.rgb, rouguang, params.b);\n"
+"    half3x3 saturateMatrix = half3x3(half3(1.1102,-0.0598,-0.061),half3(-0.0774,1.0826,-0.1186),half3(-0.0228,-0.0228,1.1772));\n"
 "    half3 satcolor = color.rgb * saturateMatrix;\n"
 "    color.rgb = mix(color.rgb, satcolor, params.a);\n"
 "    float brightness = uniform.brightLevel * 0.3;\n"
