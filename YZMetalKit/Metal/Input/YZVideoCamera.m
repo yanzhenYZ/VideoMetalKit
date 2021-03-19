@@ -340,6 +340,7 @@
     
     //yuv
     simd_float8 textureCoordinates = [_orientation getTextureCoordinates:_position];
+    //设置给顶点函数
     [encoder setVertexBytes:&textureCoordinates length:sizeof(simd_float8) atIndex:YZFullRangeVertexIndexY];
     [encoder setFragmentTexture:textureY atIndex:YZFullRangeFragmentIndexY];
     [encoder setVertexBytes:&textureCoordinates length:sizeof(simd_float8) atIndex:YZFullRangeVertexIndexUV];
@@ -348,6 +349,7 @@
     //coversion
     
     id<MTLBuffer> uniformBuffer = [YZMetalDevice.defaultDevice.device newBufferWithBytes:_colorConversion length:sizeof(float) * 12 options:MTLResourceCPUCacheModeDefaultCache];
+    //设置给片元函数
     [encoder setFragmentBuffer:uniformBuffer offset:0 atIndex:YZUniformIndexNormal];
     
     [encoder drawPrimitives:MTLPrimitiveTypeTriangleStrip vertexStart:0 vertexCount:4];
