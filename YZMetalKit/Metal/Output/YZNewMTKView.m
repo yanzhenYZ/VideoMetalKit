@@ -72,8 +72,17 @@
         CVPixelBufferRelease(pixelBuffer);
         return;
     }
-    
-    self.drawableSize = CGSizeMake(width, height);
+     /**
+      0    libobjc.A.dylib _objc_msgSend + 20
+      1    UIKitCore -[UIWindow convertRect:toCoordinateSpace:] + 540
+      2    UIKitCore -[UIView convertRect:toCoordinateSpace:] + 364
+      3    MetalKit -[MTKView setContentScaleFactor:] + 372
+      4    MetalKit -[MTKView setDrawableSize:] + 100
+      */
+    CGSize size = CGSizeMake(width, height);
+    if (!CGSizeEqualToSize(self.drawableSize, size)) {
+        self.drawableSize = size;
+    }
     self.texture = CVMetalTextureGetTexture(tmpTexture);
     CFRelease(tmpTexture);
     [self draw];
