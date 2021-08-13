@@ -23,6 +23,8 @@
 #if PIXELBUFFER
 @property (nonatomic, assign) CVMetalTextureCacheRef textureCache;
 #endif
+
+@property (nonatomic, strong) CAMetalLayer *metalLayer;
 @end
 
 @implementation YZMTKView
@@ -44,6 +46,7 @@
     if (self) {
         [self _configSelf];
         self.currentBounds = self.bounds;
+        _metalLayer = (CAMetalLayer *)self.layer;
     }
     return self;
 }
@@ -90,18 +93,17 @@
 #if 1
 -(void)newTextureAvailable:(id<MTLTexture>)texture{
     _texture = texture;
-    /**
-     0    libobjc.A.dylib _objc_msgSend + 20
-     1    UIKitCore -[UIWindow convertRect:toCoordinateSpace:] + 540
-     2    UIKitCore -[UIView convertRect:toCoordinateSpace:] + 364
-     3    MetalKit -[MTKView setContentScaleFactor:] + 372
-     4    MetalKit -[MTKView setDrawableSize:] + 100
-     */
     CGSize size = CGSizeMake(texture.width, texture.height);
-    if (!CGSizeEqualToSize(self.drawableSize, size)) {
-        self.drawableSize = size;
+    if (!CGSizeEqualToSize(self.metalLayer.drawableSize, size)) {
+        //NSLog(@"____Size:%@", NSStringFromCGSize(size));
+        self.metalLayer.drawableSize = size;
     }
     [self draw];
+}
+
+- (void)setContentScaleFactor:(CGFloat)contentScaleFactor {
+    [super setContentScaleFactor:contentScaleFactor];
+    //NSLog(@"______CCC_%f", contentScaleFactor);
 }
 #else
 -(void)newTextureAvailable:(id<MTLTexture>)texture{
