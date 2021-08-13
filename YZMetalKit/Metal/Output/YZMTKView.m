@@ -90,7 +90,7 @@
 #endif
 }
 
-#if 1
+#if 1//question： 设置父视图或更新父视图出现输出纹理大小和self.metalLayer.drawableSize 不相等
 -(void)newTextureAvailable:(id<MTLTexture>)texture{
     _texture = texture;
     CGSize size = CGSizeMake(texture.width, texture.height);
@@ -127,7 +127,7 @@
 - (void)drawInMTKView:(MTKView *)view {
     if (!view.currentDrawable || !_texture) { return; }
     id<MTLTexture> outTexture = view.currentDrawable.texture;
-    
+    NSLog(@"____Size:%d:%d", outTexture.width, outTexture.height);
     MTLRenderPassDescriptor *desc = [YZMetalDevice newRenderPassDescriptor:outTexture];
     desc.colorAttachments[0].clearColor = MTLClearColorMake(_red, _green, _blue, _alpha);
     
@@ -164,7 +164,10 @@
 }
 
 - (void)mtkView:(MTKView *)view drawableSizeWillChange:(CGSize)size {
-    
+//    NSLog(@"____Size:%f:%f", size.width, size.height);
+//    if (CGSizeEqualToSize(size, self.metalLayer.drawableSize)) {
+//
+//    }
 }
 
 #pragma mark - private config
