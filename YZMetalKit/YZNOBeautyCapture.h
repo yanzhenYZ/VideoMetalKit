@@ -52,7 +52,7 @@
 @optional
 - (void)videoCapture:(YZNOBeautyCapture *)videoCapture outputPixelBuffer:(CVPixelBufferRef)pixelBuffer;
 - (void)videoCapture:(YZNOBeautyCapture *)videoCapture dropFrames:(int)frames;
-
+- (void)videoCapture:(YZNOBeautyCapture *)videoCapture snapImage:(UIImage *)image;
 @end
 
 

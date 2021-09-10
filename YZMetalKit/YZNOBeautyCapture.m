@@ -10,7 +10,7 @@
 #import "YZNewPixelBuffer.h"
 #import "YZMTKView.h"
 
-@interface YZNOBeautyCapture ()<YZVideoCameraOutputDelegate, YZNewPixelBufferDelegate>
+@interface YZNOBeautyCapture ()<YZVideoCameraOutputDelegate, YZNewPixelBufferDelegate, YZMTKViewDelegate>
 @property (nonatomic, strong) YZVideoCamera *camera;
 @property (nonatomic, strong) YZMTKView *mtkView;
 @property (nonatomic, strong) YZNewPixelBuffer *pixelBuffer;
@@ -50,12 +50,19 @@
 - (YZMTKView *)mtkView {
     if (!_mtkView) {
         _mtkView = [[YZMTKView alloc] initWithFrame:CGRectZero];
+        _mtkView.mtkDelegate = self;
         _mtkView.fillMode = YZMTKViewFillModeScaleAspectFit;
         _mtkView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     }
     return _mtkView;
 }
 
+#pragma mark - YZMTKViewDelegate
+- (void)mtkView:(YZMTKView *)view snapImage:(UIImage *)image {
+    if ([_delegate respondsToSelector:@selector(videoCapture:snapImage:)]) {
+        [_delegate videoCapture:self snapImage:image];
+    }
+}
 #pragma mark - property
 - (void)setPlayer:(UIView *)player {
     if (_player == player) { return; }

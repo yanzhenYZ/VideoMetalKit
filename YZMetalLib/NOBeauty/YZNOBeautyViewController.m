@@ -45,10 +45,15 @@
 
 #pragma mark - YZNOBeautyCaptureDelegate
 -(void)videoCapture:(YZNOBeautyCapture *)videoCapture outputPixelBuffer:(CVPixelBufferRef)pixelBuffer {
-    [_manager dealPixelBuffer:pixelBuffer];
-    [self showPixelBuffer:pixelBuffer];
+//    [_manager dealPixelBuffer:pixelBuffer];
+//    [self showPixelBuffer:pixelBuffer];
 }
 
+- (void)videoCapture:(YZNOBeautyCapture *)videoCapture snapImage:(UIImage *)image {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.smallPlayer.image = image;
+    });
+}
 
 - (void)showPixelBuffer:(CVPixelBufferRef)pixel {
     CVPixelBufferRetain(pixel);
