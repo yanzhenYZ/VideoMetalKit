@@ -891,8 +891,16 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="43z-wd-ArS">
-                                <rect key="frame" x="0.0" y="44" width="294" height="40"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Uok-VV-Vz1">
+                                <rect key="frame" x="234" y="50" width="180" height="135"/>
+                                <color key="backgroundColor" systemColor="systemPurpleColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="135" id="f7U-R8-aRX"/>
+                                    <constraint firstAttribute="width" constant="180" id="txH-t3-gAY"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="43z-wd-ArS">
+                                <rect key="frame" x="0.0" y="44" width="234" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yCE-zz-wOR">
                                         <rect key="frame" x="0.0" y="0.0" width="45" height="40"/>
@@ -921,14 +929,6 @@
                                     <constraint firstItem="AXS-C1-9Ee" firstAttribute="leading" secondItem="yCE-zz-wOR" secondAttribute="trailing" constant="5" id="rlS-RI-Lnx"/>
                                 </constraints>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Uok-VV-Vz1">
-                                <rect key="frame" x="234" y="50" width="180" height="135"/>
-                                <color key="backgroundColor" systemColor="systemPurpleColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="135" id="f7U-R8-aRX"/>
-                                    <constraint firstAttribute="width" constant="180" id="txH-t3-gAY"/>
-                                </constraints>
-                            </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QcJ-Vq-XTY">
                                 <rect key="frame" x="234" y="190" width="180" height="135"/>
                                 <color key="backgroundColor" systemColor="systemPurpleColor"/>
@@ -945,6 +945,7 @@
                             <constraint firstItem="43z-wd-ArS" firstAttribute="leading" secondItem="fjr-mp-ZN9" secondAttribute="leading" id="8zc-k2-5Fe"/>
                             <constraint firstItem="Saa-HT-RpD" firstAttribute="leading" secondItem="fjr-mp-ZN9" secondAttribute="leading" id="IRq-E6-Dpd"/>
                             <constraint firstItem="QcJ-Vq-XTY" firstAttribute="top" secondItem="Uok-VV-Vz1" secondAttribute="bottom" constant="5" id="JwL-m6-Rnu"/>
+                            <constraint firstItem="Uok-VV-Vz1" firstAttribute="leading" secondItem="43z-wd-ArS" secondAttribute="trailing" id="Whq-WX-vI6"/>
                             <constraint firstItem="Saa-HT-RpD" firstAttribute="top" secondItem="pNx-bb-Avk" secondAttribute="top" id="ZCd-1q-KFH"/>
                             <constraint firstAttribute="bottom" secondItem="Saa-HT-RpD" secondAttribute="bottom" id="frC-nD-nog"/>
                             <constraint firstItem="Saa-HT-RpD" firstAttribute="trailing" secondItem="fjr-mp-ZN9" secondAttribute="trailing" id="iBO-bd-Y0L"/>
