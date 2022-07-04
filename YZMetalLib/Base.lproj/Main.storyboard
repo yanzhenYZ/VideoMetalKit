@@ -887,10 +887,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7TE-Lw-gnV">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Saa-HT-RpD">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <color key="backgroundColor" systemColor="systemYellowColor"/>
-                            </view>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="43z-wd-ArS">
                                 <rect key="frame" x="0.0" y="44" width="234" height="40"/>
                                 <subviews>
@@ -938,11 +938,11 @@
                         <constraints>
                             <constraint firstItem="43z-wd-ArS" firstAttribute="leading" secondItem="fjr-mp-ZN9" secondAttribute="leading" id="8zc-k2-5Fe"/>
                             <constraint firstItem="MF5-4W-cJR" firstAttribute="centerY" secondItem="Uok-VV-Vz1" secondAttribute="centerY" id="IHE-7G-EWM"/>
+                            <constraint firstItem="Saa-HT-RpD" firstAttribute="leading" secondItem="fjr-mp-ZN9" secondAttribute="leading" id="IRq-E6-Dpd"/>
                             <constraint firstItem="fjr-mp-ZN9" firstAttribute="trailing" secondItem="Uok-VV-Vz1" secondAttribute="trailing" id="Mom-aN-EHJ"/>
-                            <constraint firstItem="7TE-Lw-gnV" firstAttribute="top" secondItem="pNx-bb-Avk" secondAttribute="top" id="X4P-jf-emU"/>
-                            <constraint firstItem="7TE-Lw-gnV" firstAttribute="leading" secondItem="pNx-bb-Avk" secondAttribute="leading" id="afR-uS-gG4"/>
-                            <constraint firstAttribute="bottom" secondItem="7TE-Lw-gnV" secondAttribute="bottom" id="b0I-Cg-ePu"/>
-                            <constraint firstItem="fjr-mp-ZN9" firstAttribute="trailing" secondItem="7TE-Lw-gnV" secondAttribute="trailing" id="gDB-MH-E1i"/>
+                            <constraint firstItem="Saa-HT-RpD" firstAttribute="top" secondItem="pNx-bb-Avk" secondAttribute="top" id="ZCd-1q-KFH"/>
+                            <constraint firstAttribute="bottom" secondItem="Saa-HT-RpD" secondAttribute="bottom" id="frC-nD-nog"/>
+                            <constraint firstItem="Saa-HT-RpD" firstAttribute="trailing" secondItem="fjr-mp-ZN9" secondAttribute="trailing" id="iBO-bd-Y0L"/>
                             <constraint firstItem="Uok-VV-Vz1" firstAttribute="leading" secondItem="43z-wd-ArS" secondAttribute="trailing" id="kvr-hg-DOE"/>
                             <constraint firstItem="Uok-VV-Vz1" firstAttribute="top" secondItem="pNx-bb-Avk" secondAttribute="top" id="nSg-0J-V23"/>
                             <constraint firstItem="MF5-4W-cJR" firstAttribute="centerX" secondItem="Uok-VV-Vz1" secondAttribute="centerX" id="qgB-a5-iUm"/>
@@ -952,13 +952,13 @@
                     <navigationItem key="navigationItem" id="Jxe-5E-K1E"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
-                        <outlet property="player" destination="7TE-Lw-gnV" id="a4S-gQ-SYy"/>
+                        <outlet property="player" destination="Saa-HT-RpD" id="vfk-Uc-RbA"/>
                         <outlet property="smallPlayer" destination="Uok-VV-Vz1" id="4yx-jr-n8M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F9a-sk-vWF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-890" y="2771"/>
+            <point key="canvasLocation" x="-891.304347826087" y="2770.9821428571427"/>
         </scene>
     </scenes>
     <resources>
