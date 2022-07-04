@@ -72,6 +72,8 @@
 		9BEEAD1D2872BF4D009CCAD5 /* TwoPicturesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BEEAD1C2872BF4D009CCAD5 /* TwoPicturesViewController.m */; };
 		9BEEAD202872C11D009CCAD5 /* TwoPicturesCapture.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BEEAD1E2872C11D009CCAD5 /* TwoPicturesCapture.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9BEEAD212872C11D009CCAD5 /* TwoPicturesCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BEEAD1F2872C11D009CCAD5 /* TwoPicturesCapture.m */; };
+		9BEEAD242872CC2B009CCAD5 /* TPMTKView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BEEAD222872CC2A009CCAD5 /* TPMTKView.h */; };
+		9BEEAD252872CC2B009CCAD5 /* TPMTKView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BEEAD232872CC2B009CCAD5 /* TPMTKView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -177,6 +179,8 @@
 		9BEEAD1C2872BF4D009CCAD5 /* TwoPicturesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TwoPicturesViewController.m; sourceTree = "<group>"; };
 		9BEEAD1E2872C11D009CCAD5 /* TwoPicturesCapture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TwoPicturesCapture.h; sourceTree = "<group>"; };
 		9BEEAD1F2872C11D009CCAD5 /* TwoPicturesCapture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TwoPicturesCapture.m; sourceTree = "<group>"; };
+		9BEEAD222872CC2A009CCAD5 /* TPMTKView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TPMTKView.h; sourceTree = "<group>"; };
+		9BEEAD232872CC2B009CCAD5 /* TPMTKView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TPMTKView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -306,6 +310,8 @@
 				9B77FBB825A949700028A004 /* YZNewPixelBuffer.m */,
 				9B6DC27925DF5801002B77E8 /* YZNewMTKView.h */,
 				9B6DC27A25DF5801002B77E8 /* YZNewMTKView.m */,
+				9BEEAD222872CC2A009CCAD5 /* TPMTKView.h */,
+				9BEEAD232872CC2B009CCAD5 /* TPMTKView.m */,
 			);
 			path = Output;
 			sourceTree = "<group>";
@@ -413,6 +419,7 @@
 				9B6DC23A25CBEAAD002B77E8 /* YZCropSizeFilter.h in Headers */,
 				9B77FBD625A949700028A004 /* YZFilterProtocol.h in Headers */,
 				9B77FBD125A949700028A004 /* YZMetalOutput.h in Headers */,
+				9BEEAD242872CC2B009CCAD5 /* TPMTKView.h in Headers */,
 				9B77FBCA25A949700028A004 /* YZShaderTypes.h in Headers */,
 				9B77FBA325A949440028A004 /* YZMetalKit.h in Headers */,
 				9B77FBCD25A949700028A004 /* YZVideoCamera.h in Headers */,
@@ -536,6 +543,7 @@
 				9B77FBCE25A949700028A004 /* YZMetalOutput.m in Sources */,
 				9B77FBD425A949700028A004 /* YZBrightness.m in Sources */,
 				9B77FBC825A949700028A004 /* YZYUVToRGBConversion.metal in Sources */,
+				9BEEAD252872CC2B009CCAD5 /* TPMTKView.m in Sources */,
 				9B77FBD025A949700028A004 /* YZMTKView.m in Sources */,
 				9B135AE125BECC2A006F6205 /* YZOutputCapture.m in Sources */,
 				9B6DC23525CBE266002B77E8 /* YZCropFilter.m in Sources */,
@@ -600,7 +608,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20210222;
+				CURRENT_PROJECT_VERSION = 20220704;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 7XP66VHL84;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -615,7 +623,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = mh_dylib;
-				MARKETING_VERSION = 2.1.5;
+				MARKETING_VERSION = 3.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = yanzhen.YZMetalKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -630,7 +638,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20210222;
+				CURRENT_PROJECT_VERSION = 20220704;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 7XP66VHL84;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -645,7 +653,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = mh_dylib;
-				MARKETING_VERSION = 2.1.5;
+				MARKETING_VERSION = 3.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = yanzhen.YZMetalKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;

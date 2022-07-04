@@ -10,7 +10,7 @@
 #import "YZCropFilter.h"
 #import "YZCropSizeFilter.h"
 //#import "YZNewPixelBuffer.h"
-#import "YZMTKView.h"
+#import "TPMTKView.h"
 #import "YZBrightness.h"
 #import "YZBlendFilter.h"
 
@@ -18,7 +18,7 @@
 @property (nonatomic, strong) YZVideoCamera *camera;
 @property (nonatomic, strong) YZBrightness *beautyFilter;
 @property (nonatomic, strong) YZBlendFilter *blendFilter;
-@property (nonatomic, strong) YZMTKView *mtkView;
+@property (nonatomic, strong) TPMTKView *mtkView;
 @property (nonatomic, strong) YZCropFilter *cropFilter;
 //@property (nonatomic, strong) YZNewPixelBuffer *pixelBuffer;
 @end
@@ -63,10 +63,10 @@
     return self;
 }
 
-- (YZMTKView *)mtkView {
+- (TPMTKView *)mtkView {
     if (!_mtkView) {
-        _mtkView = [[YZMTKView alloc] initWithFrame:CGRectZero];
-        _mtkView.fillMode = (YZMTKViewFillMode)_fillMode;
+        _mtkView = [[TPMTKView alloc] initWithFrame:CGRectZero];
+        _mtkView.fillMode = (TPMTKViewFillMode)_fillMode;
         _mtkView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     }
     return _mtkView;
@@ -90,7 +90,7 @@
 
 -(void)setFillMode:(YZTPVideoFillMode)fillMode {
     _fillMode = fillMode;
-    _mtkView.fillMode = (YZMTKViewFillMode)fillMode;
+    _mtkView.fillMode = (TPMTKViewFillMode)fillMode;
 }
 
 - (void)setSize:(CGSize)size {

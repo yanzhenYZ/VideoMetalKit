@@ -24,7 +24,7 @@
     
     _context = [CIContext contextWithOptions:nil];
     _videoCapture = [[TwoPicturesCapture alloc] initWithSize:CGSizeMake(640, 480)];
-    //_videoCapture.player = self.player;
+    _videoCapture.player = self.smallPlayer;
     _videoCapture.fillMode = YZTPVideoFillModeScaleAspectFit;
     _videoCapture.delegate = self;
     [_videoCapture startRunning];
