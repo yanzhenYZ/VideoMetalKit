@@ -135,7 +135,8 @@
     simd_float8 vertices = [YZMetalOrientation defaultVertices];
     [encoder setVertexBytes:&vertices length:sizeof(simd_float8) atIndex:YZVertexIndexPosition];
     
-    simd_float8 textureCoordinates = [YZMetalOrientation defaultTextureCoordinates];
+    static const simd_float8 textureCoordinates = {0, 0, 1, 0, 0, 1, 1, 1};
+    //simd_float8 textureCoordinates = [YZMetalOrientation defaultTextureCoordinates];
     [encoder setVertexBytes:&textureCoordinates length:sizeof(simd_float8) atIndex:YZVertexIndexTextureCoordinate];
     [encoder setFragmentTexture:_texture atIndex:YZFragmentTextureIndexNormal];
     [encoder drawPrimitives:MTLPrimitiveTypeTriangleStrip vertexStart:0 vertexCount:4];
