@@ -134,6 +134,21 @@ typedef NS_ENUM(NSInteger, YZRotation) {
         _outputOrientation = YZOrientationLeft;
     }
 }
+
+#pragma mark - new for texture
++ (simd_float8)getTextureCoordinatesCrop:(CGRect)crop {
+    if (CGRectEqualToRect(CGRectMake(0, 0, 1, 1), crop)) {
+        return YZNoRotation;
+    }
+    CGFloat x = crop.origin.x;
+    CGFloat y = crop.origin.y;
+    CGFloat maxX = CGRectGetMaxX(crop);
+    CGFloat maxY = CGRectGetMaxY(crop);
+    simd_float8 t = {x, y, maxX, y, x, maxY, maxX, maxY};
+    return t;
+}
+
+
 #pragma mark - orientation
 
 - (YZRotation)getRotation {

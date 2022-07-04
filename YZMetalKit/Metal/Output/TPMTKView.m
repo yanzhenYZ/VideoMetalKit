@@ -25,6 +25,9 @@
 #if PIXELBUFFER
 @property (nonatomic, assign) CVMetalTextureCacheRef textureCache;
 #endif
+
+@property (nonatomic, assign) CGRect rect;
+@property (nonatomic, assign) int how;//height/how
 @end
 
 @implementation TPMTKView
@@ -46,6 +49,9 @@
     if (self) {
         [self _configSelf];
         self.currentBounds = self.bounds;
+//        _rect = CGRectMake(0, 0, 1, 1);//整个纹理
+        _how = 2;
+        _rect = CGRectMake(0, 0, 1, 1.0/_how);
     }
     return self;
 }
@@ -102,7 +108,7 @@
     
 #warning mark - doing
     //display height/2
-    CGSize size = CGSizeMake(texture.width, texture.height / 2);
+    CGSize size = CGSizeMake(texture.width, texture.height / _how);
     if (!CGSizeEqualToSize(self.drawableSize, size)) {
         self.drawableSize = size;
     }
@@ -141,7 +147,8 @@
     [encoder setVertexBytes:&vertices length:sizeof(simd_float8) atIndex:YZVertexIndexPosition];
     
     //static const simd_float8 textureCoordinates = {0, 0, 1, 0, 0, 1, 1, 1};
-    static const simd_float8 textureCoordinates = {0, 0, 1, 0, 0, 0.5, 1, 0.5};
+    //static const simd_float8 textureCoordinates = {0, 0, 1, 0, 0, 0.5, 1, 0.5};
+    simd_float8 textureCoordinates = [YZMetalOrientation getTextureCoordinatesCrop:_rect];
     [encoder setVertexBytes:&textureCoordinates length:sizeof(simd_float8) atIndex:YZVertexIndexTextureCoordinate];
     [encoder setFragmentTexture:_texture atIndex:YZFragmentTextureIndexNormal];
     [encoder drawPrimitives:MTLPrimitiveTypeTriangleStrip vertexStart:0 vertexCount:4];
