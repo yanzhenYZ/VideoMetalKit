@@ -54,12 +54,13 @@
 }
 
 - (void)setFillMode:(TPMTKViewFillMode)fillMode {
-    _fillMode = fillMode;
-    if (fillMode == TPMTKViewFillModeScaleAspectFill) {
-        self.contentMode = (UIViewContentMode)fillMode;
-    } else {
-        self.contentMode = UIViewContentModeScaleToFill;
-    }
+    self.contentMode = fillMode;
+//    _fillMode = fillMode;
+//    if (fillMode == TPMTKViewFillModeScaleAspectFill) {
+//        self.contentMode = (UIViewContentMode)fillMode;
+//    } else {
+//        self.contentMode = UIViewContentModeScaleToFill;
+//    }
 }
 
 - (void)setBackgroundColorRed:(double)red green:(double)green blue:(double)blue alpha:(double)alpha {
@@ -120,7 +121,7 @@
     [encoder setFrontFacingWinding:MTLWindingCounterClockwise];
     [encoder setRenderPipelineState:_pipelineState];
 
-    CGFloat w = 1;
+    /*CGFloat w = 1;
     CGFloat h = 1;
     if (_fillMode == TPMTKViewFillModeScaleAspectFit) {//for background color
         CGRect bounds = self.currentBounds;
@@ -129,7 +130,9 @@
         h = insetRect.size.height / bounds.size.height;
     }
     
-    simd_float8 vertices = {-w, h, w, h, -w, -h, w, -h};
+    simd_float8 vertices = {-w, h, w, h, -w, -h, w, -h};*/
+    
+    simd_float8 vertices = [YZMetalOrientation defaultVertices];
     [encoder setVertexBytes:&vertices length:sizeof(simd_float8) atIndex:YZVertexIndexPosition];
     
     simd_float8 textureCoordinates = [YZMetalOrientation defaultTextureCoordinates];
