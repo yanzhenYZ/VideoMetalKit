@@ -11,7 +11,9 @@
 #import "YZShaderTypes.h"
 
 #define PIXELBUFFER 0
-
+/**
+ 1. 显示上半部分 done
+ */
 @interface TPMTKView ()<MTKViewDelegate>
 @property (nonatomic, strong) id<MTLRenderPipelineState> pipelineState;
 @property (nonatomic, strong) id<MTLTexture> texture;
@@ -97,7 +99,10 @@
      3    MetalKit -[MTKView setContentScaleFactor:] + 372
      4    MetalKit -[MTKView setDrawableSize:] + 100
      */
-    CGSize size = CGSizeMake(texture.width, texture.height);
+    
+#warning mark - doing
+    //display height/2
+    CGSize size = CGSizeMake(texture.width, texture.height / 2);
     if (!CGSizeEqualToSize(self.drawableSize, size)) {
         self.drawableSize = size;
     }
@@ -132,11 +137,11 @@
     
     simd_float8 vertices = {-w, h, w, h, -w, -h, w, -h};*/
     
-    simd_float8 vertices = [YZMetalOrientation defaultVertices];
+    static const simd_float8 vertices = {-1, 1, 1, 1, -1, -1, 1, -1};
     [encoder setVertexBytes:&vertices length:sizeof(simd_float8) atIndex:YZVertexIndexPosition];
     
-    static const simd_float8 textureCoordinates = {0, 0, 1, 0, 0, 1, 1, 1};
-    //simd_float8 textureCoordinates = [YZMetalOrientation defaultTextureCoordinates];
+    //static const simd_float8 textureCoordinates = {0, 0, 1, 0, 0, 1, 1, 1};
+    static const simd_float8 textureCoordinates = {0, 0, 1, 0, 0, 0.5, 1, 0.5};
     [encoder setVertexBytes:&textureCoordinates length:sizeof(simd_float8) atIndex:YZVertexIndexTextureCoordinate];
     [encoder setFragmentTexture:_texture atIndex:YZFragmentTextureIndexNormal];
     [encoder drawPrimitives:MTLPrimitiveTypeTriangleStrip vertexStart:0 vertexCount:4];
