@@ -69,8 +69,11 @@
         _mtkView = [[TPMTKView alloc] initWithFrame:CGRectZero];
         _mtkView.fillMode = (TPMTKViewFillMode)_fillMode;
         _mtkView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        _mtkView.rect = CGRectMake(0, 0, 1, 0.5);
-        _mtkView.how = 2;
+//        _mtkView.rect = CGRectMake(0, 0, 1, 0.5);
+//        _mtkView.how = 2;
+        
+        _mtkView.rect = CGRectMake(0, 0, 0.5, 1);
+        _mtkView.wow = 2;
     }
     return _mtkView;
 }
@@ -81,8 +84,11 @@
         _mtkView2.fillMode = (TPMTKViewFillMode)_fillMode;
         _mtkView2.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         
-        _mtkView2.rect = CGRectMake(0, 0.5, 1, 0.5);
-        _mtkView2.how = 2;
+//        _mtkView2.rect = CGRectMake(0, 0.5, 1, 0.5);
+//        _mtkView2.how = 2;
+        
+        _mtkView2.rect = CGRectMake(0.5, 0, 0.5, 1);
+        _mtkView2.wow = 2;
     }
     return _mtkView2;
 }

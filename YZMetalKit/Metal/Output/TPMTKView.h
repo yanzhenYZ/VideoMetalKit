@@ -19,7 +19,8 @@ typedef NS_ENUM(NSInteger, TPMTKViewFillMode) {
 @property (nonatomic) TPMTKViewFillMode fillMode;
 
 @property (nonatomic, assign) CGRect rect;
-@property (nonatomic, assign) int how;//height/how
+@property (nonatomic, assign) CGFloat how;//height/how
+@property (nonatomic, assign) CGFloat wow;//width/how
 
 - (void)showPixelBuffer:(CVPixelBufferRef)pixelBuffer;
 - (void)setBackgroundColorRed:(double)red green:(double)green blue:(double)blue alpha:(double)alpha;

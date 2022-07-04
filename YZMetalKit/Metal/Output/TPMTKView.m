@@ -45,6 +45,7 @@
         [self _configSelf];
         self.currentBounds = self.bounds;
         _how = 1;
+        _wow = 1;
         _rect = CGRectMake(0, 0, 1, 1);
     }
     return self;
@@ -102,7 +103,7 @@
     
 #warning mark - doing
     //display height/2
-    CGSize size = CGSizeMake(texture.width, texture.height / _how);
+    CGSize size = CGSizeMake(texture.width / _wow, texture.height / _how);
     if (!CGSizeEqualToSize(self.drawableSize, size)) {
         self.drawableSize = size;
     }
