@@ -69,6 +69,9 @@
 		9BB00053257FB7F600207AF3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB00052257FB7F600207AF3 /* main.m */; };
 		9BE85D5325B2D7C6005C7D82 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BE85D5225B2D7C6005C7D82 /* FirstViewController.m */; };
 		9BE85D5925B2E187005C7D82 /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BE85D5825B2E187005C7D82 /* ThirdViewController.m */; };
+		9BEEAD1D2872BF4D009CCAD5 /* TwoPicturesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BEEAD1C2872BF4D009CCAD5 /* TwoPicturesViewController.m */; };
+		9BEEAD202872C11D009CCAD5 /* TwoPicturesCapture.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BEEAD1E2872C11D009CCAD5 /* TwoPicturesCapture.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9BEEAD212872C11D009CCAD5 /* TwoPicturesCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BEEAD1F2872C11D009CCAD5 /* TwoPicturesCapture.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,6 +173,10 @@
 		9BE85D5225B2D7C6005C7D82 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		9BE85D5725B2E187005C7D82 /* ThirdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThirdViewController.h; sourceTree = "<group>"; };
 		9BE85D5825B2E187005C7D82 /* ThirdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThirdViewController.m; sourceTree = "<group>"; };
+		9BEEAD1B2872BF4D009CCAD5 /* TwoPicturesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TwoPicturesViewController.h; sourceTree = "<group>"; };
+		9BEEAD1C2872BF4D009CCAD5 /* TwoPicturesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TwoPicturesViewController.m; sourceTree = "<group>"; };
+		9BEEAD1E2872C11D009CCAD5 /* TwoPicturesCapture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TwoPicturesCapture.h; sourceTree = "<group>"; };
+		9BEEAD1F2872C11D009CCAD5 /* TwoPicturesCapture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TwoPicturesCapture.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,6 +242,8 @@
 			isa = PBXGroup;
 			children = (
 				9B77FBA125A949440028A004 /* YZMetalKit.h */,
+				9BEEAD1E2872C11D009CCAD5 /* TwoPicturesCapture.h */,
+				9BEEAD1F2872C11D009CCAD5 /* TwoPicturesCapture.m */,
 				9B6DC26025DE50A5002B77E8 /* YZFilterCapture.h */,
 				9B6DC26125DE50A5002B77E8 /* YZFilterCapture.m */,
 				9B6DC24525CC082D002B77E8 /* YZNOBeautyCapture.h */,
@@ -355,6 +364,7 @@
 			children = (
 				9BB00040257FB7F400207AF3 /* AppDelegate.h */,
 				9BB00041257FB7F400207AF3 /* AppDelegate.m */,
+				9BEEAD1A2872BEBC009CCAD5 /* TwoPicture */,
 				9B6DC26725DE50FA002B77E8 /* Filters */,
 				9B6DC26E25DE51E4002B77E8 /* Captures */,
 				9B6DC24C25CC0879002B77E8 /* NOBeauty */,
@@ -367,6 +377,15 @@
 			path = YZMetalLib;
 			sourceTree = "<group>";
 		};
+		9BEEAD1A2872BEBC009CCAD5 /* TwoPicture */ = {
+			isa = PBXGroup;
+			children = (
+				9BEEAD1B2872BF4D009CCAD5 /* TwoPicturesViewController.h */,
+				9BEEAD1C2872BF4D009CCAD5 /* TwoPicturesViewController.m */,
+			);
+			path = TwoPicture;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -374,6 +393,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BEEAD202872C11D009CCAD5 /* TwoPicturesCapture.h in Headers */,
 				9B6DC26225DE50A5002B77E8 /* YZFilterCapture.h in Headers */,
 				9B77FBE725A94B9C0028A004 /* YZVideoCapture.h in Headers */,
 				9B135AE025BECC2A006F6205 /* YZOutputCapture.h in Headers */,
@@ -519,6 +539,7 @@
 				9B77FBD025A949700028A004 /* YZMTKView.m in Sources */,
 				9B135AE125BECC2A006F6205 /* YZOutputCapture.m in Sources */,
 				9B6DC23525CBE266002B77E8 /* YZCropFilter.m in Sources */,
+				9BEEAD212872C11D009CCAD5 /* TwoPicturesCapture.m in Sources */,
 				9B77FBD825A949700028A004 /* YZMetalDevice.m in Sources */,
 				9B77FBD925A949700028A004 /* YZMetalOrientation.m in Sources */,
 				9B135B0C25BFC7B4006F6205 /* YZBlendFilter.m in Sources */,
@@ -535,6 +556,7 @@
 				9BB00042257FB7F400207AF3 /* AppDelegate.m in Sources */,
 				9B135AE825BECCAC006F6205 /* OutputViewController.m in Sources */,
 				9BB00053257FB7F600207AF3 /* main.m in Sources */,
+				9BEEAD1D2872BF4D009CCAD5 /* TwoPicturesViewController.m in Sources */,
 				9B6DC26B25DE51AB002B77E8 /* FiltersViewController.m in Sources */,
 				9B6DC25825CC0C71002B77E8 /* YZTestBeautyFilter.m in Sources */,
 				9BE85D5325B2D7C6005C7D82 /* FirstViewController.m in Sources */,
