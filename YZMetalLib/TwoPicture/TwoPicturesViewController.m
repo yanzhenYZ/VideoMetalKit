@@ -11,6 +11,7 @@
 @interface TwoPicturesViewController ()<TwoPicturesCaptureDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *player;
 @property (weak, nonatomic) IBOutlet UIImageView *smallPlayer;
+@property (weak, nonatomic) IBOutlet UIImageView *smallPlayer2;
 
 @property (nonatomic, strong) TwoPicturesCapture *videoCapture;
 @property (nonatomic, strong) CIContext *context;
@@ -25,6 +26,7 @@
     _context = [CIContext contextWithOptions:nil];
     _videoCapture = [[TwoPicturesCapture alloc] initWithSize:CGSizeMake(640, 480)];
     _videoCapture.player = self.smallPlayer;
+    _videoCapture.player2 = self.smallPlayer2;
     _videoCapture.fillMode = YZTPVideoFillModeScaleAspectFit;
     _videoCapture.delegate = self;
     [_videoCapture startRunning];

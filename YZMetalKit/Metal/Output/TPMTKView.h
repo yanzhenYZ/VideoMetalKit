@@ -18,6 +18,9 @@ typedef NS_ENUM(NSInteger, TPMTKViewFillMode) {
 @interface TPMTKView : MTKView<YZFilterProtocol>
 @property (nonatomic) TPMTKViewFillMode fillMode;
 
+@property (nonatomic, assign) CGRect rect;
+@property (nonatomic, assign) int how;//height/how
+
 - (void)showPixelBuffer:(CVPixelBufferRef)pixelBuffer;
 - (void)setBackgroundColorRed:(double)red green:(double)green blue:(double)blue alpha:(double)alpha;
 @end

@@ -29,6 +29,7 @@ typedef NS_ENUM(NSInteger, YZTPVideoFillMode) {
 
 /** video player */
 @property (nonatomic, strong) UIView *player;
+@property (nonatomic, strong) UIView *player2;
 /** video player fillMode*/
 @property (nonatomic) YZTPVideoFillMode fillMode;
 

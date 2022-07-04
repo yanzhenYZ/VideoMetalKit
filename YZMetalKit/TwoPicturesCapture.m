@@ -19,6 +19,7 @@
 @property (nonatomic, strong) YZBrightness *beautyFilter;
 @property (nonatomic, strong) YZBlendFilter *blendFilter;
 @property (nonatomic, strong) TPMTKView *mtkView;
+@property (nonatomic, strong) TPMTKView *mtkView2;
 @property (nonatomic, strong) YZCropFilter *cropFilter;
 //@property (nonatomic, strong) YZNewPixelBuffer *pixelBuffer;
 @end
@@ -68,8 +69,22 @@
         _mtkView = [[TPMTKView alloc] initWithFrame:CGRectZero];
         _mtkView.fillMode = (TPMTKViewFillMode)_fillMode;
         _mtkView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        _mtkView.rect = CGRectMake(0, 0, 1, 0.5);
+        _mtkView.how = 2;
     }
     return _mtkView;
+}
+
+- (TPMTKView *)mtkView2 {
+    if (!_mtkView2) {
+        _mtkView2 = [[TPMTKView alloc] initWithFrame:CGRectZero];
+        _mtkView2.fillMode = (TPMTKViewFillMode)_fillMode;
+        _mtkView2.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        
+        _mtkView2.rect = CGRectMake(0, 0.5, 1, 0.5);
+        _mtkView2.how = 2;
+    }
+    return _mtkView2;
 }
 #pragma mark - property
 - (void)setPlayer:(UIView *)player {
@@ -88,9 +103,26 @@
     }];
 }
 
+- (void)setPlayer2:(UIView *)player2 {
+    if (_player2 == player2) { return; }
+    _player2 = player2;
+    [self mainThreadAction:^{
+        if (player2) {
+            [self.mtkView2 removeFromSuperview];
+            self.mtkView2.frame = player2.bounds;
+            [player2 addSubview:self.mtkView2];
+            [self.blendFilter addFilter:self.mtkView2];
+        } else {
+            [self.mtkView2 removeFromSuperview];
+            [self.blendFilter removeFilter:self.mtkView2];
+        }
+    }];
+}
+
 -(void)setFillMode:(YZTPVideoFillMode)fillMode {
     _fillMode = fillMode;
     _mtkView.fillMode = (TPMTKViewFillMode)fillMode;
+    _mtkView2.fillMode = (TPMTKViewFillMode)fillMode;
 }
 
 - (void)setSize:(CGSize)size {

@@ -11,9 +11,7 @@
 #import "YZShaderTypes.h"
 
 #define PIXELBUFFER 0
-/**
- 1. 显示上半部分 done
- */
+
 @interface TPMTKView ()<MTKViewDelegate>
 @property (nonatomic, strong) id<MTLRenderPipelineState> pipelineState;
 @property (nonatomic, strong) id<MTLTexture> texture;
@@ -25,9 +23,6 @@
 #if PIXELBUFFER
 @property (nonatomic, assign) CVMetalTextureCacheRef textureCache;
 #endif
-
-@property (nonatomic, assign) CGRect rect;
-@property (nonatomic, assign) int how;//height/how
 @end
 
 @implementation TPMTKView
@@ -49,9 +44,8 @@
     if (self) {
         [self _configSelf];
         self.currentBounds = self.bounds;
-//        _rect = CGRectMake(0, 0, 1, 1);//整个纹理
-        _how = 2;
-        _rect = CGRectMake(0, 0, 1, 1.0/_how);
+        _how = 1;
+        _rect = CGRectMake(0, 0, 1, 1);
     }
     return self;
 }
@@ -62,7 +56,7 @@
 }
 
 - (void)setFillMode:(TPMTKViewFillMode)fillMode {
-    self.contentMode = fillMode;
+    self.contentMode = (UIViewContentMode)fillMode;
 //    _fillMode = fillMode;
 //    if (fillMode == TPMTKViewFillModeScaleAspectFill) {
 //        self.contentMode = (UIViewContentMode)fillMode;
